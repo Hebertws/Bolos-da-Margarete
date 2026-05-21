@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolos da Margarete - Bolos Caseiros Deliciosos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🎂 Bolos da Margarete</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#galeria">Galeria</a></li>
+                    <li><a href="#cardapio">Cardápio</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Bolos Caseiros Artesanais</h2>
+            <p>Feitos com amor e ingredientes de qualidade para sua família</p>
+            <button class="btn btn-primary" onclick="redirecionarWhatsapp()">🛒 Fazer Pedido</button>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="sobre" class="sobre">
+        <div class="container">
+            <h2>Sobre Bolos da Margarete</h2>
+            <p>Bem-vindo ao nosso espaço de bolos caseiros! Com mais de uma década de experiência, preparamos bolos
+                deliciosos feitos com ingredientes selecionados e muito carinho. Cada bolo é uma obra de arte pensada
+                para seus momentos especiais.</p>
+        </div>
+    </section>
+
+    <!-- Galeria de Bolos -->
+    <section id="galeria" class="galeria">
+        <div class="container">
+            <h2>Nossa Galeria</h2>
+            <p class="subtitle">Confira os bolos que preparamos com carinho</p>
+
+            <div class="carrossel-container">
+                <button class="carrossel-btn carrossel-btn-prev" onclick="moveCarrossel(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="carrossel-wrapper">
+                    <div class="carrossel" id="carrossel">
+                        <div class="galeria-item">
+                            <img src="https://via.placeholder.com/400x400?text=Bolo+de+Castanha" alt="Bolo de Castanha">
+                            <h3>Bolo de Castanha</h3>
+                        </div>
+                        <div class="galeria-item">
+                            <img src="https://via.placeholder.com/400x400?text=Bolo+de+Chocolate" alt="Bolo de Chocolate">
+                            <h3>Bolo de Chocolate</h3>
+                        </div>
+                        <div class="galeria-item">
+                            <img src="https://via.placeholder.com/400x400?text=Bolo+de+Cenoura" alt="Bolo de Cenoura">
+                            <h3>Bolo de Cenoura</h3>
+                        </div>
+                        <div class="galeria-item">
+                            <img src="https://via.placeholder.com/400x400?text=Bolo+de+Churros" alt="Bolo de Churros">
+                            <h3>Bolo de Churros</h3>
+                        </div>
+                        <div class="galeria-item">
+                            <img src="https://via.placeholder.com/400x400?text=Bolo+de+Coco" alt="Bolo de Coco">
+                            <h3>Bolo de Coco</h3>
+                        </div>
+                        <div class="galeria-item">
+                            <img src="https://via.placeholder.com/400x400?text=Bolo+de+Fubá" alt="Bolo de Fubá">
+                            <h3>Bolo de Fubá</h3>
+                        </div>
+                        <div class="galeria-item">
+                            <img src="https://via.placeholder.com/400x400?text=Bolo+de+Laranja" alt="Bolo de Laranja">
+                            <h3>Bolo de Laranja</h3>
+                        </div>
+                        <div class="galeria-item">
+                            <img src="https://via.placeholder.com/400x400?text=Bolo+de+Limão" alt="Bolo de Limão">
+                            <h3>Bolo de Limão</h3>
+                        </div>
+                        <div class="galeria-item">
+                            <img src="https://via.placeholder.com/400x400?text=Bolo+de+Paçoca" alt="Bolo de Paçoca">
+                            <h3>Bolo de Paçoca</h3>
+                        </div>
+                        <div class="galeria-item">
+                            <img src="https://via.placeholder.com/400x400?text=Broa+de+Milho" alt="Broa de Milho">
+                            <h3>Broa de Milho</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carrossel-btn carrossel-btn-next" onclick="moveCarrossel(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="carrossel-indicadores" id="indicadores"></div>
+        </div>
+    </section>
+
+    <!-- Cardápio -->
+    <section id="cardapio" class="cardapio">
+        <div class="container">
+            <h2>Nosso Cardápio</h2>
+            <p class="subtitle">Confira todos os bolos e broas disponíveis</p>
+
+            <div class="cardapio-list">
+                <div class="cardapio-item">
+                    <span class="item-nome">Bolo de Castanha</span>
+                    <span class="item-preco">R$ 25,00</span>
+                </div>
+                <div class="cardapio-item">
+                    <span class="item-nome">Bolo de Cenoura com Cobertura de Chocolate</span>
+                    <span class="item-preco">R$ 20,00</span>
+                </div>
+                <div class="cardapio-item">
+                    <span class="item-nome">Bolo de Chocolate</span>
+                    <span class="item-preco">R$ 20,00</span>
+                </div>
+                <div class="cardapio-item">
+                    <span class="item-nome">Bolo de Chocolate com Castanha</span>
+                    <span class="item-preco">R$ 25,00</span>
+                </div>
+                <div class="cardapio-item">
+                    <span class="item-nome">Bolo de Churros</span>
+                    <span class="item-preco">R$ 20,00</span>
+                </div>
+                <div class="cardapio-item">
+                    <span class="item-nome">Bolo de Coco</span>
+                    <span class="item-preco">R$ 20,00</span>
+                </div>
+                <div class="cardapio-item">
+                    <span class="item-nome">Bolo de Fubá com Queijo e Cobertura de Goiabada</span>
+                    <span class="item-preco">R$ 20,00</span>
+                </div>
+                <div class="cardapio-item">
+                    <span class="item-nome">Bolo de Fubá com Erva Doce</span>
+                    <span class="item-preco">R$ 20,00</span>
+                </div>
+                <div class="cardapio-item">
+                    <span class="item-nome">Bolo de Laranja com Cobertura de Limão</span>
+                    <span class="item-preco">R$ 20,00</span>
+                </div>
+                <div class="cardapio-item">
+                    <span class="item-nome">Bolo de Limão com Cobertura de Limão</span>
+                    <span class="item-preco">R$ 20,00</span>
+                </div>
+                <div class="cardapio-item">
+                    <span class="item-nome">Bolo de Maçã com Castanha</span>
+                    <span class="item-preco">R$ 25,00</span>
+                </div>
+                <div class="cardapio-item">
+                    <span class="item-nome">Bolo de Milho</span>
+                    <span class="item-preco">R$ 20,00</span>
+                </div>
+                <div class="cardapio-item">
+                    <span class="item-nome">Bolo de Paçoca</span>
+                    <span class="item-preco">R$ 20,00</span>
+                </div>
+                <div class="cardapio-item">
+                    <span class="item-nome">Broa de Farinha de Milho com Coco e Queijo</span>
+                    <span class="item-preco">R$ 25,00</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="contato">
+        <div class="container">
+            <h2>Entre em Contato</h2>
+            <div class="contato-info-center">
+                <h3>📱 Faça Seu Pedido</h3>
+                <p>Clique no botão abaixo ou envie uma mensagem direto pelo WhatsApp</p>
+                <div class="info-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <a href="https://wa.me/+5531985740971" target="_blank">(31) 985740971</a>
+                </div>
+                <button class="btn btn-primary btn-lg" onclick="redirecionarWhatsapp()">
+                    <i class="fab fa-whatsapp"></i> Fazer Pedido
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Margarete Bolos. Todos os direitos reservados.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
