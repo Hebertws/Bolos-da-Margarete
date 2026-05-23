@@ -7,6 +7,9 @@
     <title>Bolos da Margarete - Bolos Caseiros Deliciosos</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js"></script>
 </head>
 
 <body>
@@ -23,6 +26,9 @@
                     <li><a href="#cardapio">Cardápio</a></li>
                     <li><a href="#contato">Contato</a></li>
                 </ul>
+                <button class="btn-tema" onclick="alternarModoEscuro()" title="Alternar modo escuro">
+                    <i class="fas fa-moon"></i>
+                </button>
             </nav>
         </div>
     </header>
@@ -117,7 +123,18 @@
             <h2>Nosso Cardápio</h2>
             <p class="subtitle">Confira todos os bolos e broas disponíveis</p>
 
-            <div class="cardapio-list">
+            <div class="busca-container">
+                <input 
+                    type="text" 
+                    id="buscaInput" 
+                    class="busca-input" 
+                    placeholder="🔍 Buscar bolo..."
+                    onkeyup="filtrarCardapio()"
+                >
+                <span class="busca-info" id="buscaInfo"></span>
+            </div>
+
+            <div class="cardapio-list" id="cardapioList">
                 <div class="cardapio-item">
                     <span class="item-nome">Bolo de Castanha</span>
                     <span class="item-preco">R$ 25,00</span>
@@ -178,6 +195,85 @@
         </div>
     </section>
 
+    <!-- Modal de Ingredientes -->
+    <div id="modalReceita" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="fecharModal()">✕</button>
+            <div class="modal-body">
+                <h2 id="receita-titulo">Ingredientes</h2>
+                
+                <div class="receita-section">
+                    <ul id="receita-ingredientes"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Avaliações -->
+    <section id="avaliacoes" class="avaliacoes">
+        <div class="container">
+            <h2>Avaliações dos Clientes</h2>
+            <p class="subtitle">Veja o que nossos clientes acham dos nossos bolos</p>
+
+            <!-- Formulário de Avaliação -->
+            <div class="avaliacao-form">
+                <h3>Deixe sua avaliação</h3>
+                <form id="formAvaliacao" onsubmit="enviarAvaliacao(event)">
+                    <div class="form-group">
+                        <label for="avalNome">Nome:</label>
+                        <input type="text" id="avalNome" required placeholder="Seu nome">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="avalBolo">Qual bolo?</label>
+                        <select id="avalBolo" required>
+                            <option value="">Selecione um bolo...</option>
+                            <option value="Bolo de Castanha">Bolo de Castanha</option>
+                            <option value="Bolo de Cenoura com Cobertura de Chocolate">Bolo de Cenoura com Cobertura de Chocolate</option>
+                            <option value="Bolo de Chocolate">Bolo de Chocolate</option>
+                            <option value="Bolo de Chocolate com Castanha">Bolo de Chocolate com Castanha</option>
+                            <option value="Bolo de Churros">Bolo de Churros</option>
+                            <option value="Bolo de Coco">Bolo de Coco</option>
+                            <option value="Bolo de Fubá com Queijo e Cobertura de Goiabada">Bolo de Fubá com Queijo e Cobertura de Goiabada</option>
+                            <option value="Bolo de Fubá com Erva Doce">Bolo de Fubá com Erva Doce</option>
+                            <option value="Bolo de Laranja com Cobertura de Limão">Bolo de Laranja com Cobertura de Limão</option>
+                            <option value="Bolo de Limão com Cobertura de Limão">Bolo de Limão com Cobertura de Limão</option>
+                            <option value="Bolo de Maçã com Castanha">Bolo de Maçã com Castanha</option>
+                            <option value="Bolo de Milho">Bolo de Milho</option>
+                            <option value="Bolo de Paçoca">Bolo de Paçoca</option>
+                            <option value="Broa de Farinha de Milho com Coco e Queijo">Broa de Farinha de Milho com Coco e Queijo</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Avaliação:</label>
+                        <div class="avaliacao-stars" id="avaliacaoStars">
+                            <i class="fas fa-star" data-value="1"></i>
+                            <i class="fas fa-star" data-value="2"></i>
+                            <i class="fas fa-star" data-value="3"></i>
+                            <i class="fas fa-star" data-value="4"></i>
+                            <i class="fas fa-star" data-value="5"></i>
+                        </div>
+                        <input type="hidden" id="avalEstrelas" value="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="avalComentario">Comentário:</label>
+                        <textarea id="avalComentario" placeholder="Compartilhe sua experiência..." rows="4"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Enviar Avaliação</button>
+                </form>
+            </div>
+
+            <!-- Exibição de Avaliações -->
+            <div class="avaliacoes-lista">
+                <h3>Últimas Avaliações</h3>
+                <div id="listaAvaliacoes" class="avaliacoes-container"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contato -->
     <section id="contato" class="contato">
         <div class="container">
@@ -208,6 +304,7 @@
         </div>
     </footer>
 
+    <script src="firebase-config.js"></script>
     <script src="script.js"></script>
 </body>
 
