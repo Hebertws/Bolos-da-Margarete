@@ -17,18 +17,22 @@
     <header class="header">
         <div class="container">
             <div class="logo">
-                <h1>🎂 Bolos da Margarete</h1>
+                <img src="Bolos.png" alt="Bolos da Margarete" class="logo-img">
+                <h1>Bolos da Margarete</h1>
             </div>
             <nav class="nav">
                 <ul>
                     <li><a href="#sobre">Sobre</a></li>
                     <li><a href="#galeria">Galeria</a></li>
                     <li><a href="#cardapio">Cardápio</a></li>
+                    <li><a href="#encomenda">Encomenda</a></li>
                     <li><a href="#contato">Contato</a></li>
+                    <li>
+                        <button class="btn-tema" onclick="alternarModoEscuro()" title="Alternar modo escuro">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
                 </ul>
-                <button class="btn-tema" onclick="alternarModoEscuro()" title="Alternar modo escuro">
-                    <i class="fas fa-moon"></i>
-                </button>
             </nav>
         </div>
     </header>
@@ -36,7 +40,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h2>Bolos Caseiros Artesanais</h2>
+            <h2>Bolos Caseiros</h2>
             <p>Feitos com amor e ingredientes de qualidade para sua família</p>
             <button class="btn btn-primary" onclick="redirecionarWhatsapp()">🛒 Fazer Pedido</button>
         </div>
@@ -46,9 +50,9 @@
     <section id="sobre" class="sobre">
         <div class="container">
             <h2>Sobre Bolos da Margarete</h2>
-            <p>Bem-vindo ao nosso espaço de bolos caseiros! Com mais de uma década de experiência, preparamos bolos
-                deliciosos feitos com ingredientes selecionados e muito carinho. Cada bolo é uma obra de arte pensada
-                para seus momentos especiais.</p>
+            <p>Bem-vindo ao espaço de bolos caseiros da Margarete! Com uma paixão genuína por doces caseiros, preparamos
+                bolos deliciosos feitos com ingredientes selecionados e muito amor. Cada bolo é preparado com dedicação
+                e carinho, pensado para tornar seus momentos especiais ainda mais doces e memoráveis.</p>
         </div>
     </section>
 
@@ -62,7 +66,7 @@
                 <button class="carrossel-btn carrossel-btn-prev" onclick="moveCarrossel(-1)">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                
+
                 <div class="carrossel-wrapper">
                     <div class="carrossel" id="carrossel">
                         <div class="galeria-item">
@@ -70,15 +74,15 @@
                             <h3>Bolo de Castanha</h3>
                         </div>
                         <div class="galeria-item">
-                            <img src="https://via.placeholder.com/400x400?text=Bolo+de+Chocolate" alt="Bolo de Chocolate">
+                            <img src="https://i.ibb.co/hJGvxTnM/Chocolate.jpg" alt="Bolo de Chocolate">
                             <h3>Bolo de Chocolate</h3>
                         </div>
                         <div class="galeria-item">
-                            <img src="https://via.placeholder.com/400x400?text=Bolo+de+Cenoura" alt="Bolo de Cenoura">
+                            <img src="https://i.ibb.co/4gPwzwVZ/cenouracalda.jpg" alt="Bolo de Cenoura">
                             <h3>Bolo de Cenoura</h3>
                         </div>
                         <div class="galeria-item">
-                            <img src="https://via.placeholder.com/400x400?text=Bolo+de+Churros" alt="Bolo de Churros">
+                            <img src="https://i.ibb.co/7c5fbMw/Bolo-Churros.jpg" alt="Bolo de Churros">
                             <h3>Bolo de Churros</h3>
                         </div>
                         <div class="galeria-item">
@@ -90,7 +94,7 @@
                             <h3>Bolo de Fubá</h3>
                         </div>
                         <div class="galeria-item">
-                            <img src="https://via.placeholder.com/400x400?text=Bolo+de+Laranja" alt="Bolo de Laranja">
+                            <img src="https://i.ibb.co/XrY0DFMy/Laranja-Clim-o.jpg" alt="Bolo de Laranja">
                             <h3>Bolo de Laranja</h3>
                         </div>
                         <div class="galeria-item">
@@ -98,22 +102,103 @@
                             <h3>Bolo de Limão</h3>
                         </div>
                         <div class="galeria-item">
-                            <img src="https://via.placeholder.com/400x400?text=Bolo+de+Paçoca" alt="Bolo de Paçoca">
+                            <img src="https://i.ibb.co/sJF1Nhxd/20260523-152011.jpg" alt="Bolo de Paçoca">
                             <h3>Bolo de Paçoca</h3>
                         </div>
                         <div class="galeria-item">
-                            <img src="https://via.placeholder.com/400x400?text=Broa+de+Milho" alt="Broa de Milho">
-                            <h3>Broa de Milho</h3>
+                            <img src="https://i.ibb.co/SDFRGWgs/Milho.jpg" alt="Bolo de Milho">
+                            <h3>Bolo de Milho</h3>
                         </div>
                     </div>
                 </div>
-                
+
                 <button class="carrossel-btn carrossel-btn-next" onclick="moveCarrossel(1)">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
-            
+
             <div class="carrossel-indicadores" id="indicadores"></div>
+
+            <!-- Botão Ver Galeria Completa -->
+            <div class="galeria-completa-btn-container">
+                <button class="btn btn-primary" onclick="toggleGaleriaCompleta()">
+                    <i class="fas fa-th"></i> Ver Galeria Completa
+                </button>
+            </div>
+
+            <!-- Galeria Completa em Grid -->
+            <div id="galeriaCompleta" class="galeria-completa oculta">
+                <h3>Todos os Nossos Bolos</h3>
+                <div class="galeria-grid">
+                    <div class="galeria-grid-item">
+                        <img src="https://via.placeholder.com/300x300?text=Bolo+de+Castanha" alt="Bolo de Castanha">
+                        <h4>Bolo de Castanha</h4>
+                    </div>
+                    <div class="galeria-grid-item">
+                        <img src="https://i.ibb.co/4gPwzwVZ/cenouracalda.jpg"
+                            alt="Bolo de Cenoura com Cobertura de Chocolate">
+                        <h4>Bolo de Cenoura com Cobertura de Chocolate</h4>
+                    </div>
+                    <div class="galeria-grid-item">
+                        <img src="https://i.ibb.co/hJGvxTnM/Chocolate.jpg" alt="Bolo de Chocolate">
+                        <h4>Bolo de Chocolate</h4>
+                    </div>
+                    <div class="galeria-grid-item">
+                        <img src="https://via.placeholder.com/300x300?text=Chocolate+Castanha"
+                            alt="Bolo de Chocolate com Castanha">
+                        <h4>Bolo de Chocolate com Castanha</h4>
+                    </div>
+                    <div class="galeria-grid-item">
+                        <img src="https://i.ibb.co/7c5fbMw/Bolo-Churros.jpg" alt="Bolo de Churros">
+                        <h4>Bolo de Churros</h4>
+                    </div>
+                    <div class="galeria-grid-item">
+                        <img src="https://via.placeholder.com/300x300?text=Bolo+de+Coco" alt="Bolo de Coco">
+                        <h4>Bolo de Coco</h4>
+                    </div>
+                    <div class="galeria-grid-item">
+                        <img src="https://via.placeholder.com/300x300?text=Fubá+Queijo+Goiabada"
+                            alt="Bolo de Fubá com Queijo e Cobertura de Goiabada">
+                        <h4>Bolo de Fubá com Queijo e Cobertura de Goiabada</h4>
+                    </div>
+                    <div class="galeria-grid-item">
+                        <img src="https://via.placeholder.com/300x300?text=Fubá+Erva+Doce"
+                            alt="Bolo de Fubá com Erva Doce">
+                        <h4>Bolo de Fubá com Erva Doce</h4>
+                    </div>
+                    <div class="galeria-grid-item">
+                        <img src="https://i.ibb.co/XrY0DFMy/Laranja-Clim-o.jpg"
+                            alt="Bolo de Laranja com Cobertura de Limão">
+                        <h4>Bolo de Laranja com Cobertura de Limão</h4>
+                    </div>
+                    <div class="galeria-grid-item">
+                        <img src="https://via.placeholder.com/300x300?text=Limão+Cobertura"
+                            alt="Bolo de Limão com Cobertura de Limão">
+                        <h4>Bolo de Limão com Cobertura de Limão</h4>
+                    </div>
+                    <div class="galeria-grid-item">
+                        <img src="https://via.placeholder.com/300x300?text=Maçã+Castanha"
+                            alt="Bolo de Maçã com Castanha">
+                        <h4>Bolo de Maçã com Castanha</h4>
+                    </div>
+                    <div class="galeria-grid-item">
+                        <img src="https://i.ibb.co/SDFRGWgs/Milho.jpg" alt="Bolo de Milho">
+                        <h4>Bolo de Milho</h4>
+                    </div>
+                    <div class="galeria-grid-item">
+                        <img src="https://i.ibb.co/sJF1Nhxd/20260523-152011.jpg" alt="Bolo de Paçoca">
+                        <h4>Bolo de Paçoca</h4>
+                    </div>
+                    <div class="galeria-grid-item">
+                        <img src="https://i.ibb.co/xSnZL9mt/Broa.jpg"
+                            alt="Broa de Farinha de Milho com Coco e Queijo">
+                        <h4>Broa de Farinha de Milho com Coco e Queijo</h4>
+                    </div>
+                </div>
+                <button class="btn btn-outline" onclick="toggleGaleriaCompleta()" style="margin-top: 2rem;">
+                    <i class="fas fa-times"></i> Fechar Galeria
+                </button>
+            </div>
         </div>
     </section>
 
@@ -124,91 +209,177 @@
             <p class="subtitle">Confira todos os bolos e broas disponíveis</p>
 
             <div class="busca-container">
-                <input 
-                    type="text" 
-                    id="buscaInput" 
-                    class="busca-input" 
-                    placeholder="🔍 Buscar bolo..."
-                    onkeyup="filtrarCardapio()"
-                >
+                <input type="text" id="buscaInput" class="busca-input" placeholder="🔍 Buscar bolo..."
+                    onkeyup="filtrarCardapio()">
                 <span class="busca-info" id="buscaInfo"></span>
             </div>
 
+            <p class="aviso-alergenos">
+                Atenção: todos os bolos contêm derivados de leite. A produção pode ter contato com glúten, ovos,
+                castanhas, amendoim e soja. Informe alergias nas observações da encomenda.
+            </p>
+
             <div class="cardapio-list" id="cardapioList">
                 <div class="cardapio-item">
-                    <span class="item-nome">Bolo de Castanha</span>
+                    <div class="item-info">
+                        <span class="item-nome">Bolo de Castanha</span>
+                    </div>
                     <span class="item-preco">R$ 25,00</span>
                 </div>
                 <div class="cardapio-item">
-                    <span class="item-nome">Bolo de Cenoura com Cobertura de Chocolate</span>
+                    <div class="item-info">
+                        <span class="item-nome">Bolo de Cenoura com Cobertura de Chocolate</span>
+                    </div>
                     <span class="item-preco">R$ 20,00</span>
                 </div>
                 <div class="cardapio-item">
-                    <span class="item-nome">Bolo de Chocolate</span>
+                    <div class="item-info">
+                        <span class="item-nome">Bolo de Chocolate</span>
+                    </div>
                     <span class="item-preco">R$ 20,00</span>
                 </div>
                 <div class="cardapio-item">
-                    <span class="item-nome">Bolo de Chocolate com Castanha</span>
+                    <div class="item-info">
+                        <span class="item-nome">Bolo de Chocolate com Castanha</span>
+                    </div>
                     <span class="item-preco">R$ 25,00</span>
                 </div>
                 <div class="cardapio-item">
-                    <span class="item-nome">Bolo de Churros</span>
+                    <div class="item-info">
+                        <span class="item-nome">Bolo de Churros</span>
+                    </div>
                     <span class="item-preco">R$ 20,00</span>
                 </div>
                 <div class="cardapio-item">
-                    <span class="item-nome">Bolo de Coco</span>
+                    <div class="item-info">
+                        <span class="item-nome">Bolo de Coco</span>
+                    </div>
                     <span class="item-preco">R$ 20,00</span>
                 </div>
                 <div class="cardapio-item">
-                    <span class="item-nome">Bolo de Fubá com Queijo e Cobertura de Goiabada</span>
+                    <div class="item-info">
+                        <span class="item-nome">Bolo de Fubá com Queijo e Cobertura de Goiabada</span>
+                    </div>
                     <span class="item-preco">R$ 20,00</span>
                 </div>
                 <div class="cardapio-item">
-                    <span class="item-nome">Bolo de Fubá com Erva Doce</span>
+                    <div class="item-info">
+                        <span class="item-nome">Bolo de Fubá com Erva Doce</span>
+                    </div>
                     <span class="item-preco">R$ 20,00</span>
                 </div>
                 <div class="cardapio-item">
-                    <span class="item-nome">Bolo de Laranja com Cobertura de Limão</span>
+                    <div class="item-info">
+                        <span class="item-nome">Bolo de Laranja com Cobertura de Limão</span>
+                    </div>
                     <span class="item-preco">R$ 20,00</span>
                 </div>
                 <div class="cardapio-item">
-                    <span class="item-nome">Bolo de Limão com Cobertura de Limão</span>
+                    <div class="item-info">
+                        <span class="item-nome">Bolo de Limão com Cobertura de Limão</span>
+                    </div>
                     <span class="item-preco">R$ 20,00</span>
                 </div>
                 <div class="cardapio-item">
-                    <span class="item-nome">Bolo de Maçã com Castanha</span>
+                    <div class="item-info">
+                        <span class="item-nome">Bolo de Maçã com Castanha</span>
+                    </div>
                     <span class="item-preco">R$ 25,00</span>
                 </div>
                 <div class="cardapio-item">
-                    <span class="item-nome">Bolo de Milho</span>
+                    <div class="item-info">
+                        <span class="item-nome">Bolo de Milho</span>
+                    </div>
                     <span class="item-preco">R$ 20,00</span>
                 </div>
                 <div class="cardapio-item">
-                    <span class="item-nome">Bolo de Paçoca</span>
+                    <div class="item-info">
+                        <span class="item-nome">Bolo de Paçoca</span>
+                    </div>
                     <span class="item-preco">R$ 20,00</span>
                 </div>
                 <div class="cardapio-item">
-                    <span class="item-nome">Broa de Farinha de Milho com Coco e Queijo</span>
+                    <div class="item-info">
+                        <span class="item-nome">Broa de Farinha de Milho com Coco e Queijo</span>
+                    </div>
                     <span class="item-preco">R$ 25,00</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Modal de Ingredientes -->
-    <div id="modalReceita" class="modal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="fecharModal()">✕</button>
-            <div class="modal-body">
-                <h2 id="receita-titulo">Ingredientes</h2>
-                
-                <div class="receita-section">
-                    <ul id="receita-ingredientes"></ul>
+    <!-- Encomenda de Bolos -->
+    <section id="encomenda" class="encomenda">
+        <div class="container">
+            <h2>Faça sua Encomenda</h2>
+            <p class="subtitle">Selecione os bolos que deseja e confirme seu pedido</p>
+
+            <div class="encomenda-container">
+                <div class="encomenda-form">
+                    <h3>Seus Dados</h3>
+                    <form id="formEncomenda">
+                        <div class="form-group">
+                            <label for="encNome">Nome completo:</label>
+                            <input type="text" id="encNome" required placeholder="Seu nome">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="encTelefone">Telefone:</label>
+                            <input type="tel" id="encTelefone" required placeholder="(31) 98574-0971">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="encData">Data desejada:</label>
+                            <input type="date" id="encData" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="encObs">Observações (opcional):</label>
+                            <textarea id="encObs" placeholder="Ex: Sem açúcar, decoração especial, etc..."
+                                rows="3"></textarea>
+                        </div>
+
+                        <div class="entrega-opcao">
+                            <label class="entrega-checkbox">
+                                <input type="checkbox" id="encEntrega">
+                                <span style="font-weight: 500;">Desejo receber na minha casa</span>
+                            </label>
+                            <p class="entrega-info">
+                                📍 Taxa de entrega: <strong>A combinar conforme a localização</strong>
+                            </p>
+                            <div class="form-group entrega-endereco oculta" id="grupoEnderecoEntrega">
+                                <label for="encEndereco">Endereço para entrega:</label>
+                                <textarea id="encEndereco" placeholder="Rua, número, bairro e ponto de referência"
+                                    rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <h3 style="margin-top: 2rem;">Escolha os Bolos</h3>
+                        <p class="aviso-alergenos">
+                            Atenção: todos os bolos contêm derivados de leite. A produção pode ter contato com glúten,
+                            ovos, castanhas, amendoim e soja. Informe alergias nas observações.
+                        </p>
+                        <div class="bolos-selecao" id="bolosSelecao"></div>
+
+                        <button type="button" class="btn btn-primary btn-lg" onclick="confirmarEncomenda()"
+                            style="width: 100%; margin-top: 1.5rem;">
+                            <i class="fas fa-check"></i> Confirmar Encomenda
+                        </button>
+                    </form>
+                </div>
+
+                <div class="resumo-pedido">
+                    <h3>Resumo do Pedido</h3>
+                    <div id="resumoPedido" class="lista-pedido">
+                        <p style="color: var(--cor-texto-claro); text-align: center;">Nenhum bolo selecionado ainda</p>
+                    </div>
+                    <div class="total-pedido">
+                        <strong>Total: R$ <span id="totalPedido">0,00</span></strong>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
+    </section>
     <!-- Avaliações -->
     <section id="avaliacoes" class="avaliacoes">
         <div class="container">
@@ -221,7 +392,7 @@
                 <form id="formAvaliacao" onsubmit="enviarAvaliacao(event)">
                     <div class="form-group">
                         <label for="avalNome">Nome:</label>
-                        <input type="text" id="avalNome" required placeholder="Seu nome">
+                        <input type="text" id="avalNome" required maxlength="40" placeholder="Seu nome">
                     </div>
 
                     <div class="form-group">
@@ -229,19 +400,24 @@
                         <select id="avalBolo" required>
                             <option value="">Selecione um bolo...</option>
                             <option value="Bolo de Castanha">Bolo de Castanha</option>
-                            <option value="Bolo de Cenoura com Cobertura de Chocolate">Bolo de Cenoura com Cobertura de Chocolate</option>
+                            <option value="Bolo de Cenoura com Cobertura de Chocolate">Bolo de Cenoura com Cobertura de
+                                Chocolate</option>
                             <option value="Bolo de Chocolate">Bolo de Chocolate</option>
                             <option value="Bolo de Chocolate com Castanha">Bolo de Chocolate com Castanha</option>
                             <option value="Bolo de Churros">Bolo de Churros</option>
                             <option value="Bolo de Coco">Bolo de Coco</option>
-                            <option value="Bolo de Fubá com Queijo e Cobertura de Goiabada">Bolo de Fubá com Queijo e Cobertura de Goiabada</option>
+                            <option value="Bolo de Fubá com Queijo e Cobertura de Goiabada">Bolo de Fubá com Queijo e
+                                Cobertura de Goiabada</option>
                             <option value="Bolo de Fubá com Erva Doce">Bolo de Fubá com Erva Doce</option>
-                            <option value="Bolo de Laranja com Cobertura de Limão">Bolo de Laranja com Cobertura de Limão</option>
-                            <option value="Bolo de Limão com Cobertura de Limão">Bolo de Limão com Cobertura de Limão</option>
+                            <option value="Bolo de Laranja com Cobertura de Limão">Bolo de Laranja com Cobertura de
+                                Limão</option>
+                            <option value="Bolo de Limão com Cobertura de Limão">Bolo de Limão com Cobertura de Limão
+                            </option>
                             <option value="Bolo de Maçã com Castanha">Bolo de Maçã com Castanha</option>
                             <option value="Bolo de Milho">Bolo de Milho</option>
                             <option value="Bolo de Paçoca">Bolo de Paçoca</option>
-                            <option value="Broa de Farinha de Milho com Coco e Queijo">Broa de Farinha de Milho com Coco e Queijo</option>
+                            <option value="Broa de Farinha de Milho com Coco e Queijo">Broa de Farinha de Milho com Coco
+                                e Queijo</option>
                         </select>
                     </div>
 
@@ -259,10 +435,17 @@
 
                     <div class="form-group">
                         <label for="avalComentario">Comentário:</label>
-                        <textarea id="avalComentario" placeholder="Compartilhe sua experiência..." rows="4"></textarea>
+                        <textarea id="avalComentario" required maxlength="240"
+                            placeholder="Compartilhe sua experiência..." rows="4"></textarea>
+                        <span class="contador-caracteres" id="contadorComentario">0/240</span>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Enviar Avaliação</button>
+                    <div class="campo-antispam" aria-hidden="true">
+                        <label for="avalSite">Site:</label>
+                        <input type="text" id="avalSite" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="btnEnviarAvaliacao">Enviar Avaliação</button>
                 </form>
             </div>
 
@@ -289,20 +472,56 @@
                     <i class="fab fa-whatsapp"></i> Fazer Pedido
                 </button>
             </div>
+
+            <!-- Localização -->
+            <div class="localizacao-container">
+                <h3>📍 Nossa Localização</h3>
+                <div class="localizacao-info">
+                    <address>
+                        Rua Raimundo Patrocínio, 318<br>
+                        Bairro Tânia<br>
+                        Ribeirão das Neves, MG
+                    </address>
+                </div>
+
+                <!-- Mapa -->
+                <div class="mapa-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3754.4572957484726!2d-44.15089!3d-19.76389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa3d8d5c5c5c5c5c5%3A0x0!2sRua%20Raimundo%20Patroc%C3%ADnio%2C%20318%20-%20T%C3%A2nia%2C%20Ribeir%C3%A3o%20das%20Neves%20-%20MG!5e0!3m2!1spt-BR!2sbr!4v1600000000000"
+                        width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade" class="google-map"></iframe>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Margarete Bolos. Todos os direitos reservados.</p>
+            <p>&copy; 2026 Margarete Bolos. Todos os direitos reservados.</p>
             <div class="social-links">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/margareteolisouza?igsh=MXdsdndoMWRxamhudg=="><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/+5531985740971" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.facebook.com/share/16mEsScqqG/"><i class="fab fa-facebook"></i></a>
             </div>
         </div>
     </footer>
+
+    <!-- Modal Lightbox de Imagem -->
+    <div id="modalLightbox" class="lightbox-modal">
+        <button class="lightbox-close" onclick="fecharLightbox()">✕</button>
+        <button class="lightbox-nav lightbox-prev" onclick="navegarLightbox(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="lightbox-content">
+            <img id="lightboxImg" src="" alt="">
+            <p id="lightboxTitulo"></p>
+        </div>
+        <button class="lightbox-nav lightbox-next" onclick="navegarLightbox(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
 
     <script src="firebase-config.js"></script>
     <script src="script.js"></script>
