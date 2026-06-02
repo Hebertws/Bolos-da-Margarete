@@ -9,8 +9,16 @@ const firebaseConfig = {
   appId: "1:311399448070:web:9bd158a892c0710b8c8d87"
 };
 
-// Inicializa o Firebase
-firebase.initializeApp(firebaseConfig);
+// Inicializa o Firebase quando a biblioteca externa estiver disponível.
+var db = null;
 
-// Torna o banco de dados disponível para o seu script.js
-const db = firebase.database();
+if (window.firebase && firebase.initializeApp) {
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+
+  // Torna o banco de dados disponível para o seu script.js
+  db = firebase.database();
+} else {
+  console.warn('Firebase indisponível. Avaliações serão desativadas temporariamente.');
+}

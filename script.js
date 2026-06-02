@@ -449,6 +449,10 @@ const bolosData = [
 
 let pedidoAtual = {};
 
+function formatarValorPedido(valor) {
+    return valor.toFixed(2).replace('.', ',');
+}
+
 function inicializarEncomenda() {
     const container = document.getElementById('bolosSelecao');
     container.innerHTML = '';
@@ -458,21 +462,33 @@ function inicializarEncomenda() {
         div.className = 'bolo-item';
         div.innerHTML = `
             <span class="bolo-nome">${bolo.nome}</span>
-            <span class="bolo-preco">R$ ${bolo.preco.toFixed(2)}</span>
+            <span class="bolo-preco">R$ ${formatarValorPedido(bolo.preco)}</span>
             <input type="number" class="quantidade-input" min="0" max="99" value="0" 
                    data-index="${index}" placeholder="Qtd">
         `;
 
-        div.querySelector('input').addEventListener('change', function () {
-            const qtd = parseInt(this.value) || 0;
-            if (qtd > 0) {
+        const quantidadeInput = div.querySelector('input');
+        const atualizarQuantidade = function (normalizarCampo = false) {
+            const qtd = parseInt(this.value, 10) || 0;
+            const quantidade = Math.max(0, Math.min(qtd, 99));
+
+            if (normalizarCampo || qtd > 99 || qtd < 0) {
+                this.value = quantidade;
+            }
+
+            if (quantidade > 0) {
                 div.classList.add('selecionado');
-                pedidoAtual[index] = { bolo: bolo.nome, preco: bolo.preco, quantidade: qtd };
+                pedidoAtual[index] = { bolo: bolo.nome, preco: bolo.preco, quantidade: quantidade };
             } else {
                 div.classList.remove('selecionado');
                 delete pedidoAtual[index];
             }
             atualizarResumoPedido();
+        };
+
+        quantidadeInput.addEventListener('input', atualizarQuantidade);
+        quantidadeInput.addEventListener('change', function () {
+            atualizarQuantidade.call(this, true);
         });
 
         container.appendChild(div);
@@ -503,7 +519,7 @@ function atualizarResumoPedido() {
     }
 
     resumo.innerHTML = html;
-    document.getElementById('totalPedido').textContent = total.toFixed(2);
+    document.getElementById('totalPedido').textContent = formatarValorPedido(total);
 }
 
 function removerItemPedido(index) {
@@ -536,6 +552,13 @@ function atualizarCamposEntrega() {
     if (!entregaMarcada) {
         endereco.value = '';
     }
+}
+
+function inicializarBuscaCardapio() {
+    const buscaInput = document.getElementById('buscaInput');
+    if (!buscaInput) return;
+
+    buscaInput.addEventListener('input', filtrarCardapio);
 }
 
 function inicializarCamposEntrega() {
@@ -590,10 +613,10 @@ function confirmarEncomenda() {
         const item = pedidoAtual[index];
         const subtotal = item.preco * item.quantidade;
         total += subtotal;
-        mensagem += `• ${item.quantidade}x ${item.bolo} - R$ ${subtotal.toFixed(2)}\n`;
+        mensagem += `• ${item.quantidade}x ${item.bolo} - R$ ${formatarValorPedido(subtotal)}\n`;
     });
 
-    mensagem += `\n*Total: R$ ${total.toFixed(2)}*\n`;
+    mensagem += `\n*Total: R$ ${formatarValorPedido(total)}*\n`;
 
     if (obs) {
         mensagem += `\n*Observações:* ${obs}\n`;
@@ -617,6 +640,7 @@ function confirmarEncomenda() {
 document.addEventListener('DOMContentLoaded', function () {
     inicializarTema();
     inicializarAvaliacoes();
+    inicializarBuscaCardapio();
     inicializarEncomenda();
     inicializarCamposEntrega();
 });
