@@ -3,6 +3,17 @@ let indiceAtual = 0;
 const itensCarrossel = document.querySelectorAll('.galeria-item').length;
 let intervaloCarrossel;
 
+// Menu Hamburguês Mobile
+function toggleMenuMobile() {
+    const navMenu = document.getElementById('navMenu');
+    navMenu.classList.toggle('ativo');
+}
+
+function fecharMenuMobile() {
+    const navMenu = document.getElementById('navMenu');
+    navMenu.classList.remove('ativo');
+}
+
 // Modo Escuro
 function inicializarTema() {
     const temaSalvo = localStorage.getItem('tema');
@@ -609,11 +620,16 @@ function confirmarEncomenda() {
     mensagem += `*Bolos solicitados:*\n`;
 
     let total = 0;
+    let resumoBolosParaPlanilha = [];
+
     Object.keys(pedidoAtual).forEach(index => {
         const item = pedidoAtual[index];
         const subtotal = item.preco * item.quantidade;
         total += subtotal;
+
         mensagem += `• ${item.quantidade}x ${item.bolo} - R$ ${formatarValorPedido(subtotal)}\n`;
+
+        resumoBolosParaPlanilha.push(`${item.quantidade}x ${item.bolo}`);
     });
 
     mensagem += `\n*Total: R$ ${formatarValorPedido(total)}*\n`;
@@ -622,18 +638,53 @@ function confirmarEncomenda() {
         mensagem += `\n*Observações:* ${obs}\n`;
     }
 
-    // Encode para URL e redirecionar para WhatsApp
-    const urlEncode = encodeURIComponent(mensagem);
-    window.location.href = `https://wa.me/+5531985740971?text=${urlEncode}`;
+    // INTEGRAÇÃO COM GOOGLE SHEETS
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzE_ipz0H3FOTTji8DQH9LrOBISwqQDGVPr9jfe0uDssnQhnlzUBfqYGqkcxnqsbthcfQ/exec';
 
-    // Limpar formulário após envio
-    setTimeout(() => {
-        document.getElementById('formEncomenda').reset();
-        pedidoAtual = {};
-        inicializarEncomenda();
-        atualizarCamposEntrega();
-        atualizarResumoPedido();
-    }, 500);
+    const dadosPedido = {
+        nome: nome,
+        telefone: telefone,
+        dataDesejada: formatarDataPedido(data),
+        tipoEntrega: desejaEntrega ? 'Entrega' : 'Retirar no local',
+        endereco: desejaEntrega ? endereco : '-',
+        bolos: resumoBolosParaPlanilha.join(' | '),
+        total: formatarValorPedido(total),
+        observacoes: obs || '-'
+    };
+
+    const btnConfirmar = document.querySelector('button[onclick="confirmarEncomenda()"]');
+    const textoOriginalBtn = btnConfirmar.innerHTML;
+    btnConfirmar.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+    btnConfirmar.disabled = true;
+
+    fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(dadosPedido)
+    })
+        .then(response => {
+            const urlEncode = encodeURIComponent(mensagem);
+            window.open(`https://wa.me/+5531985740971?text=${urlEncode}`, '_blank');
+
+            document.getElementById('formEncomenda').reset();
+            pedidoAtual = {};
+            inicializarEncomenda();
+            atualizarCamposEntrega();
+            atualizarResumoPedido();
+
+            btnConfirmar.innerHTML = textoOriginalBtn;
+            btnConfirmar.disabled = false;
+        })
+        .catch(error => {
+            console.error('Erro ao salvar na planilha:', error);
+            alert('Houve um pequeno atraso no sistema, mas vamos redirecionar você para o WhatsApp!');
+
+            const urlEncode = encodeURIComponent(mensagem);
+            window.open(`https://wa.me/+5531985740971?text=${urlEncode}`, '_blank');
+
+            btnConfirmar.innerHTML = textoOriginalBtn;
+            btnConfirmar.disabled = false;
+        });
 }
 
 // Inicializar quando página carregar

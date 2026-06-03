@@ -22,18 +22,21 @@
                     height="50" decoding="async">
                 <h1>Bolos da Margarete</h1>
             </div>
-            <nav class="nav">
+            <div class="header-actions">
+                <button class="btn-tema" onclick="alternarModoEscuro()" title="Alternar modo escuro">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-hamburger" onclick="toggleMenuMobile()" title="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="nav" id="navMenu">
                 <ul>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#galeria">Galeria</a></li>
-                    <li><a href="#cardapio">Cardápio</a></li>
-                    <li><a href="#encomenda">Encomenda</a></li>
-                    <li><a href="#contato">Contato</a></li>
-                    <li>
-                        <button class="btn-tema" onclick="alternarModoEscuro()" title="Alternar modo escuro">
-                            <i class="fas fa-moon"></i>
-                        </button>
-                    </li>
+                    <li><a href="#sobre" onclick="fecharMenuMobile()">Sobre</a></li>
+                    <li><a href="#galeria" onclick="fecharMenuMobile()">Galeria</a></li>
+                    <li><a href="#cardapio" onclick="fecharMenuMobile()">Cardápio</a></li>
+                    <li><a href="#encomenda" onclick="fecharMenuMobile()">Encomenda</a></li>
+                    <li><a href="#contato" onclick="fecharMenuMobile()">Contato</a></li>
                 </ul>
             </nav>
         </div>
@@ -44,7 +47,6 @@
         <div class="hero-content">
             <h2>Bolos Caseiros</h2>
             <p>Feitos com amor e ingredientes de qualidade para sua família</p>
-            <button class="btn btn-primary" onclick="redirecionarWhatsapp()">🛒 Fazer Pedido</button>
         </div>
     </section>
 
@@ -168,7 +170,7 @@
                         <h4>Bolo de Churros</h4>
                     </div>
                     <div class="galeria-grid-item">
-                        <img src="https://i.ibb.co/1nQ8Z0J/Bolo-Coco.jpg" alt="Bolo de Coco" loading="lazy"
+                        <img src="https://via.placeholder.com/300x300?text=Coco" alt="Bolo de Coco" loading="lazy"
                             decoding="async">
                         <h4>Bolo de Coco</h4>
                     </div>
