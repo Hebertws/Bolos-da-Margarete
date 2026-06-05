@@ -109,7 +109,7 @@
                             <h3>Bolo de Laranja</h3>
                         </div>
                         <div class="galeria-item">
-                            <img src="https://via.placeholder.com/400x400?text=Bolo+de+Limão" alt="Bolo de Limão"
+                            <img src="Imagens/otimizadas/BoloLimao.webp" alt="Bolo de Limão"
                                 loading="lazy" decoding="async">
                             <h3>Bolo de Limão</h3>
                         </div>
@@ -176,14 +176,12 @@
                     </div>
                     <div class="galeria-grid-item">
                         <img src="https://via.placeholder.com/300x300?text=Fubá+Queijo+Goiabada" loading="lazy"
-                            decoding="async"
-                            alt="Bolo de Fubá com Queijo e Cobertura de Goiabada">
+                            decoding="async" alt="Bolo de Fubá com Queijo e Cobertura de Goiabada">
                         <h4>Bolo de Fubá com Queijo e Cobertura de Goiabada</h4>
                     </div>
                     <div class="galeria-grid-item">
                         <img src="https://via.placeholder.com/300x300?text=Fubá+Erva+Doce" loading="lazy"
-                            decoding="async"
-                            alt="Bolo de Fubá com Erva Doce">
+                            decoding="async" alt="Bolo de Fubá com Erva Doce">
                         <h4>Bolo de Fubá com Erva Doce</h4>
                     </div>
                     <div class="galeria-grid-item">
@@ -192,9 +190,8 @@
                         <h4>Bolo de Laranja com Cobertura de Limão</h4>
                     </div>
                     <div class="galeria-grid-item">
-                        <img src="https://via.placeholder.com/300x300?text=Limão+Cobertura" loading="lazy"
-                            decoding="async"
-                            alt="Bolo de Limão com Cobertura de Limão">
+                        <img src="Imagens/otimizadas/BoloLimao.webp" loading="lazy"
+                            decoding="async" alt="Bolo de Limão com Cobertura de Limão">
                         <h4>Bolo de Limão com Cobertura de Limão</h4>
                     </div>
                     <div class="galeria-grid-item">
@@ -203,19 +200,32 @@
                         <h4>Bolo de Maçã com Castanha</h4>
                     </div>
                     <div class="galeria-grid-item">
-                        <img src="Imagens/otimizadas/Milho.webp" alt="Bolo de Milho" loading="lazy"
-                            decoding="async">
+                        <img src="Imagens/otimizadas/Milho.webp" alt="Bolo de Milho" loading="lazy" decoding="async">
                         <h4>Bolo de Milho</h4>
                     </div>
                     <div class="galeria-grid-item">
-                        <img src="Imagens/otimizadas/Pacoca.webp" alt="Bolo de Paçoca" loading="lazy"
-                            decoding="async">
+                        <img src="Imagens/otimizadas/Pacoca.webp" alt="Bolo de Paçoca" loading="lazy" decoding="async">
                         <h4>Bolo de Paçoca</h4>
                     </div>
                     <div class="galeria-grid-item">
                         <img src="Imagens/otimizadas/Broa.webp" loading="lazy" decoding="async"
                             alt="Broa de Farinha de Milho com Coco e Queijo">
                         <h4>Broa de Farinha de Milho com Coco e Queijo</h4>
+                    </div>
+                    <div class="galeria-grid-item">
+                        <img src="https://via.placeholder.com/300x300?text=Maracujá" loading="lazy" decoding="async"
+                            alt="Bolo de Maracujá">
+                        <h4>Bolo de Maracujá</h4>
+                    </div>
+                    <div class="galeria-grid-item">
+                        <img src="https://via.placeholder.com/300x300?text=Banana+Normal" loading="lazy" decoding="async"
+                            alt="Bolo de Banana Normal">
+                        <h4>Bolo de Banana Normal</h4>
+                    </div>
+                    <div class="galeria-grid-item">
+                        <img src="https://via.placeholder.com/300x300?text=Banana+Fit" loading="lazy" decoding="async"
+                            alt="Bolo de Banana Fit">
+                        <h4>Bolo de Banana Fit</h4>
                     </div>
                 </div>
                 <button class="btn btn-outline" onclick="toggleGaleriaCompleta()" style="margin-top: 2rem;">
@@ -231,18 +241,23 @@
             <h2>Nosso Cardápio</h2>
             <p class="subtitle">Confira todos os bolos e broas disponíveis</p>
 
-            <div class="busca-container">
-                <input type="text" id="buscaInput" class="busca-input" placeholder="🔍 Buscar bolo..."
-                    onkeyup="filtrarCardapio()">
-                <span class="busca-info" id="buscaInfo"></span>
-            </div>
+            <button class="btn btn-primary" onclick="toggleCardapio()" style="margin-bottom: 1.5rem; display: block; margin-left: auto; margin-right: auto;">
+                <i class="fas fa-chevron-down"></i> <span id="btnCardapioText">Ver Cardápio Completo</span>
+            </button>
 
-            <p class="aviso-alergenos">
-                Atenção: todos os bolos contêm derivados de leite. A produção pode ter contato com glúten, ovos,
-                castanhas, amendoim e soja. Informe alergias nas observações da encomenda.
-            </p>
+            <div id="cardapioContainer" class="cardapio-container oculta">
+                <div class="busca-container">
+                    <input type="text" id="buscaInput" class="busca-input" placeholder="🔍 Buscar bolo..."
+                        onkeyup="filtrarCardapio()">
+                    <span class="busca-info" id="buscaInfo"></span>
+                </div>
 
-            <div class="cardapio-list" id="cardapioList">
+                <p class="aviso-alergenos">
+                    Atenção: todos os bolos contêm derivados de leite. A produção pode ter contato com glúten, ovos,
+                    castanhas, amendoim e soja. Informe alergias nas observações da encomenda.
+                </p>
+
+                <div class="cardapio-list" id="cardapioList">
                 <div class="cardapio-item">
                     <div class="item-info">
                         <span class="item-nome">Bolo de Castanha</span>
@@ -327,6 +342,34 @@
                     </div>
                     <span class="item-preco">R$ 25,00</span>
                 </div>
+                <div class="cardapio-item">
+                    <div class="item-info">
+                        <span class="item-nome">Bolo de Maracujá</span>
+                    </div>
+                    <span class="item-preco">R$ 20,00</span>
+                </div>
+                <div class="cardapio-item">
+                    <div class="item-info">
+                        <span class="item-nome">Bolo de Banana Normal</span>
+                    </div>
+                    <span class="item-preco">R$ 20,00</span>
+                </div>
+                <div class="cardapio-item">
+                    <div class="item-info">
+                        <span class="item-nome">Bolo de Banana Fit</span>
+                    </div>
+                    <span class="item-preco">R$ 20,00</span>
+                </div>
+                <div class="cardapio-item" style="border-top: 2px solid var(--cor-principal); padding-top: 1.5rem; margin-top: 1.5rem;">
+                    <div class="item-info">
+                        <span class="item-nome"><strong>Bolos no Pote</strong></span>
+                        <p style="font-size: 0.85rem; color: var(--cor-texto-claro); margin-top: 0.5rem;">
+                             *Disponível apenas para bolos com calda. Perfeito para uma pequena porção!
+                        </p>
+                    </div>
+                    <span class="item-preco">R$ 5,00</span>
+                </div>
+            </div>
             </div>
         </div>
     </section>
@@ -382,6 +425,28 @@
                             Atenção: todos os bolos contêm derivados de leite. A produção pode ter contato com glúten,
                             ovos, castanhas, amendoim e soja. Informe alergias nas observações.
                         </p>
+
+                        <!-- Abas de Categorias -->
+                        <div class="abas-bolos" style="margin-bottom: 1.5rem;">
+                            <button class="aba-btn aba-ativo" onclick="filtrarPorCategoria('todos')">
+                                <i class="fas fa-list"></i> Todos (30)
+                            </button>
+                            <button class="aba-btn" onclick="filtrarPorCategoria('com-calda')">
+                                <i class="fas fa-droplet"></i> Com Calda (14)
+                            </button>
+                            <button class="aba-btn" onclick="filtrarPorCategoria('sem-calda')">
+                                <i class="fas fa-bread-slice"></i> Sem Calda (5)
+                            </button>
+                            <button class="aba-btn" onclick="filtrarPorCategoria('no-pote')">
+                                <i class="fas fa-jar"></i> No Pote (11)
+                            </button>
+                        </div>
+
+                        <!-- Busca por Nome -->
+                        <div style="margin-bottom: 1.5rem;">
+                            <input type="text" id="buscaBolosInput" class="busca-input" placeholder="🔍 Buscar bolo..." onkeyup="filtrarBolosPorNome()">
+                        </div>
+
                         <div class="bolos-selecao" id="bolosSelecao"></div>
 
                         <button type="button" class="btn btn-primary btn-lg" onclick="confirmarEncomenda()"
@@ -440,6 +505,9 @@
                             <option value="Bolo de Milho">Bolo de Milho</option>
                             <option value="Bolo de Paçoca">Bolo de Paçoca</option>
                             <option value="Broa de Farinha de Milho com Coco e Queijo">Broa de Farinha de Milho com Coco
+                             <option value="Bolo de Maracujá">Bolo de Maracujá</option>
+                             <option value="Bolo de Banana Normal">Bolo de Banana Normal</option>
+                             <option value="Bolo de Banana Fit">Bolo de Banana Fit</option>
                                 e Queijo</option>
                         </select>
                     </div>

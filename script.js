@@ -442,20 +442,35 @@ document.querySelectorAll('.galeria-grid-item img').forEach(img => {
 
 // Sistema de Encomenda
 const bolosData = [
-    { nome: 'Bolo de Castanha', preco: 25.00 },
-    { nome: 'Bolo de Cenoura com Cobertura de Chocolate', preco: 20.00 },
-    { nome: 'Bolo de Chocolate', preco: 20.00 },
-    { nome: 'Bolo de Chocolate com Castanha', preco: 25.00 },
-    { nome: 'Bolo de Churros', preco: 20.00 },
-    { nome: 'Bolo de Coco', preco: 20.00 },
-    { nome: 'Bolo de Fubá com Queijo e Cobertura de Goiabada', preco: 20.00 },
-    { nome: 'Bolo de Fubá com Erva Doce', preco: 20.00 },
-    { nome: 'Bolo de Laranja com Cobertura de Limão', preco: 20.00 },
-    { nome: 'Bolo de Limão com Cobertura de Limão', preco: 20.00 },
-    { nome: 'Bolo de Maçã com Castanha', preco: 25.00 },
-    { nome: 'Bolo de Milho', preco: 20.00 },
-    { nome: 'Bolo de Paçoca', preco: 20.00 },
-    { nome: 'Broa de Farinha de Milho com Coco e Queijo', preco: 25.00 }
+    { nome: 'Bolo de Castanha', preco: 25.00, categoria: 'sem-calda' },
+    { nome: 'Bolo de Cenoura com Cobertura de Chocolate', preco: 20.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Cenoura com Cobertura de Chocolate - No Pote', preco: 5.00, categoria: 'no-pote' },
+    { nome: 'Bolo de Chocolate', preco: 20.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Chocolate - No Pote', preco: 5.00, categoria: 'no-pote' },
+    { nome: 'Bolo de Chocolate com Castanha', preco: 25.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Chocolate com Castanha - No Pote', preco: 5.00, categoria: 'no-pote' },
+    { nome: 'Bolo de Churros', preco: 20.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Churros - No Pote', preco: 5.00, categoria: 'no-pote' },
+    { nome: 'Bolo de Coco', preco: 20.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Coco - No Pote', preco: 5.00, categoria: 'no-pote' },
+    { nome: 'Bolo de Fubá com Queijo e Cobertura de Goiabada', preco: 20.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Fubá com Queijo e Cobertura de Goiabada - No Pote', preco: 5.00, categoria: 'no-pote' },
+    { nome: 'Bolo de Fubá com Erva Doce', preco: 20.00, categoria: 'sem-calda' },
+    { nome: 'Bolo de Laranja com Cobertura de Limão', preco: 20.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Laranja com Cobertura de Limão - No Pote', preco: 5.00, categoria: 'no-pote' },
+    { nome: 'Bolo de Limão com Cobertura de Limão', preco: 20.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Limão com Cobertura de Limão - No Pote', preco: 5.00, categoria: 'no-pote' },
+    { nome: 'Bolo de Maçã com Castanha', preco: 25.00, categoria: 'sem-calda' },
+    { nome: 'Bolo de Milho', preco: 20.00, categoria: 'sem-calda' },
+    { nome: 'Bolo de Paçoca', preco: 20.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Paçoca - No Pote', preco: 5.00, categoria: 'no-pote' },
+    { nome: 'Broa de Farinha de Milho com Coco e Queijo', preco: 25.00, categoria: 'sem-calda' },
+    { nome: 'Bolo de Maracujá', preco: 20.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Maracujá - No Pote', preco: 5.00, categoria: 'no-pote' },
+    { nome: 'Bolo de Banana Normal', preco: 20.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Banana Normal - No Pote', preco: 5.00, categoria: 'no-pote' },
+    { nome: 'Bolo de Banana Fit', preco: 20.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Banana Fit - No Pote', preco: 5.00, categoria: 'no-pote' }
 ];
 
 let pedidoAtual = {};
@@ -471,6 +486,8 @@ function inicializarEncomenda() {
     bolosData.forEach((bolo, index) => {
         const div = document.createElement('div');
         div.className = 'bolo-item';
+        div.setAttribute('data-categoria', bolo.categoria);
+        div.setAttribute('data-nome', bolo.nome.toLowerCase());
         div.innerHTML = `
             <span class="bolo-nome">${bolo.nome}</span>
             <span class="bolo-preco">R$ ${formatarValorPedido(bolo.preco)}</span>
@@ -685,6 +702,53 @@ function confirmarEncomenda() {
             btnConfirmar.innerHTML = textoOriginalBtn;
             btnConfirmar.disabled = false;
         });
+}
+
+// Cardápio Colapsável
+function toggleCardapio() {
+    const container = document.getElementById('cardapioContainer');
+    const btn = document.getElementById('btnCardapioText');
+    container.classList.toggle('oculta');
+    btn.textContent = container.classList.contains('oculta') ? 'Ver Cardápio Completo' : 'Ocultar Cardápio';
+}
+
+// Filtro de Categorias na Encomenda
+let categoriaAtual = 'todos';
+let textoBuscaAtual = '';
+
+function filtrarPorCategoria(categoria) {
+    categoriaAtual = categoria;
+    
+    const abas = document.querySelectorAll('.aba-btn');
+    abas.forEach(aba => aba.classList.remove('aba-ativo'));
+    event.target.classList.add('aba-ativo');
+    
+    aplicarFiltros();
+}
+
+function filtrarBolosPorNome() {
+    textoBuscaAtual = document.getElementById('buscaBolosInput').value.toLowerCase();
+    aplicarFiltros();
+}
+
+function aplicarFiltros() {
+    const bolos = document.querySelectorAll('.bolo-item');
+    let visiveisCount = 0;
+    
+    bolos.forEach(bolo => {
+        const categoria = bolo.getAttribute('data-categoria');
+        const nome = bolo.getAttribute('data-nome');
+        
+        const passaCategoria = categoriaAtual === 'todos' || categoria === categoriaAtual;
+        const passaBusca = nome.includes(textoBuscaAtual);
+        
+        if (passaCategoria && passaBusca) {
+            bolo.style.display = 'flex';
+            visiveisCount++;
+        } else {
+            bolo.style.display = 'none';
+        }
+    });
 }
 
 // Inicializar quando página carregar
