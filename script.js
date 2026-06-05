@@ -411,9 +411,12 @@ function navegarLightbox(direcao) {
 }
 
 // Fechar ao clicar fora da imagem
-document.getElementById('modalLightbox').addEventListener('click', function (e) {
-    if (e.target === this) fecharLightbox();
-});
+const modalLightbox = document.getElementById('modalLightbox');
+if (modalLightbox) {
+    modalLightbox.addEventListener('click', function (e) {
+        if (e.target === this) fecharLightbox();
+    });
+}
 
 // Fechar com tecla Esc, navegar com setas
 document.addEventListener('keydown', function (e) {
