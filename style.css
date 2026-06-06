@@ -1002,6 +1002,13 @@ body.dark-mode .total-pedido {
     color: #d4a5bb;
 }
 
+.total-observacao {
+    color: var(--cor-texto-claro);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin: 0.45rem 0 0;
+}
+
 .localizacao-info address {
     font-style: normal;
     color: var(--cor-texto);

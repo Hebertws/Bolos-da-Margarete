@@ -299,11 +299,30 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+const WHATSAPP_NUMERO = '5531985740971';
+
+function montarUrlWhatsapp(mensagem) {
+    return `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(mensagem)}`;
+}
+
+function abrirWhatsapp(mensagem, janelaExistente = null) {
+    const urlWhatsapp = montarUrlWhatsapp(mensagem);
+
+    if (janelaExistente && !janelaExistente.closed) {
+        janelaExistente.location.href = urlWhatsapp;
+        return;
+    }
+
+    const janela = window.open(urlWhatsapp, '_blank');
+
+    if (!janela) {
+        window.location.href = urlWhatsapp;
+    }
+}
+
 // Redirecionar para WhatsApp
 function redirecionarWhatsapp() {
-    const numero = '5531985740971';
-    const mensagem = encodeURIComponent('Olá Margarete! Gostaria de fazer um pedido de bolo.');
-    window.open(`https://wa.me/${numero}?text=${mensagem}`, '_blank');
+    abrirWhatsapp('Olá Margarete! Gostaria de fazer um pedido de bolo.');
 }
 
 // Add animation on scroll
@@ -629,11 +648,14 @@ function confirmarEncomenda() {
     mensagem += `*Cliente:* ${nome}\n`;
     mensagem += `*Telefone:* ${telefone}\n`;
     mensagem += `*Data desejada:* ${formatarDataPedido(data)}\n`;
-    mensagem += `*Entrega:* ${desejaEntrega ? 'Desejo receber na minha casa' : 'Vou retirar no local'}\n`;
+    mensagem += `*Entrega:* ${desejaEntrega ? 'Quero consultar entrega' : 'Vou retirar no local'}\n`;
 
     if (desejaEntrega) {
-        mensagem += `*Endereço:* ${endereco}\n`;
-        mensagem += `*Taxa de entrega:* A combinar conforme a localização\n`;
+        mensagem += `*Endereço para consulta:* ${endereco}\n`;
+        mensagem += `*Entrega/frete:* A combinar pelo WhatsApp conforme endereço e disponibilidade\n`;
+        mensagem += `*Pagamento:* A combinar após confirmar entrega/frete\n`;
+    } else {
+        mensagem += `*Pagamento:* A combinar pelo WhatsApp\n`;
     }
 
     mensagem += `\n`;
@@ -652,7 +674,8 @@ function confirmarEncomenda() {
         resumoBolosParaPlanilha.push(`${item.quantidade}x ${item.bolo}`);
     });
 
-    mensagem += `\n*Total: R$ ${formatarValorPedido(total)}*\n`;
+    mensagem += `\n*Total dos bolos: R$ ${formatarValorPedido(total)}*\n`;
+    mensagem += `_Entrega, frete e pagamento serão combinados pelo WhatsApp._\n`;
 
     if (obs) {
         mensagem += `\n*Observações:* ${obs}\n`;
@@ -665,12 +688,19 @@ function confirmarEncomenda() {
         nome: nome,
         telefone: telefone,
         dataDesejada: formatarDataPedido(data),
-        tipoEntrega: desejaEntrega ? 'Entrega' : 'Retirar no local',
+        tipoEntrega: desejaEntrega ? 'Consultar entrega' : 'Retirar no local',
         endereco: desejaEntrega ? endereco : '-',
         bolos: resumoBolosParaPlanilha.join(' | '),
         total: formatarValorPedido(total),
         observacoes: obs || '-'
     };
+
+    const janelaWhatsapp = window.open('', '_blank');
+
+    if (janelaWhatsapp) {
+        janelaWhatsapp.document.write('<!doctype html><html><head><title>WhatsApp</title></head><body><p>Abrindo WhatsApp...</p></body></html>');
+        janelaWhatsapp.document.close();
+    }
 
     const btnConfirmar = document.querySelector('button[onclick="confirmarEncomenda()"]');
     const textoOriginalBtn = btnConfirmar.innerHTML;
@@ -683,8 +713,7 @@ function confirmarEncomenda() {
         body: JSON.stringify(dadosPedido)
     })
         .then(response => {
-            const urlEncode = encodeURIComponent(mensagem);
-            window.open(`https://wa.me/+5531985740971?text=${urlEncode}`, '_blank');
+            abrirWhatsapp(mensagem, janelaWhatsapp);
 
             document.getElementById('formEncomenda').reset();
             pedidoAtual = {};
@@ -699,8 +728,7 @@ function confirmarEncomenda() {
             console.error('Erro ao salvar na planilha:', error);
             alert('Houve um pequeno atraso no sistema, mas vamos redirecionar você para o WhatsApp!');
 
-            const urlEncode = encodeURIComponent(mensagem);
-            window.open(`https://wa.me/+5531985740971?text=${urlEncode}`, '_blank');
+            abrirWhatsapp(mensagem, janelaWhatsapp);
 
             btnConfirmar.innerHTML = textoOriginalBtn;
             btnConfirmar.disabled = false;
