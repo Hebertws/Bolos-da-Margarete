@@ -1,3 +1,27 @@
+// ===== SEGURANÇA =====
+// Função para sanitizar strings e evitar XSS
+function sanitizarEntrada(texto) {
+    if (typeof texto !== 'string') return '';
+    return texto
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#x27;')
+        .replace(/\//g, '&#x2F;');
+}
+
+// Função para validar email básico
+function validarEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+}
+
+// Função para validar telefone (apenas números, pelo menos 10 dígitos)
+function validarTelefone(telefone) {
+    const apenasNumeros = telefone.replace(/\D/g, '');
+    return apenasNumeros.length >= 10;
+}
+
 // Carrossel
 let indiceAtual = 0;
 const itensCarrossel = document.querySelectorAll('.galeria-item').length;
@@ -121,6 +145,11 @@ function enviarAvaliacao(event) {
         return;
     }
 
+    if (nome.length > 100) {
+        alert('Nome deve ter no máximo 100 caracteres.');
+        return;
+    }
+
     if (comentario.length > LIMITE_COMENTARIO) {
         alert(`O comentário deve ter no máximo ${LIMITE_COMENTARIO} caracteres.`);
         return;
@@ -131,10 +160,10 @@ function enviarAvaliacao(event) {
         const createdAt = Date.now();
         const avaliacao = {
             id: avaliacaoId,
-            nome: nome,
-            bolo: bolo,
-            estrelas: parseInt(estrelas, 10),
-            comentario: comentario,
+            nome: sanitizarEntrada(nome),
+            bolo: sanitizarEntrada(bolo),
+            estrelas: Math.max(1, Math.min(5, parseInt(estrelas, 10))),
+            comentario: sanitizarEntrada(comentario),
             createdAt: createdAt,
             data: formatarDataAvaliacao(createdAt)
         };
@@ -177,7 +206,11 @@ function carregarAvaliacoes() {
             });
 
             if (avaliacoes.length === 0) {
-                container.innerHTML = '<div class="sem-avaliacoes">Seja o primeiro a avaliar um de nossos bolos!</div>';
+                container.innerHTML = '';
+                const div = document.createElement('div');
+                div.className = 'sem-avaliacoes';
+                div.textContent = 'Seja o primeiro a avaliar um de nossos bolos!';
+                container.appendChild(div);
                 return;
             }
 
@@ -207,8 +240,11 @@ function carregarAvaliacoes() {
         });
     } catch (error) {
         console.log('Firebase não configurado. Configure com suas credenciais para ativar avaliações.');
-        document.getElementById('listaAvaliacoes').innerHTML =
-            '<div class="sem-avaliacoes">Avaliações temporariamente indisponíveis.</div>';
+        const mensagem = document.createElement('div');
+        mensagem.className = 'sem-avaliacoes';
+        mensagem.textContent = 'Avaliações temporariamente indisponíveis.';
+        document.getElementById('listaAvaliacoes').innerHTML = '';
+        document.getElementById('listaAvaliacoes').appendChild(mensagem);
     }
 }
 
@@ -510,14 +546,28 @@ function inicializarEncomenda() {
         div.className = 'bolo-item';
         div.setAttribute('data-categoria', bolo.categoria);
         div.setAttribute('data-nome', bolo.nome.toLowerCase());
-        div.innerHTML = `
-            <span class="bolo-nome">${bolo.nome}</span>
-            <span class="bolo-preco">R$ ${formatarValorPedido(bolo.preco)}</span>
-            <input type="number" class="quantidade-input" min="0" max="99" value="0" 
-                   data-index="${index}" placeholder="Qtd">
-        `;
 
-        const quantidadeInput = div.querySelector('input');
+        const nomeBolo = document.createElement('span');
+        nomeBolo.className = 'bolo-nome';
+        nomeBolo.textContent = bolo.nome;
+
+        const precoBolo = document.createElement('span');
+        precoBolo.className = 'bolo-preco';
+        precoBolo.textContent = `R$ ${formatarValorPedido(bolo.preco)}`;
+
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.className = 'quantidade-input';
+        input.min = '0';
+        input.max = '99';
+        input.value = '0';
+        input.dataset.index = index;
+        input.placeholder = 'Qtd';
+
+        div.appendChild(nomeBolo);
+        div.appendChild(precoBolo);
+        div.appendChild(input);
+
         const atualizarQuantidade = function (normalizarCampo = false) {
             const qtd = parseInt(this.value, 10) || 0;
             const quantidade = Math.max(0, Math.min(qtd, 99));
@@ -536,8 +586,8 @@ function inicializarEncomenda() {
             atualizarResumoPedido();
         };
 
-        quantidadeInput.addEventListener('input', atualizarQuantidade);
-        quantidadeInput.addEventListener('change', function () {
+        input.addEventListener('input', atualizarQuantidade);
+        input.addEventListener('change', function () {
             atualizarQuantidade.call(this, true);
         });
 
@@ -547,28 +597,48 @@ function inicializarEncomenda() {
 
 function atualizarResumoPedido() {
     const resumo = document.getElementById('resumoPedido');
+    resumo.innerHTML = '';
     let total = 0;
-    let html = '';
 
-    Object.keys(pedidoAtual).forEach(index => {
-        const item = pedidoAtual[index];
-        const subtotal = item.preco * item.quantidade;
-        total += subtotal;
+    const keys = Object.keys(pedidoAtual);
+    
+    if (keys.length === 0) {
+        const p = document.createElement('p');
+        p.style.color = 'var(--cor-texto-claro)';
+        p.style.textAlign = 'center';
+        p.textContent = 'Nenhum bolo selecionado ainda';
+        resumo.appendChild(p);
+    } else {
+        keys.forEach(index => {
+            const item = pedidoAtual[index];
+            const subtotal = item.preco * item.quantidade;
+            total += subtotal;
 
-        html += `
-            <div class="item-pedido">
-                <span class="item-pedido-nome">${item.bolo}</span>
-                <span class="item-pedido-qtd">${item.quantidade}x</span>
-                <button class="item-pedido-remover" onclick="removerItemPedido(${index})" title="Remover">✕</button>
-            </div>
-        `;
-    });
+            const div = document.createElement('div');
+            div.className = 'item-pedido';
 
-    if (html === '') {
-        html = '<p style="color: var(--cor-texto-claro); text-align: center;">Nenhum bolo selecionado ainda</p>';
+            const nome = document.createElement('span');
+            nome.className = 'item-pedido-nome';
+            nome.textContent = item.bolo;
+
+            const qtd = document.createElement('span');
+            qtd.className = 'item-pedido-qtd';
+            qtd.textContent = `${item.quantidade}x`;
+
+            const btn = document.createElement('button');
+            btn.className = 'item-pedido-remover';
+            btn.title = 'Remover';
+            btn.textContent = '✕';
+            btn.addEventListener('click', () => removerItemPedido(index));
+
+            div.appendChild(nome);
+            div.appendChild(qtd);
+            div.appendChild(btn);
+
+            resumo.appendChild(div);
+        });
     }
 
-    resumo.innerHTML = html;
     document.getElementById('totalPedido').textContent = formatarValorPedido(total);
 }
 
@@ -632,9 +702,29 @@ function confirmarEncomenda() {
         return;
     }
 
+    if (nome.length > 100) {
+        alert('Nome deve ter no máximo 100 caracteres.');
+        return;
+    }
+
+    if (!validarTelefone(telefone)) {
+        alert('Telefone inválido. Use um número com pelo menos 10 dígitos.');
+        return;
+    }
+
     if (desejaEntrega && !endereco) {
         alert('Informe o endereço para entrega.');
         document.getElementById('encEndereco').focus();
+        return;
+    }
+
+    if (endereco && endereco.length > 200) {
+        alert('Endereço deve ter no máximo 200 caracteres.');
+        return;
+    }
+
+    if (obs && obs.length > 500) {
+        alert('Observações devem ter no máximo 500 caracteres.');
         return;
     }
 
@@ -685,14 +775,14 @@ function confirmarEncomenda() {
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzE_ipz0H3FOTTji8DQH9LrOBISwqQDGVPr9jfe0uDssnQhnlzUBfqYGqkcxnqsbthcfQ/exec';
 
     const dadosPedido = {
-        nome: nome,
-        telefone: telefone,
+        nome: sanitizarEntrada(nome),
+        telefone: telefone.replace(/\D/g, ''),
         dataDesejada: formatarDataPedido(data),
         tipoEntrega: desejaEntrega ? 'Consultar entrega' : 'Retirar no local',
-        endereco: desejaEntrega ? endereco : '-',
+        endereco: desejaEntrega ? sanitizarEntrada(endereco) : '-',
         bolos: resumoBolosParaPlanilha.join(' | '),
         total: formatarValorPedido(total),
-        observacoes: obs || '-'
+        observacoes: obs ? sanitizarEntrada(obs) : '-'
     };
 
     const janelaWhatsapp = window.open('', '_blank');
@@ -703,8 +793,13 @@ function confirmarEncomenda() {
     }
 
     const btnConfirmar = document.querySelector('button[onclick="confirmarEncomenda()"]');
-    const textoOriginalBtn = btnConfirmar.innerHTML;
-    btnConfirmar.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+    const textoOriginalBtn = btnConfirmar.textContent;
+    btnConfirmar.innerHTML = '';
+    const spinner = document.createElement('i');
+    spinner.className = 'fas fa-spinner fa-spin';
+    const textNode = document.createTextNode(' Processando...');
+    btnConfirmar.appendChild(spinner);
+    btnConfirmar.appendChild(textNode);
     btnConfirmar.disabled = true;
 
     fetch(GOOGLE_SCRIPT_URL, {
@@ -721,7 +816,8 @@ function confirmarEncomenda() {
             atualizarCamposEntrega();
             atualizarResumoPedido();
 
-            btnConfirmar.innerHTML = textoOriginalBtn;
+            btnConfirmar.innerHTML = '';
+            btnConfirmar.textContent = textoOriginalBtn;
             btnConfirmar.disabled = false;
         })
         .catch(error => {
@@ -730,7 +826,8 @@ function confirmarEncomenda() {
 
             abrirWhatsapp(mensagem, janelaWhatsapp);
 
-            btnConfirmar.innerHTML = textoOriginalBtn;
+            btnConfirmar.innerHTML = '';
+            btnConfirmar.textContent = textoOriginalBtn;
             btnConfirmar.disabled = false;
         });
 }
