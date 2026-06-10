@@ -1,0 +1,73 @@
+# Arquivo .htaccess para melhorar segurança
+# Coloque na raiz do site
+
+# ===== HEADERS DE SEGURANÇA =====
+
+# Previne ataques de Clickjacking
+Header always set X-Frame-Options "SAMEORIGIN"
+
+# Previne MIME type sniffing
+Header always set X-Content-Type-Options "nosniff"
+
+# Habilita XSS Protection (para navegadores legados)
+Header always set X-XSS-Protection "1; mode=block"
+
+# Content Security Policy - restringe recursos
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://kit.fontawesome.com https://firebase.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://kit.fontawesome.com; img-src 'self' data: https:; font-src 'self' https://kit.fontawesome.com; connect-src 'self' https://firebase.google.com https://bolos-margarete-default-rtdb.europe-west1.firebasedatabase.app https://script.google.com; frame-src https://firebase.google.com; object-src 'none';"
+
+# ===== HTTPS =====
+# Redireciona HTTP para HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# HSTS - Força HTTPS por 1 ano
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+# ===== CACHE =====
+# Desabilita cache para arquivos dinâmicos
+<FilesMatch "\.html$">
+Header set Cache-Control "no-cache, no-store, must-revalidate"
+</FilesMatch>
+
+# Cache agressivo para assets estáticos
+<FilesMatch "\.(jpg|jpeg|png|gif|css|js|woff|woff2|ttf)$">
+Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+
+# ===== COMPRESSÃO =====
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE text/javascript
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+AddOutputFilterByType DEFLATE application/x-font-ttf
+AddOutputFilterByType DEFLATE font/opentype
+</IfModule>
+
+# ===== PROTEGE ARQUIVOS SENSÍVEIS =====
+<FilesMatch "^\.">
+Order allow,deny
+Deny from all
+</FilesMatch>
+
+# Protege este arquivo
+<Files .htaccess>
+Order allow,deny
+Deny from all
+</Files>
+
+# ===== REMOVE INFORMAÇÕES SENSÍVEIS =====
+# Desabilita listagem de diretórios
+Options -Indexes
+
+# Remove versão do PHP (se aplicável)
+<IfModule mod_php7.c>
+php_flag expose_php off
+</IfModule>
