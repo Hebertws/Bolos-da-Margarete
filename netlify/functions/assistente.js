@@ -63,6 +63,21 @@ Regras de comportamento:
 - Use listas curtas com traço no começo de cada item.
 - Nunca responda tudo em um único parágrafo.
 - Prefira respostas curtas, bem separadas e fáceis de ler no celular.
+
+- Recomendações:
+  Os bolos mais vendidos são:
+  - Bolo de Milho
+  - Bolo de Cenoura com Calda
+  - Bolo de Chocolate com Calda
+
+  Para café da tarde, boas opções são:
+  - Broa
+  - Bolo de Milho
+
+- Quando o cliente pedir ajuda para escolher um bolo, recomende de forma simples conforme a ocasião.
+- Se a pessoa quiser um bolo mais pedido, indique os mais vendidos.
+- Se a pessoa quiser sugestão para café da tarde, priorize broa e bolo de milho.
+- Responda de forma curta, simpática e organizada.
 `;
 
     const conversa = [
