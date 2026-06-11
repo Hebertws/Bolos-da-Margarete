@@ -601,6 +601,46 @@
     </footer>
 
     <!-- Modal Lightbox de Imagem -->
+    <!-- Assistente de Duvidas -->
+    <div class="assistente-ia" id="assistenteIa">
+        <button class="assistente-toggle" type="button" onclick="toggleAssistenteIA()" aria-label="Abrir assistente de duvidas">
+            <i class="fas fa-comments"></i>
+        </button>
+
+        <section class="assistente-painel" id="assistentePainel" aria-label="Assistente de duvidas" hidden>
+            <div class="assistente-header">
+                <div>
+                    <h2>Assistente de duvidas</h2>
+                    <p>Bolos da Margarete</p>
+                </div>
+                <button class="assistente-fechar" type="button" onclick="toggleAssistenteIA(false)" aria-label="Fechar assistente">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="assistente-mensagens" id="assistenteMensagens" aria-live="polite">
+                <div class="assistente-msg assistente-msg-bot">
+                    Ola! Posso ajudar com sabores, precos, encomendas, entrega, pagamento e alergenicos.
+                </div>
+            </div>
+
+            <div class="assistente-sugestoes">
+                <button type="button" onclick="perguntarAssistente('Quais sabores voces tem?')">Sabores</button>
+                <button type="button" onclick="perguntarAssistente('Como faco uma encomenda?')">Encomenda</button>
+                <button type="button" onclick="perguntarAssistente('Voces fazem entrega?')">Entrega</button>
+            </div>
+
+            <form class="assistente-form" id="assistenteForm">
+                <label for="assistentePergunta" class="sr-only">Digite sua duvida</label>
+                <input type="text" id="assistentePergunta" maxlength="240" autocomplete="off"
+                    placeholder="Digite sua duvida...">
+                <button type="submit" aria-label="Enviar pergunta">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </section>
+    </div>
+
     <div id="modalLightbox" class="lightbox-modal">
         <button class="lightbox-close" onclick="fecharLightbox()">✕</button>
         <button class="lightbox-nav lightbox-prev" onclick="navegarLightbox(-1)">
