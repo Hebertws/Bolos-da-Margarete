@@ -63,6 +63,9 @@ Regras de comportamento:
 - Use listas curtas com traço no começo de cada item.
 - Nunca responda tudo em um único parágrafo.
 - Prefira respostas curtas, bem separadas e fáceis de ler no celular.
+- Se o cliente pedir recomendação, não responda de forma genérica.
+- Use as informações reais da loja para sugerir sabores.
+- Se houver contexto como café da tarde, use a recomendação correspondente.
 
 - Recomendações:
   Os bolos mais vendidos são:
@@ -121,9 +124,23 @@ Regras de comportamento:
       };
     }
 
+    if (!data?.candidates?.length) {
+        console.error('Resposta Gemini sem candidates:', data);
+            return {
+                statusCode: 500,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+            error: 'Falha ao consultar a IA.',
+            detail: data
+            })
+        };
+    }
+
     const answer =
-      data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-      'Não consegui responder agora.';
+        data?.candidates?.[0]?.content?.parts
+            ?.map(part => part.text || '')
+            .join('\n')
+            .trim() || 'Não consegui responder agora.';
 
     return {
       statusCode: 200,
