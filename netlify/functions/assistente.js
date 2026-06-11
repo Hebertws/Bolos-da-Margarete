@@ -61,25 +61,50 @@ Regras de comportamento:
 - Seja simpática, objetiva e curta.
 `;
 
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: 'gpt-4.1-mini',
-        temperature: 0.2,
-        messages: [
-          { role: 'system', content: contextoLoja },
-          ...history.slice(-6),
-          { role: 'user', content: message }
-        ]
-      })
-    });
+    const conversa = [
+      { role: 'user', parts: [{ text: contextoLoja }] },
+      ...history.slice(-6).map(item => ({
+        role: item.role === 'assistant' ? 'model' : 'user',
+        parts: [{ text: item.content }]
+      })),
+      { role: 'user', parts: [{ text: message }] }
+    ];
+
+    const response = await fetch(
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-goog-api-key': process.env.GEMINI_API_KEY
+        },
+        body: JSON.stringify({
+          contents: conversa,
+          generationConfig: {
+            temperature: 0.2,
+            maxOutputTokens: 300
+          }
+        })
+      }
+    );
 
     const data = await response.json();
-    const answer = data.choices?.[0]?.message?.content || 'Não consegui responder agora.';
+
+    if (!response.ok) {
+      console.error('Erro Gemini:', data);
+      return {
+        statusCode: response.status,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          error: 'Falha ao consultar a IA.',
+          detail: data
+        })
+      };
+    }
+
+    const answer =
+      data?.candidates?.[0]?.content?.parts?.[0]?.text ||
+      'Não consegui responder agora.';
 
     return {
       statusCode: 200,
@@ -87,10 +112,15 @@ Regras de comportamento:
       body: JSON.stringify({ answer })
     };
   } catch (error) {
+    console.error('Erro na função assistente:', error);
+
     return {
       statusCode: 500,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ error: 'Erro ao responder no momento.' })
+      body: JSON.stringify({
+        error: 'Erro ao responder no momento.',
+        detail: error?.message || 'Erro desconhecido'
+      })
     };
   }
 }
