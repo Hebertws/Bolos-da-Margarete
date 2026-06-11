@@ -59,6 +59,10 @@ Regras de comportamento:
 - Se a pergunta fugir dessas informações, oriente a falar no WhatsApp.
 - Responda em português do Brasil.
 - Seja simpática, objetiva e curta.
+- Quando listar sabores, preços ou informações em sequência, organize em linhas separadas.
+- Use listas curtas com traço no começo de cada item.
+- Nunca responda tudo em um único parágrafo.
+- Prefira respostas curtas, bem separadas e fáceis de ler no celular.
 `;
 
     const conversa = [

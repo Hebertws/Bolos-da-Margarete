@@ -1987,6 +1987,10 @@ body.dark-mode .avaliacao-comentario {
   line-height: 1.5;
   word-break: break-word;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  white-space: pre-line;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  line-height: 1.6;
 }
 
 .assistente-msg-user {
