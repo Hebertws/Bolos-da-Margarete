@@ -976,10 +976,17 @@ async function perguntarAssistente(texto) {
 }
 // Inicializar quando página carregar
 document.addEventListener('DOMContentLoaded', function () {
-    inicializarTema();
-    inicializarAvaliacoes();
-    inicializarBuscaCardapio();
-    inicializarEncomenda();
-    inicializarCamposEntrega();
-    inicializarAssistenteIA();
+  inicializarTema();
+  inicializarAvaliacoes();
+  inicializarBuscaCardapio();
+  inicializarEncomenda();
+  inicializarCamposEntrega();
+  inicializarAssistenteIA();
+
+  const painel = document.getElementById('assistentePainel');
+  const toggle = document.querySelector('.assistente-toggle');
+
+  if (painel) painel.setAttribute('hidden', '');
+  if (toggle) toggle.setAttribute('aria-expanded', 'false');
+  assistenteAberto = false;
 });
