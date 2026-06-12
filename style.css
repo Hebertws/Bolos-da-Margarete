@@ -2008,6 +2008,10 @@ body.dark-mode .avaliacao-comentario {
   border-bottom-left-radius: 6px;
 }
 
+.assistente-painel[hidden] {
+  display: none !important;
+}
+
 .assistente-sugestoes {
   display: flex;
   flex-wrap: wrap;
@@ -2181,8 +2185,4 @@ body.dark-mode .assistente-form input:focus {
   .assistente-toggle i {
     font-size: 1.35rem;
   }
-}
-
-#assistentePainel[hidden] {
-    display: none !important;
 }
