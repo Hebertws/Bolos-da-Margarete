@@ -60,22 +60,22 @@ function atualizarContadorComentario() {
 }
 
 function toggleAssistenteIA(forcar) {
-    var painel = document.getElementById('assistentePainel');
-    var toggle = document.querySelector('.assistente-toggle');
-    if (!painel || !toggle) return;
+  var painel = document.getElementById('assistentePainel');
+  var toggle = document.querySelector('.assistente-toggle');
 
-    var abrir = typeof forcar === 'boolean' ? forcar : painel.hasAttribute('hidden');
+  if (!painel || !toggle) return;
 
-    if (abrir) {
-        painel.removeAttribute('hidden');
-        toggle.setAttribute('aria-expanded', 'true');
+  var abrir = typeof forcar === 'boolean' ? forcar : painel.hasAttribute('hidden');
 
-        var inp = document.getElementById('assistentePergunta');
-        if (inp) inp.focus();
-    } else {
-        painel.setAttribute('hidden', '');
-        toggle.setAttribute('aria-expanded', 'false');
-    }
+  if (abrir) {
+    painel.removeAttribute('hidden');
+    toggle.setAttribute('aria-expanded', 'true');
+    var inp = document.getElementById('assistentePergunta');
+    if (inp) inp.focus();
+  } else {
+    painel.setAttribute('hidden', '');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
 }
 
 var _painel = document.getElementById('assistentePainel');
