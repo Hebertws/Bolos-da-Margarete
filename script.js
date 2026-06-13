@@ -78,8 +78,6 @@ function toggleAssistenteIA(forcar) {
   }
 }
 
-var _painel = document.getElementById('assistentePainel');
-if (_painel && _painel.hasAttribute('hidden')) toggleAssistenteIA(true);
 
 function formatarDataAvaliacao(timestamp) {
     return new Date(timestamp).toLocaleDateString('pt-BR', {
@@ -547,6 +545,8 @@ function formatarValorPedido(valor) {
 
 function inicializarEncomenda() {
     const container = document.getElementById('bolosSelecao');
+    if (!container) return;
+
     container.innerHTML = '';
 
     bolosData.forEach((bolo, index) => {
@@ -563,6 +563,15 @@ function inicializarEncomenda() {
         precoBolo.className = 'bolo-preco';
         precoBolo.textContent = `R$ ${formatarValorPedido(bolo.preco)}`;
 
+        const controleQuantidade = document.createElement('div');
+        controleQuantidade.className = 'controle-quantidade';
+
+        const btnMenos = document.createElement('button');
+        btnMenos.type = 'button';
+        btnMenos.className = 'qtd-btn qtd-btn-menos';
+        btnMenos.setAttribute('aria-label', `Diminuir quantidade de ${bolo.nome}`);
+        btnMenos.textContent = '−';
+
         const input = document.createElement('input');
         input.type = 'number';
         input.className = 'quantidade-input';
@@ -570,33 +579,61 @@ function inicializarEncomenda() {
         input.max = '99';
         input.value = '0';
         input.dataset.index = index;
-        input.placeholder = 'Qtd';
+        input.placeholder = '0';
+        input.inputMode = 'numeric';
+
+        const btnMais = document.createElement('button');
+        btnMais.type = 'button';
+        btnMais.className = 'qtd-btn qtd-btn-mais';
+        btnMais.setAttribute('aria-label', `Aumentar quantidade de ${bolo.nome}`);
+        btnMais.textContent = '+';
+
+        controleQuantidade.appendChild(btnMenos);
+        controleQuantidade.appendChild(input);
+        controleQuantidade.appendChild(btnMais);
 
         div.appendChild(nomeBolo);
         div.appendChild(precoBolo);
-        div.appendChild(input);
+        div.appendChild(controleQuantidade);
 
         const atualizarQuantidade = function (normalizarCampo = false) {
-            const qtd = parseInt(this.value, 10) || 0;
+            const qtd = parseInt(input.value, 10) || 0;
             const quantidade = Math.max(0, Math.min(qtd, 99));
 
             if (normalizarCampo || qtd > 99 || qtd < 0) {
-                this.value = quantidade;
+                input.value = quantidade;
             }
 
             if (quantidade > 0) {
                 div.classList.add('selecionado');
-                pedidoAtual[index] = { bolo: bolo.nome, preco: bolo.preco, quantidade: quantidade };
+                pedidoAtual[index] = {
+                    bolo: bolo.nome,
+                    preco: bolo.preco,
+                    quantidade: quantidade
+                };
             } else {
                 div.classList.remove('selecionado');
                 delete pedidoAtual[index];
             }
+
             atualizarResumoPedido();
         };
 
+        btnMenos.addEventListener('click', function () {
+            const valorAtual = parseInt(input.value, 10) || 0;
+            input.value = Math.max(0, valorAtual - 1);
+            atualizarQuantidade(true);
+        });
+
+        btnMais.addEventListener('click', function () {
+            const valorAtual = parseInt(input.value, 10) || 0;
+            input.value = Math.min(99, valorAtual + 1);
+            atualizarQuantidade(true);
+        });
+
         input.addEventListener('input', atualizarQuantidade);
         input.addEventListener('change', function () {
-            atualizarQuantidade.call(this, true);
+            atualizarQuantidade(true);
         });
 
         container.appendChild(div);
@@ -976,17 +1013,17 @@ async function perguntarAssistente(texto) {
 }
 // Inicializar quando página carregar
 document.addEventListener('DOMContentLoaded', function () {
-  inicializarTema();
-  inicializarAvaliacoes();
-  inicializarBuscaCardapio();
-  inicializarEncomenda();
-  inicializarCamposEntrega();
-  inicializarAssistenteIA();
+    inicializarTema();
+    inicializarAvaliacoes();
+    inicializarBuscaCardapio();
+    inicializarEncomenda();
+    inicializarCamposEntrega();
+    inicializarAssistenteIA();
 
-  const painel = document.getElementById('assistentePainel');
-  const toggle = document.querySelector('.assistente-toggle');
+    const painel = document.getElementById('assistentePainel');
+    const toggle = document.querySelector('.assistente-toggle');
 
-  if (painel) painel.setAttribute('hidden', '');
-  if (toggle) toggle.setAttribute('aria-expanded', 'false');
-  assistenteAberto = false;
+    if (painel) painel.setAttribute('hidden', '');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    assistenteAberto = false;
 });
