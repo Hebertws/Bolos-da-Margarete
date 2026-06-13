@@ -89,6 +89,7 @@ Comportamentos de segurança:
   - Bolo de Milho
   - Bolo de Cenoura com Calda
   - Bolo de Chocolate com Calda
+  - Depois da primeira resposta, não repita saudação como "Olá", "Oi" ou "Seja bem-vindo".
 
   Para café da tarde, boas opções são:
   - Broa
