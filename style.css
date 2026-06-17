@@ -1834,6 +1834,13 @@ body.dark-mode .avaliacao-comentario {
     overflow: hidden;
 }
 
+@media (max-width: 768px) {
+  .cardapio-container {
+    max-height: none;
+    overflow: visible;
+  }
+}
+
 .cardapio-container.oculta {
     display: none;
 }
