@@ -817,7 +817,7 @@ function confirmarEncomenda() {
     }
 
     // INTEGRAÇÃO COM GOOGLE SHEETS
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzE_ipz0H3FOTTji8DQH9LrOBISwqQDGVPr9jfe0uDssnQhnlzUBfqYGqkcxnqsbthcfQ/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbykom4LkSI3BUG_Y_Y-FlVGHrLyvnBHgxa-L0FIhfpXCXASR-0BqqFbOq1dA3HoEdIG/exec';
 
     const dadosPedido = {
         nome: sanitizarEntrada(nome),
