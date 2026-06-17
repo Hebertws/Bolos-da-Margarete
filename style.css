@@ -2340,3 +2340,36 @@ body.dark-mode .quantidade-input:focus {
     height: 42px;
   }
 }
+
+.btn-encomenda-flutuante {
+  position: fixed;
+  left: 50%;
+  bottom: 90px;
+  transform: translateX(-50%);
+  z-index: 1190;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 52px;
+  padding: 0.9rem 1.25rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--cor-destaque);
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 10px 28px rgba(32, 163, 158, 0.3);
+}
+
+.btn-encomenda-flutuante.oculta {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .btn-encomenda-flutuante {
+    bottom: 24px;
+    left: auto;
+    right: 100px;
+    transform: none;
+  }
+}

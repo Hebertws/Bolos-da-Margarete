@@ -644,9 +644,8 @@ function atualizarResumoPedido() {
     const resumo = document.getElementById('resumoPedido');
     resumo.innerHTML = '';
     let total = 0;
-
     const keys = Object.keys(pedidoAtual);
-    
+
     if (keys.length === 0) {
         const p = document.createElement('p');
         p.style.color = 'var(--cor-texto-claro)';
@@ -685,6 +684,7 @@ function atualizarResumoPedido() {
     }
 
     document.getElementById('totalPedido').textContent = formatarValorPedido(total);
+    atualizarBotaoFlutuanteEncomenda();
 }
 
 function removerItemPedido(index) {
@@ -1011,6 +1011,22 @@ async function perguntarAssistente(texto) {
         msgs.scrollTop = msgs.scrollHeight;
     }
 }
+
+function atualizarBotaoFlutuanteEncomenda() {
+  const btn = document.getElementById('btnEncomendaFlutuante');
+  if (!btn) return;
+
+  const temItens = Object.keys(pedidoAtual).length > 0;
+  btn.classList.toggle('oculta', !temItens);
+}
+
+function irParaConfirmacaoEncomenda() {
+  const botaoConfirmar = document.querySelector('button[onclick="confirmarEncomenda()"]');
+  if (botaoConfirmar) {
+    botaoConfirmar.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
 // Inicializar quando página carregar
 document.addEventListener('DOMContentLoaded', function () {
     inicializarTema();
