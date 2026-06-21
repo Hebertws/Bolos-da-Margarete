@@ -924,6 +924,89 @@ function aplicarFiltros() {
     });
 }
 
+function inicializarEfeitoHero() {
+    const hero = document.querySelector('.hero');
+    const layer = document.querySelector('.hero-cursor-effects');
+    const reduzirMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!hero || !layer || reduzirMovimento) return;
+
+    const cores = [
+        'rgba(255, 255, 255, 0.88)',
+        'rgba(255, 236, 244, 0.9)',
+        'rgba(255, 209, 226, 0.86)',
+        'rgba(255, 247, 214, 0.84)'
+    ];
+    const formatos = ['', 'is-dash', 'is-petal'];
+    const particulas = Array.from({ length: 22 }, () => {
+        const particula = document.createElement('span');
+        particula.className = 'hero-particle';
+        layer.appendChild(particula);
+        return particula;
+    });
+
+    let indiceParticula = 0;
+    let ultimoRastro = 0;
+    let frameCursor = null;
+    let pontoCursor = { x: 0, y: 0 };
+
+    function atualizarBrilhoCursor() {
+        frameCursor = null;
+        hero.style.setProperty('--cursor-x', `${pontoCursor.x}px`);
+        hero.style.setProperty('--cursor-y', `${pontoCursor.y}px`);
+    }
+
+    function criarParticula(x, y) {
+        const particula = particulas[indiceParticula];
+        indiceParticula = (indiceParticula + 1) % particulas.length;
+
+        const tamanho = Math.round(7 + Math.random() * 13);
+        const deslocamentoX = Math.round((Math.random() - 0.5) * 86);
+        const deslocamentoY = Math.round(-28 - Math.random() * 64);
+        const duracao = Math.round(650 + Math.random() * 360);
+        const rotacao = Math.round((Math.random() - 0.5) * 180);
+        const formato = formatos[Math.floor(Math.random() * formatos.length)];
+
+        particula.className = `hero-particle ${formato}`.trim();
+        particula.style.setProperty('--particle-x', `${x}px`);
+        particula.style.setProperty('--particle-y', `${y}px`);
+        particula.style.setProperty('--particle-size', `${tamanho}px`);
+        particula.style.setProperty('--particle-dx', `${deslocamentoX}px`);
+        particula.style.setProperty('--particle-dy', `${deslocamentoY}px`);
+        particula.style.setProperty('--particle-rotation', `${rotacao}deg`);
+        particula.style.setProperty('--particle-color', cores[Math.floor(Math.random() * cores.length)]);
+        particula.style.animation = 'none';
+        particula.offsetHeight;
+        particula.style.animation = `heroParticleTrail ${duracao}ms ease-out forwards`;
+    }
+
+    hero.addEventListener('pointermove', function (event) {
+        if (event.pointerType === 'touch') return;
+
+        const rect = hero.getBoundingClientRect();
+        pontoCursor = {
+            x: event.clientX - rect.left,
+            y: event.clientY - rect.top
+        };
+
+        hero.classList.add('is-cursor-active');
+
+        if (!frameCursor) {
+            frameCursor = requestAnimationFrame(atualizarBrilhoCursor);
+        }
+
+        const agora = performance.now();
+        if (agora - ultimoRastro > 38) {
+            criarParticula(pontoCursor.x, pontoCursor.y);
+            ultimoRastro = agora;
+        }
+    });
+
+    hero.addEventListener('pointerleave', function () {
+        hero.classList.remove('is-cursor-active');
+    });
+}
+
 function inicializarTema() {
   const temaSalvo = localStorage.getItem('tema');
   if (temaSalvo === 'dark') {
@@ -1035,6 +1118,7 @@ document.addEventListener('DOMContentLoaded', function () {
     inicializarEncomenda();
     inicializarCamposEntrega();
     inicializarAssistenteIA();
+    inicializarEfeitoHero();
 
     const painel = document.getElementById('assistentePainel');
     const toggle = document.querySelector('.assistente-toggle');
