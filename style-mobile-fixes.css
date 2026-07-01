@@ -1,0 +1,835 @@
+/* ========================================
+   CORREÇÕES DE RESPONSIVIDADE - BOLOS DA MARGARETE
+   ======================================== */
+
+/* ============================================
+   BREAKPOINT MOBILE (até 480px)
+   ============================================ */
+@media (max-width: 480px) {
+    /* Container */
+    .container {
+        padding: 0 15px; /* Reduzir padding em mobile */
+    }
+
+    /* Header */
+    .header {
+        padding: 0.75rem 0;
+    }
+
+    .logo h1 {
+        font-size: 1.3rem; /* Reduzir título logo */
+    }
+
+    .logo {
+        gap: 0.5rem;
+    }
+
+    .nav ul {
+        gap: 1rem; /* Reduzir espaço entre links */
+    }
+
+    .nav a {
+        font-size: 0.9rem;
+        padding: 0;
+    }
+
+    /* Hero Section */
+    .hero {
+        padding: 60px 20px; /* Reduzir padding de 140px para 60px */
+        min-height: 350px; /* Reduzir altura de 600px para 350px */
+    }
+
+    .hero h2 {
+        font-size: 2rem; /* Reduzir de 3.5rem para 2rem */
+        margin-bottom: 1rem;
+    }
+
+    .hero p {
+        font-size: 1rem; /* Reduzir de 1.5rem para 1rem */
+    }
+
+    .hero::before {
+        width: 300px;
+        height: 300px;
+        top: -15%;
+        right: -10%;
+    }
+
+    .hero::after {
+        width: 280px;
+        height: 280px;
+        bottom: -15%;
+    }
+
+    /* Seção Sobre */
+    .sobre {
+        padding: 40px 20px; /* Reduzir de 80px */
+    }
+
+    .sobre h2 {
+        font-size: 1.8rem; /* Reduzir de 2.5rem */
+        margin-bottom: 1.5rem;
+    }
+
+    .sobre p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    /* Galeria */
+    .galeria {
+        padding: 40px 20px; /* Reduzir de 80px */
+    }
+
+    .galeria h2 {
+        font-size: 1.8rem; /* Reduzir de 2.5rem */
+        margin-bottom: 0.8rem;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Carrossel */
+    .carrossel-container {
+        gap: 1rem; /* Reduzir de 2rem */
+        margin-bottom: 1rem;
+    }
+
+    .carrossel-wrapper {
+        border-radius: 10px;
+    }
+
+    .galeria-item {
+        min-width: 100%;
+        border-radius: 10px;
+    }
+
+    .galeria-item img {
+        width: 100%;
+        height: 250px; /* Reduzir de 400px para 250px em mobile */
+        object-fit: cover;
+        display: block;
+    }
+
+    .galeria-item h3 {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    /* Botões Carrossel - ESCONDER em mobile */
+    .carrossel-btn {
+        display: none; /* Esconder setas em mobile, usar indicadores */
+    }
+
+    .carrossel-indicadores {
+        margin: 1rem 0;
+    }
+
+    .indicador {
+        width: 8px;
+        height: 8px;
+    }
+
+    /* Galeria Completa */
+    .galeria-completa {
+        margin-top: 2rem;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+
+    .galeria-completa h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .galeria-grid {
+        display: grid;
+        grid-template-columns: 1fr; /* 1 coluna em mobile */
+        gap: 1rem;
+    }
+
+    .galeria-grid-item img {
+        height: 200px;
+    }
+
+    .galeria-grid-item h4 {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+
+    /* Botão Ver Galeria */
+    .btn {
+        min-height: 44px;
+        padding: 12px 24px;
+        font-size: 0.95rem;
+    }
+
+    .btn-lg {
+        font-size: 1rem;
+        padding: 14px 28px;
+    }
+
+    /* Cardápio */
+    .cardapio {
+        padding: 40px 20px; /* Reduzir de 80px */
+    }
+
+    .cardapio h2 {
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .cardapio-list {
+        max-width: 100%; /* Usar 100% em mobile */
+        margin: 0 auto;
+    }
+
+    .busca-container {
+        max-width: 100%;
+        margin: 0 auto 1.5rem;
+        gap: 0.8rem;
+    }
+
+    .busca-input {
+        padding: 12px 16px;
+        font-size: 1rem;
+        border-radius: 20px;
+    }
+
+    .cardapio-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.2rem;
+        margin-bottom: 0.8rem;
+        border-left-width: 4px;
+        gap: 0.5rem;
+    }
+
+    .item-nome {
+        font-size: 0.95rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .item-preco {
+        font-size: 1.1rem;
+        margin-left: 0;
+        align-self: flex-end;
+        margin-top: 0.5rem;
+    }
+
+    /* Encomenda */
+    .encomenda {
+        padding: 40px 20px; /* Reduzir de 80px */
+    }
+
+    .encomenda h2 {
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    /* ❌ CRÍTICO: Converter grid 2fr 1fr para coluna única */
+    .encomenda-container {
+        display: grid;
+        grid-template-columns: 1fr; /* 1 coluna em mobile */
+        gap: 1.5rem;
+        max-width: 100%;
+    }
+
+    .encomenda-form {
+        padding: 1.5rem;
+        border-radius: 12px;
+    }
+
+    .encomenda-form h3 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Grid de Bolos */
+    .bolos-selecao {
+        display: grid;
+        grid-template-columns: 1fr; /* 1 coluna em mobile */
+        gap: 0.8rem;
+    }
+
+    .bolo-item {
+        padding: 0.9rem;
+        border-radius: 8px;
+    }
+
+    .bolo-nome {
+        font-size: 0.9rem;
+    }
+
+    .bolo-preco {
+        font-size: 1rem;
+    }
+
+    .quantidade-input {
+        min-height: 44px;
+        font-size: 0.95rem;
+    }
+
+    .qtd-btn {
+        min-height: 44px;
+        min-width: 44px;
+        font-size: 1.1rem;
+    }
+
+    .controle-quantidade {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    /* Resumo Pedido */
+    .resumo-pedido {
+        background-color: var(--cor-bg-secundaria);
+        padding: 1.5rem;
+        border-radius: 12px;
+        position: sticky;
+        bottom: 0;
+        max-height: 40vh;
+        overflow-y: auto;
+    }
+
+    .resumo-pedido h3 {
+        font-size: 1.1rem;
+    }
+
+    .item-pedido {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+
+    /* Abas de Categorias */
+    .abas-bolos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .aba-btn {
+        padding: 0.8rem;
+        font-size: 0.8rem;
+        border-radius: 8px;
+    }
+
+    /* Form Groups */
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-group label {
+        font-size: 0.95rem;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        min-height: 44px;
+    }
+
+    /* Avaliações */
+    .avaliacoes {
+        padding: 40px 20px;
+    }
+
+    .avaliacoes h2 {
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .avaliacao-form {
+        margin-bottom: 2rem;
+    }
+
+    .avaliacao-form h3 {
+        font-size: 1.2rem;
+    }
+
+    .avaliacao-stars {
+        gap: 0.5rem;
+    }
+
+    .avaliacao-stars i {
+        font-size: 1.8rem;
+    }
+
+    .avaliacao-card {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .avaliacao-nome {
+        font-size: 0.95rem;
+    }
+
+    .avaliacao-comentario {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    /* Contato */
+    .contato {
+        padding: 40px 20px;
+    }
+
+    .contato h2 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+
+    .contato-info-center {
+        max-width: 100%;
+        padding: 2rem 1.5rem;
+        border-radius: 12px;
+    }
+
+    .contato-info-center h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .contato-info-center p {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .info-item {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .info-item i {
+        font-size: 1.5rem;
+    }
+
+    .info-item a {
+        font-size: 1rem;
+    }
+
+    /* Localização */
+    .localizacao-container {
+        max-width: 100%;
+        margin: 2rem auto 0;
+        padding: 1.5rem;
+        border-radius: 12px;
+    }
+
+    .localizacao-container h3 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .localizacao-info address {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    /* Mapa - RESPONSIVO */
+    .mapa-container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 75%; /* Aspect ratio 4:3 */
+        height: 0;
+        overflow: hidden;
+        border-radius: 10px;
+    }
+
+    .google-map {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    /* Footer */
+    .footer {
+        padding: 2rem 1.5rem;
+        text-align: center;
+    }
+
+    .footer p {
+        font-size: 0.9rem;
+    }
+
+    .social-links {
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .social-links a {
+        font-size: 1.5rem;
+    }
+
+    /* Assistente IA */
+    .assistente-toggle {
+        width: 50px;
+        height: 50px;
+    }
+
+    .assistente-painel {
+        width: 95%;
+        height: 70vh;
+        bottom: 10px;
+        right: 2.5%;
+        border-radius: 12px;
+    }
+
+    .assistente-header {
+        padding: 1rem;
+    }
+
+    .assistente-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .assistente-mensagens {
+        height: calc(70vh - 200px);
+    }
+
+    .assistente-msg {
+        margin: 0.8rem;
+        padding: 0.8rem;
+        font-size: 0.95rem;
+        border-radius: 8px;
+    }
+
+    /* Lightbox */
+    .lightbox-modal {
+        padding: 1rem;
+    }
+
+    .lightbox-content {
+        max-height: 80vh;
+    }
+
+    .lightbox-content img {
+        max-width: 100%;
+        max-height: 60vh;
+    }
+
+    .lightbox-titulo {
+        font-size: 0.95rem;
+    }
+
+    .lightbox-close {
+        font-size: 1.8rem;
+        width: 40px;
+        height: 40px;
+    }
+
+    .lightbox-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    /* Botão Flutuante Encomenda */
+    #btnEncomendaFlutuante {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+/* ============================================
+   BREAKPOINT MOBILE GRANDE / TABLET PEQUENO (481px - 768px)
+   ============================================ */
+@media (min-width: 481px) and (max-width: 768px) {
+    .container {
+        padding: 0 18px;
+    }
+
+    .header {
+        padding: 0.9rem 0;
+    }
+
+    .logo h1 {
+        font-size: 1.6rem;
+    }
+
+    .nav ul {
+        gap: 1.5rem;
+    }
+
+    .nav a {
+        font-size: 0.95rem;
+    }
+
+    .hero {
+        padding: 80px 20px;
+        min-height: 450px;
+    }
+
+    .hero h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+    }
+
+    .sobre {
+        padding: 60px 20px;
+    }
+
+    .sobre h2 {
+        font-size: 2.1rem;
+        margin-bottom: 1.8rem;
+    }
+
+    .sobre p {
+        font-size: 1.05rem;
+    }
+
+    .galeria {
+        padding: 60px 20px;
+    }
+
+    .galeria h2 {
+        font-size: 2.1rem;
+    }
+
+    .galeria-item img {
+        height: 320px;
+    }
+
+    .carrossel-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+
+    /* Mostrar botões de carrossel em tablets */
+    .carrossel-btn {
+        display: flex;
+    }
+
+    .galeria-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas em tablet */
+        gap: 1.2rem;
+    }
+
+    .cardapio {
+        padding: 60px 20px;
+    }
+
+    .cardapio h2 {
+        font-size: 2.1rem;
+    }
+
+    .bolos-selecao {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas em tablet */
+        gap: 1rem;
+    }
+
+    .encomenda {
+        padding: 60px 20px;
+    }
+
+    .encomenda-container {
+        grid-template-columns: 1fr; /* Ainda coluna única em tablet pequeno */
+        gap: 1.8rem;
+    }
+
+    .avaliacoes {
+        padding: 60px 20px;
+    }
+
+    .contato {
+        padding: 60px 20px;
+    }
+
+    .contato-info-center {
+        max-width: 500px;
+        padding: 2.5rem;
+    }
+
+    .localizacao-container {
+        max-width: 500px;
+    }
+
+    .mapa-container {
+        padding-bottom: 60%; /* Aspect ratio mais quadrado */
+    }
+}
+
+/* ============================================
+   BREAKPOINT TABLET (769px - 1024px)
+   ============================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        max-width: 95%;
+        padding: 0 24px;
+    }
+
+    .header {
+        padding: 1rem 0;
+    }
+
+    .logo h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero {
+        padding: 100px 20px;
+        min-height: 500px;
+    }
+
+    .hero h2 {
+        font-size: 2.8rem;
+    }
+
+    .hero p {
+        font-size: 1.3rem;
+    }
+
+    .sobre {
+        padding: 70px 20px;
+    }
+
+    .sobre h2 {
+        font-size: 2.3rem;
+    }
+
+    .galeria {
+        padding: 70px 20px;
+    }
+
+    .galeria h2 {
+        font-size: 2.3rem;
+    }
+
+    .galeria-item img {
+        height: 360px;
+    }
+
+    .galeria-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 colunas em tablet */
+        gap: 1.5rem;
+    }
+
+    .cardapio {
+        padding: 70px 20px;
+    }
+
+    .bolos-selecao {
+        grid-template-columns: repeat(3, 1fr); /* 3 colunas em tablet */
+        gap: 1.2rem;
+    }
+
+    .encomenda-container {
+        grid-template-columns: 2fr 1fr; /* Voltar para 2 colunas */
+        gap: 2rem;
+    }
+
+    .avaliacoes {
+        padding: 70px 20px;
+    }
+
+    .contato {
+        padding: 70px 20px;
+    }
+
+    .mapa-container {
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    }
+
+    .assistente-painel {
+        width: 400px;
+        height: 600px;
+    }
+}
+
+/* ============================================
+   BREAKPOINT DESKTOP (1025px+)
+   ============================================ */
+@media (min-width: 1025px) {
+    /* Desktop não precisa de muitas alterações, já está OK */
+    
+    .container {
+        max-width: 1200px;
+        padding: 0 30px;
+    }
+
+    .hero {
+        padding: 140px 20px;
+    }
+
+    .galeria-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .bolos-selecao {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .encomenda-container {
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .mapa-container {
+        padding-bottom: 56.25%;
+    }
+}
+
+/* ============================================
+   MELHORIAS GERAIS DE ACESSIBILIDADE
+   ============================================ */
+
+/* Garantir que inputs e botões sejam touchable (44x44px min) */
+button, input[type="button"], input[type="submit"], a.btn {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* Melhorar foco em dispositivos móveis */
+@media (hover: none) and (pointer: coarse) {
+    /* Remove efeitos hover em touch */
+    button:hover,
+    a:hover {
+        transform: none;
+    }
+    
+    button:active,
+    a:active {
+        opacity: 0.9;
+    }
+}
+
+/* Garantir que o mapa seja responsivo */
+iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Melhorar readabilidade de texto */
+@media (max-width: 480px) {
+    body {
+        font-size: 16px; /* Evitar zoom automático em iOS */
+    }
+}
+
+/* Garantir que links tenham espaçamento adequado */
+a {
+    padding: 0.25rem 0.5rem;
+}
+
+/* Prevenir overflow de texto */
+p, span, div {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
