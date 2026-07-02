@@ -162,10 +162,10 @@ body.dark-mode .btn-tema {
 /* Hero Section */
 .hero {
     background: linear-gradient(135deg, var(--cor-principal) 0%, var(--cor-secundaria) 100%);
-    padding: 140px 20px;
+    padding: clamp(3rem, 7vw, 10rem) 20px;
     text-align: center;
     color: white;
-    min-height: 600px;
+    min-height: clamp(350px, 60vh, 600px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -180,8 +180,8 @@ body.dark-mode .btn-tema {
     position: absolute;
     top: -30%;
     right: -5%;
-    width: 600px;
-    height: 600px;
+    width: clamp(240px, 32vw, 600px);
+    height: clamp(240px, 32vw, 600px);
     background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
     border-radius: 50%;
     animation: float 6s ease-in-out infinite;
@@ -193,8 +193,8 @@ body.dark-mode .btn-tema {
     position: absolute;
     bottom: -20%;
     left: 0%;
-    width: 550px;
-    height: 550px;
+    width: clamp(220px, 30vw, 550px);
+    height: clamp(220px, 30vw, 550px);
     background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 70%);
     border-radius: 50%;
     animation: float 8s ease-in-out infinite reverse;
@@ -412,7 +412,8 @@ body.dark-mode .galeria-item {
 
 .galeria-item img {
     width: 100%;
-    height: 400px;
+    height: auto;
+    max-height: 450px;
     object-fit: cover;
     display: block;
 }
@@ -546,17 +547,12 @@ body.dark-mode .galeria-grid-item:hover {
 
 .galeria-grid-item img {
     width: 100%;
-    height: 200px;
+    height: auto;
+    max-height: 300px;
     object-fit: cover;
     display: block;
 }
 
-.galeria-grid-item h4 {
-    padding: 1rem;
-    text-align: center;
-    color: var(--cor-escura);
-    font-size: 1rem;
-}
 
 body.dark-mode .galeria-grid-item h4 {
     color: #d4a5bb;
@@ -1464,7 +1460,7 @@ body.dark-mode .avaliacao-comentario {
     }
 
     .nav.ativo {
-        max-height: 400px;
+        max-height: 100vh;
     }
 
     .nav ul {
@@ -1507,7 +1503,8 @@ body.dark-mode .avaliacao-comentario {
     }
 
     .galeria-item img {
-        height: 300px;
+        height: auto;
+        max-height: 350px;
     }
 
     .footer .container {
@@ -1530,7 +1527,8 @@ body.dark-mode .avaliacao-comentario {
     }
 
     .galeria-grid-item img {
-        height: 180px;
+        height: auto;
+        max-height: 260px;
         width: 100%;
         object-fit: cover;
     }
@@ -1560,6 +1558,91 @@ body.dark-mode .avaliacao-comentario {
 
     .avaliacao-form {
         padding: 2rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero {
+        padding: clamp(4rem, 7vw, 8rem) 20px;
+        min-height: clamp(420px, 55vh, 560px);
+    }
+
+    .hero h2 {
+        font-size: 2.8rem;
+    }
+
+    .hero p {
+        font-size: 1.25rem;
+    }
+
+    .galeria-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.3rem;
+    }
+
+    .galeria-grid-item img {
+        max-height: 280px;
+    }
+
+    .encomenda-container {
+        grid-template-columns: 1.8fr 1fr;
+        gap: 1.5rem;
+    }
+
+    .resumo-pedido {
+        position: sticky;
+        top: 20px;
+    }
+
+    .cardapio-item {
+        padding: 1.4rem;
+    }
+
+    .btn {
+        min-width: 140px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .hero {
+        padding: 75px 20px;
+        min-height: 450px;
+    }
+
+    .hero h2 {
+        font-size: 2.3rem;
+    }
+
+    .hero p {
+        font-size: 1.05rem;
+    }
+
+    .galeria-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    .galeria-grid-item img {
+        max-height: 240px;
+    }
+
+    .encomenda-container {
+        grid-template-columns: 1fr;
+    }
+
+    .resumo-pedido {
+        position: static;
+        margin-top: 1.5rem;
+    }
+
+    .cardapio-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .btn {
+        width: 100%;
     }
 }
 
@@ -1616,7 +1699,8 @@ body.dark-mode .avaliacao-comentario {
     }
 
     .galeria-item img {
-        height: 250px;
+        height: auto;
+        max-height: 250px;
     }
 
     .galeria-item h3 {
@@ -1630,7 +1714,8 @@ body.dark-mode .avaliacao-comentario {
     }
 
     .galeria-grid-item img {
-        height: 150px;
+        height: auto;
+        max-height: 150px;
     }
 
     .galeria-grid-item h4 {
