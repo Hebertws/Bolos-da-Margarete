@@ -1,7 +1,9 @@
 /* ========================================
    CORREÇÕES DE RESPONSIVIDADE - BOLOS DA MARGARETE
    ======================================== */
-
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 /* ============================================
    BREAKPOINT MOBILE (até 480px)
    ============================================ */

@@ -34,10 +34,31 @@ html {
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
+    font-size: 16px;
+    line-height: 1.65;
     color: var(--cor-texto);
     background-color: var(--cor-bg);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-family: inherit;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+p, li, label, input, textarea, button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--cor-texto);
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.75;
+    letter-spacing: 0.01em;
 }
 
 .container {
@@ -249,20 +270,21 @@ body.dark-mode .btn-tema {
 }
 
 .hero h2 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
-    letter-spacing: -0.5px;
-    line-height: 1.2;
+    font-size: clamp(2.8rem, 6vw, 3.5rem);
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.12);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
 }
 
 .hero p {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
     margin-bottom: 0;
     opacity: 0.98;
-    font-weight: 300;
-    letter-spacing: 0.3px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.6;
 }
 
 @keyframes float {
@@ -342,17 +364,19 @@ body.dark-mode .btn-primary:hover {
 }
 
 .sobre h2 {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 4vw, 2.5rem);
     color: var(--cor-escura);
-    margin-bottom: 2rem;
+    margin-bottom: 1.6rem;
+    line-height: 1.2;
+    font-weight: 600;
 }
 
 .sobre p {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--cor-texto-claro);
     max-width: 700px;
     margin: 0 auto;
-    line-height: 1.8;
+    line-height: 1.75;
 }
 
 /* Galeria */
@@ -363,17 +387,21 @@ body.dark-mode .btn-primary:hover {
 }
 
 .galeria h2 {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 4vw, 2.5rem);
     color: var(--cor-escura);
     text-align: center;
     margin-bottom: 1rem;
+    line-height: 1.2;
+    font-weight: 600;
 }
 
 .subtitle {
     text-align: center;
     color: var(--cor-texto-claro);
-    font-size: 1.1rem;
-    margin-bottom: 3rem;
+    font-size: 1rem;
+    max-width: 760px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
 }
 
 /* Carrossel */
@@ -419,10 +447,22 @@ body.dark-mode .galeria-item {
 }
 
 .galeria-item h3 {
-    padding: 1.5rem;
+    padding: 1.25rem 1.5rem;
     color: var(--cor-escura);
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+.galeria-grid-item h4 {
+    padding: 1rem;
+    text-align: center;
+    color: var(--cor-escura);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
 }
 
 .carrossel-btn {
@@ -583,6 +623,7 @@ body.dark-mode .galeria-grid-item h4 {
     color: var(--cor-escura);
     text-align: center;
     margin-bottom: 1rem;
+    font-weight: 600;
 }
 
 .cardapio-list {
@@ -706,6 +747,7 @@ body.dark-mode .contato {
     color: var(--cor-escura);
     text-align: center;
     margin-bottom: 3rem;
+    font-weight: 600;
 }
 
 .contato-info-center {
