@@ -26,6 +26,7 @@ function validarTelefone(telefone) {
 let indiceAtual = 0;
 const itensCarrossel = document.querySelectorAll('.galeria-item').length;
 let intervaloCarrossel;
+let assistenteAberto = false;
 
 // Menu Hamburguês Mobile
 function toggleMenuMobile() {
@@ -482,7 +483,7 @@ if (modalLightbox) {
 // Fechar com tecla Esc, navegar com setas
 document.addEventListener('keydown', function (e) {
     const lightbox = document.getElementById('modalLightbox');
-    if (!lightbox.classList.contains('ativo')) return;
+    if (!lightbox || !lightbox.classList.contains('ativo')) return;
     if (e.key === 'Escape') fecharLightbox();
     if (e.key === 'ArrowRight') navegarLightbox(1);
     if (e.key === 'ArrowLeft') navegarLightbox(-1);
@@ -889,13 +890,20 @@ function toggleCardapio() {
 let categoriaAtual = 'todos';
 let textoBuscaAtual = '';
 
-function filtrarPorCategoria(categoria) {
+function filtrarPorCategoria(categoria, ev) {
     categoriaAtual = categoria;
-    
+
     const abas = document.querySelectorAll('.aba-btn');
     abas.forEach(aba => aba.classList.remove('aba-ativo'));
-    event.target.classList.add('aba-ativo');
-    
+
+    const btn = ev && ev.target && ev.target.closest ? ev.target.closest('.aba-btn') : null;
+    if (btn) {
+        btn.classList.add('aba-ativo');
+    } else {
+        const fallback = Array.from(abas).find(aba => aba.getAttribute('onclick') && aba.getAttribute('onclick').includes(`'${categoria}'`));
+        if (fallback) fallback.classList.add('aba-ativo');
+    }
+
     aplicarFiltros();
 }
 
