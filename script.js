@@ -842,12 +842,14 @@ function confirmarEncomenda() {
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbykom4LkSI3BUG_Y_Y-FlVGHrLyvnBHgxa-L0FIhfpXCXASR-0BqqFbOq1dA3HoEdIG/exec';
 
     const dadosPedido = {
-        nome: sanitizarEntrada(nome),
-        telefone: telefone.replace(/\D/g, ''),
+        dataPedido: formatarDataPedido(new Date().toISOString().split('T')[0]),
+        nomeCliente: sanitizarEntrada(nome),
+        numero: telefone.replace(/\D/g, ''),
         dataDesejada: formatarDataPedido(data),
-        bolos: resumoBolosParaPlanilha.join(' | '),
-        totalBolos: formatarValorPedido(total),
-        quantidadeItens: Object.keys(pedidoAtual).length,
+        entregaRetirada: desejaEntrega ? 'Entrega' : 'Retirada',
+        endereco: desejaEntrega ? (endereco || '-') : '-',
+        bolosSolicitados: resumoBolosParaPlanilha.join(' | '),
+        total: formatarValorPedido(total),
         observacoes: obs ? sanitizarEntrada(obs) : '-'
     };
 
