@@ -843,12 +843,12 @@ function confirmarEncomenda() {
 
     const dadosPedido = {
         dataPedido: formatarDataPedido(new Date().toISOString().split('T')[0]),
-        nomeCliente: sanitizarEntrada(nome),
-        numero: telefone.replace(/\D/g, ''),
+        nome: sanitizarEntrada(nome),
+        telefone: telefone.replace(/\D/g, ''),
         dataDesejada: formatarDataPedido(data),
-        entregaRetirada: desejaEntrega ? 'Entrega' : 'Retirada',
+        entrega: desejaEntrega ? 'Entrega' : 'Retirada',
         endereco: desejaEntrega ? (endereco || '-') : '-',
-        bolosSolicitados: resumoBolosParaPlanilha.join(' | '),
+        bolos: resumoBolosParaPlanilha.join(' | '),
         total: formatarValorPedido(total),
         observacoes: obs ? sanitizarEntrada(obs) : '-'
     };
