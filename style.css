@@ -691,6 +691,21 @@ body.dark-mode .palha-card {
     color: var(--cor-destaque);
 }
 
+@media (min-width: 1025px) {
+    .palha-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .palha-card {
+        max-width: 360px;
+        margin: 0 auto;
+    }
+
+    .palha-imagem {
+        min-height: 140px;
+    }
+}
+
 /* Cardápio */
 .cardapio {
     padding: 80px 20px;
