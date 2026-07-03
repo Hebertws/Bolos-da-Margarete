@@ -28,11 +28,12 @@ body {
 
     .nav ul {
         gap: 1rem; /* Reduzir espaço entre links */
+        padding: 0 0.75rem;
     }
 
     .nav a {
-        font-size: 0.9rem;
-        padding: 0;
+        font-size: 0.95rem;
+        padding: 0.9rem 1rem;
     }
 
     /* Hero Section */
