@@ -861,21 +861,36 @@ function confirmarEncomenda() {
     }
 
     const btnConfirmar = document.querySelector('button[onclick="confirmarEncomenda()"]');
-    const textoOriginalBtn = btnConfirmar.textContent;
-    btnConfirmar.innerHTML = '';
-    const spinner = document.createElement('i');
-    spinner.className = 'fas fa-spinner fa-spin';
-    const textNode = document.createTextNode(' Processando...');
-    btnConfirmar.appendChild(spinner);
-    btnConfirmar.appendChild(textNode);
-    btnConfirmar.disabled = true;
+    const textoOriginalBtn = btnConfirmar ? btnConfirmar.textContent : 'Confirmar Pedido';
+    if (btnConfirmar) {
+        btnConfirmar.innerHTML = '';
+        const spinner = document.createElement('i');
+        spinner.className = 'fas fa-spinner fa-spin';
+        const textNode = document.createTextNode(' Processando...');
+        btnConfirmar.appendChild(spinner);
+        btnConfirmar.appendChild(textNode);
+        btnConfirmar.disabled = true;
+    }
 
     fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json;charset=utf-8' },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(dadosPedido)
     })
-        .then(response => {
+        .then(async response => {
+            const textoResposta = await response.text();
+            if (!response.ok) {
+                throw new Error(`Resposta HTTP ${response.status}: ${textoResposta}`);
+            }
+            try {
+                const json = JSON.parse(textoResposta);
+                if (json.status && json.status.toLowerCase() !== 'sucesso') {
+                    throw new Error(json.mensagem || 'Resposta inesperada do servidor.');
+                }
+            } catch (parseError) {
+                console.warn('Resposta não JSON do Google Script:', textoResposta);
+            }
+
             abrirWhatsapp(mensagem, janelaWhatsapp);
 
             document.getElementById('formEncomenda').reset();
@@ -884,19 +899,23 @@ function confirmarEncomenda() {
             atualizarCamposEntrega();
             atualizarResumoPedido();
 
-            btnConfirmar.innerHTML = '';
-            btnConfirmar.textContent = textoOriginalBtn;
-            btnConfirmar.disabled = false;
+            if (btnConfirmar) {
+                btnConfirmar.innerHTML = '';
+                btnConfirmar.textContent = textoOriginalBtn;
+                btnConfirmar.disabled = false;
+            }
         })
         .catch(error => {
             console.error('Erro ao salvar na planilha:', error);
-            alert('Houve um pequeno atraso no sistema, mas vamos redirecionar você para o WhatsApp!');
+            alert('Não foi possível gravar o pedido na planilha. Mas você pode continuar no WhatsApp.');
 
             abrirWhatsapp(mensagem, janelaWhatsapp);
 
-            btnConfirmar.innerHTML = '';
-            btnConfirmar.textContent = textoOriginalBtn;
-            btnConfirmar.disabled = false;
+            if (btnConfirmar) {
+                btnConfirmar.innerHTML = '';
+                btnConfirmar.textContent = textoOriginalBtn;
+                btnConfirmar.disabled = false;
+            }
         });
 }
 
