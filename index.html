@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bolos da Margarete - Bolos Caseiros Deliciosos</title>
+    <meta name="description" content="Delícias da Margarete: bolos caseiros e palha italiana artesanais com muito carinho.">
+    <meta property="og:title" content="Delícias da Margarete">
+    <meta property="og:description" content="Bolos caseiros e palha italiana artesanais feitos com carinho.">
+    <title>Delícias da Margarete - Bolos Caseiros Deliciosos</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style-mobile-fixes.css">
@@ -19,9 +22,9 @@
     <header class="header">
         <div class="container">
             <div class="logo">
-                <img src="Imagens/otimizadas/Bolos-logo.webp" alt="Bolos da Margarete" class="logo-img" width="50"
+                <img src="Imagens/otimizadas/Bolos-logo.webp" alt="Delícias da Margarete" class="logo-img" width="50"
                     height="50" decoding="async">
-                <h1>Bolos da Margarete</h1>
+                <h1>Delícias da Margarete</h1>
             </div>
             <div class="header-actions">
                 <button class="btn-tema" onclick="alternarModoEscuro()" title="Alternar modo escuro">
@@ -55,10 +58,10 @@
     <!-- Sobre -->
     <section id="sobre" class="sobre">
         <div class="container">
-            <h2>Sobre Bolos da Margarete</h2>
-            <p>Bem-vindo ao espaço de bolos caseiros da Margarete! Com uma paixão genuína por doces caseiros, preparamos
-                bolos deliciosos feitos com ingredientes selecionados e muito amor. Cada bolo é preparado com dedicação
-                e carinho, pensado para tornar seus momentos especiais ainda mais doces e memoráveis.</p>
+            <h2>Sobre Delícias da Margarete</h2>
+            <p>Bem-vindo ao espaço de bolos caseiros e doces artesanais da Margarete! Com uma paixão genuína por doces caseiros, preparamos
+                bolos e palha italiana deliciosos feitos com ingredientes selecionados e muito amor. Cada criação é preparada com dedicação
+                e carinho, pensada para tornar seus momentos especiais ainda mais doces e memoráveis.</p>
         </div>
     </section>
 
@@ -376,11 +379,54 @@
         </div>
     </section>
 
+    <!-- Palha Italiana -->
+    <section id="palha-italiana" class="palha-italiana">
+        <div class="container">
+            <h2>Palha Italiana</h2>
+            <p class="subtitle">Sabores irresistíveis para completar a sua encomenda</p>
+
+            <div class="palha-grid">
+                <article class="palha-card">
+                    <div class="palha-imagem" aria-hidden="true">
+                        <span>Tradicional</span>
+                    </div>
+                    <div class="palha-card-content">
+                        <h3>Tradicional</h3>
+                        <p class="palha-descricao">A versão clássica e muito querida para quem ama o sabor marcante da palha italiana.</p>
+                        <span class="palha-preco">R$ XX,XX</span>
+                    </div>
+                </article>
+
+                <article class="palha-card">
+                    <div class="palha-imagem palha-imagem-ninho" aria-hidden="true">
+                        <span>Ninho</span>
+                    </div>
+                    <div class="palha-card-content">
+                        <h3>Ninho</h3>
+                        <p class="palha-descricao">Uma combinação cremosa e delicada, perfeita para quem gosta de sabores mais suaves.</p>
+                        <span class="palha-preco">R$ XX,XX</span>
+                    </div>
+                </article>
+
+                <article class="palha-card">
+                    <div class="palha-imagem palha-imagem-oreo" aria-hidden="true">
+                        <span>Oreo</span>
+                    </div>
+                    <div class="palha-card-content">
+                        <h3>Oreo</h3>
+                        <p class="palha-descricao">A opção mais crocante e saborosa para quem adora o clássico chocolate com biscoito.</p>
+                        <span class="palha-preco">R$ XX,XX</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
     <!-- Encomenda de Bolos -->
     <section id="encomenda" class="encomenda">
         <div class="container">
             <h2>Faça sua Encomenda</h2>
-            <p class="subtitle">Selecione os bolos que deseja e confirme seu pedido</p>
+            <p class="subtitle">Escolha bolo, palha italiana ou ambos e confirme seu pedido</p>
 
             <div class="encomenda-container">
                 <div class="encomenda-form">
@@ -399,6 +445,25 @@
                         <div class="form-group">
                             <label for="encData">Data desejada:</label>
                             <input type="date" id="encData" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="encProduto">Produto desejado:</label>
+                            <select id="encProduto">
+                                <option value="bolo">Bolo</option>
+                                <option value="palha">Palha Italiana</option>
+                                <option value="ambos">Bolo e Palha Italiana</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group oculta" id="grupoSaborPalha">
+                            <label for="encSaborPalha">Sabor da Palha Italiana:</label>
+                            <select id="encSaborPalha">
+                                <option value="">Selecione um sabor...</option>
+                                <option value="Tradicional">Tradicional</option>
+                                <option value="Ninho">Ninho</option>
+                                <option value="Oreo">Oreo</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
@@ -454,7 +519,7 @@
 
                         <button type="button" class="btn btn-primary btn-lg" onclick="confirmarEncomenda()"
                             style="width: 100%; margin-top: 1.5rem;">
-                            <i class="fas fa-check"></i> Confirmar Encomenda
+                            <i class="fas fa-check"></i> Confirmar Pedido
                         </button>
                     </form>
                 </div>
@@ -462,7 +527,7 @@
                 <div class="resumo-pedido">
                     <h3>Resumo do Pedido</h3>
                     <div id="resumoPedido" class="lista-pedido">
-                        <p style="color: var(--cor-texto-claro); text-align: center;">Nenhum bolo selecionado ainda</p>
+                        <p style="color: var(--cor-texto-claro); text-align: center;">Nenhum produto selecionado ainda</p>
                     </div>
                     <div class="total-pedido">
                         <strong>Total dos bolos: R$ <span id="totalPedido">0,00</span></strong>
@@ -592,7 +657,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Margarete Bolos. Todos os direitos reservados.</p>
+            <p>&copy; 2026 Delícias da Margarete. Todos os direitos reservados.</p>
             <div class="social-links">
                 <a href="https://www.instagram.com/margareteolisouza?igsh=MXdsdndoMWRxamhudg=="><i
                         class="fab fa-instagram"></i></a>
@@ -613,7 +678,7 @@
             <div class="assistente-header">
                 <div>
                     <h2>Assistente de duvidas</h2>
-                    <p>Bolos da Margarete</p>
+                    <p>Delícias da Margarete</p>
                 </div>
                 <button class="assistente-fechar" type="button" onclick="toggleAssistenteIA(false)" aria-label="Fechar assistente">
                     <i class="fas fa-times"></i>

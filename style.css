@@ -611,6 +611,86 @@ body.dark-mode .galeria-grid-item h4 {
     transform: translateY(-2px);
 }
 
+/* Palha Italiana */
+.palha-italiana {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, var(--cor-clara) 0%, var(--cor-bg) 100%);
+    transition: background 0.3s ease;
+}
+
+.palha-italiana h2 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    color: var(--cor-escura);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.palha-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 2.5rem auto 0;
+}
+
+.palha-card {
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 24px rgba(139, 90, 111, 0.12);
+    border: 1px solid rgba(139, 90, 111, 0.12);
+}
+
+body.dark-mode .palha-card {
+    background-color: #1e1e1e;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+    border-color: rgba(212, 165, 187, 0.18);
+}
+
+.palha-imagem {
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--cor-principal) 0%, var(--cor-secundaria) 100%);
+    color: var(--cor-escura);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.palha-imagem-ninho {
+    background: linear-gradient(135deg, #f6e7c8 0%, #eacb93 100%);
+}
+
+.palha-imagem-oreo {
+    background: linear-gradient(135deg, #51312f 0%, #2f1d1a 100%);
+    color: #f8e7d3;
+}
+
+.palha-card-content {
+    padding: 1.4rem 1.25rem 1.5rem;
+}
+
+.palha-card-content h3 {
+    color: var(--cor-escura);
+    margin-bottom: 0.6rem;
+    font-size: 1.25rem;
+}
+
+.palha-descricao {
+    color: var(--cor-texto-claro);
+    font-size: 0.95rem;
+    margin-bottom: 0.9rem;
+}
+
+.palha-preco {
+    display: inline-block;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--cor-destaque);
+}
+
 /* Cardápio */
 .cardapio {
     padding: 80px 20px;
@@ -891,6 +971,10 @@ body.dark-mode .encomenda-form {
 
 body.dark-mode .encomenda-form h3 {
     color: #d4a5bb;
+}
+
+#grupoSaborPalha {
+    margin-top: -0.75rem;
 }
 
 .entrega-opcao {

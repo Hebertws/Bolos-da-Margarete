@@ -1,4 +1,4 @@
-# 📋 Resumo das Correções de Segurança - Bolos da Margarete
+# 📋 Resumo das Correções de Segurança - Delícias da Margarete
 
 ## ✅ O que foi corrigido
 

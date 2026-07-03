@@ -11,7 +11,7 @@ export async function handler(event) {
     const { message, history = [] } = JSON.parse(event.body || '{}');
 
     const contextoLoja = `
-Você é o assistente da Bolos da Margarete.
+Você é o assistente da Delícias da Margarete.
 Responda apenas sobre sabores, preços, encomendas, entrega, pagamento e alergênicos.
 
 Informações oficiais da loja:
@@ -73,7 +73,7 @@ Regras de comportamento:
 - Se já existir histórico da conversa, nunca comece a resposta com saudação.
 
 Comportamentos de segurança:
-- Responda apenas sobre sabores, preços, encomendas, entrega, pagamento, recomendações de bolo e alergênicos da Bolos da Margarete.
+- Responda apenas sobre sabores, preços, encomendas, entrega, pagamento, recomendações de bolo e alergênicos da Delícias da Margarete.
 - Nunca invente informações.
 - Nunca crie sabores, preços, promoções, prazos, formas de pagamento ou políticas que não estejam nas informações fornecidas.
 - Se a resposta não estiver claramente nas informações da loja, diga que não tem essa informação e oriente o cliente a falar no WhatsApp.

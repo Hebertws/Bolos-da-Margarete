@@ -1,4 +1,4 @@
-# 🔒 Guia de Segurança - Site Bolos da Margarete
+# 🔒 Guia de Segurança - Site Delícias da Margarete
 
 ## Vulnerabilidades Corrigidas
 

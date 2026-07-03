@@ -365,7 +365,7 @@ function abrirWhatsapp(mensagem, janelaExistente = null) {
 
 // Redirecionar para WhatsApp
 function redirecionarWhatsapp() {
-    abrirWhatsapp('Olá Margarete! Gostaria de fazer um pedido de bolo.');
+    abrirWhatsapp('Olá Margarete! Gostaria de fazer um pedido de bolo, palha italiana ou ambos.');
 }
 
 // Add animation on scroll
@@ -720,6 +720,16 @@ function atualizarCamposEntrega() {
     }
 }
 
+function atualizarCampoPalha() {
+    const produto = document.getElementById('encProduto');
+    const grupoSabor = document.getElementById('grupoSaborPalha');
+
+    if (!produto || !grupoSabor) return;
+
+    const exibir = produto.value === 'palha' || produto.value === 'ambos';
+    grupoSabor.classList.toggle('oculta', !exibir);
+}
+
 function inicializarBuscaCardapio() {
     const buscaInput = document.getElementById('buscaInput');
     if (!buscaInput) return;
@@ -729,16 +739,23 @@ function inicializarBuscaCardapio() {
 
 function inicializarCamposEntrega() {
     const entrega = document.getElementById('encEntrega');
+    const produto = document.getElementById('encProduto');
     if (!entrega) return;
 
     entrega.addEventListener('change', atualizarCamposEntrega);
+    if (produto) {
+        produto.addEventListener('change', atualizarCampoPalha);
+    }
     atualizarCamposEntrega();
+    atualizarCampoPalha();
 }
 
 function confirmarEncomenda() {
     const nome = document.getElementById('encNome').value.trim();
     const telefone = document.getElementById('encTelefone').value.trim();
     const data = document.getElementById('encData').value;
+    const produto = document.getElementById('encProduto').value;
+    const saborPalha = document.getElementById('encSaborPalha').value.trim();
     const obs = document.getElementById('encObs').value.trim();
     const desejaEntrega = document.getElementById('encEntrega').checked;
     const endereco = document.getElementById('encEndereco').value.trim();
@@ -779,11 +796,18 @@ function confirmarEncomenda() {
         return;
     }
 
+    const produtoLabel = produto === 'bolo' ? 'Bolo' : produto === 'palha' ? 'Palha Italiana' : 'Bolo e Palha Italiana';
+    const saborLabel = produto === 'bolo' ? '' : `\n*Sabor da palha:* ${saborPalha || 'Não informado'}`;
+
     // Montar mensagem para WhatsApp
     let mensagem = `*Olá! Nova Encomenda*\n\n`;
     mensagem += `*Cliente:* ${nome}\n`;
     mensagem += `*Telefone:* ${telefone}\n`;
     mensagem += `*Data desejada:* ${formatarDataPedido(data)}\n`;
+    mensagem += `*Produto desejado:* ${produtoLabel}\n`;
+    if (saborLabel) {
+        mensagem += saborLabel;
+    }
     mensagem += `*Entrega:* ${desejaEntrega ? 'Quero consultar entrega' : 'Vou retirar no local'}\n`;
 
     if (desejaEntrega) {
@@ -811,6 +835,9 @@ function confirmarEncomenda() {
     });
 
     mensagem += `\n*Total dos bolos: R$ ${formatarValorPedido(total)}*\n`;
+    if (produto !== 'bolo') {
+        mensagem += `*Observação de produto:* ${produtoLabel}${saborPalha ? ` | Sabor: ${saborPalha}` : ''}\n`;
+    }
     mensagem += `_Entrega, frete e pagamento serão combinados pelo WhatsApp._\n`;
 
     if (obs) {
@@ -824,6 +851,8 @@ function confirmarEncomenda() {
         nome: sanitizarEntrada(nome),
         telefone: telefone.replace(/\D/g, ''),
         dataDesejada: formatarDataPedido(data),
+        produtoDesejado: produtoLabel,
+        saborPalha: saborPalha || '-',
         tipoEntrega: desejaEntrega ? 'Consultar entrega' : 'Retirar no local',
         endereco: desejaEntrega ? sanitizarEntrada(endereco) : '-',
         bolos: resumoBolosParaPlanilha.join(' | '),
