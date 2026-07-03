@@ -541,6 +541,13 @@ const bolosData = [
 
 let pedidoAtual = {};
 
+function getPedidoKey(bolo, sabor) {
+    if (bolo.tipo === 'palha') {
+        return `palha-${sabor}`;
+    }
+    return `bolo-${bolo.nome}`;
+}
+
 function formatarValorPedido(valor) {
     return valor.toFixed(2).replace('.', ',');
 }
@@ -614,6 +621,24 @@ function inicializarEncomenda() {
         }
         div.appendChild(controleQuantidade);
 
+        const getCurrentKey = function () {
+            if (bolo.tipo === 'palha' && saborSelect) {
+                return getPedidoKey(bolo, saborSelect.value);
+            }
+            return getPedidoKey(bolo, bolo.sabor || bolo.nome);
+        };
+
+        const carregarQuantidadeAtual = function () {
+            const chave = getCurrentKey();
+            if (pedidoAtual[chave]) {
+                input.value = pedidoAtual[chave].quantidade;
+                div.classList.toggle('selecionado', pedidoAtual[chave].quantidade > 0);
+            } else {
+                input.value = '0';
+                div.classList.remove('selecionado');
+            }
+        };
+
         const atualizarQuantidade = function (normalizarCampo = false) {
             const qtd = parseInt(input.value, 10) || 0;
             const quantidade = Math.max(0, Math.min(qtd, 99));
@@ -622,9 +647,11 @@ function inicializarEncomenda() {
                 input.value = quantidade;
             }
 
+            const chave = getCurrentKey();
+
             if (quantidade > 0) {
                 div.classList.add('selecionado');
-                pedidoAtual[index] = {
+                pedidoAtual[chave] = {
                     bolo: bolo.nome,
                     preco: bolo.preco,
                     quantidade: quantidade,
@@ -632,7 +659,7 @@ function inicializarEncomenda() {
                 };
             } else {
                 div.classList.remove('selecionado');
-                delete pedidoAtual[index];
+                delete pedidoAtual[chave];
             }
 
             atualizarResumoPedido();
@@ -657,10 +684,18 @@ function inicializarEncomenda() {
 
         if (saborSelect) {
             saborSelect.addEventListener('change', function () {
-                atualizarQuantidade(true);
+                const chaveAnterior = getPedidoKey(bolo, this.dataset.anterior || 'Tradicional');
+                if (pedidoAtual[chaveAnterior]) {
+                    delete pedidoAtual[chaveAnterior];
+                }
+                this.dataset.anterior = this.value;
+                carregarQuantidadeAtual();
+                atualizarResumoPedido();
             });
+            saborSelect.dataset.anterior = saborSelect.value;
         }
 
+        carregarQuantidadeAtual();
         container.appendChild(div);
     });
 }
@@ -750,16 +785,6 @@ function atualizarCamposEntrega() {
     }
 }
 
-function atualizarCampoPalha() {
-    const produto = document.getElementById('encProduto');
-    const grupoSabor = document.getElementById('grupoSaborPalha');
-
-    if (!produto || !grupoSabor) return;
-
-    const exibir = produto.value === 'palha' || produto.value === 'ambos';
-    grupoSabor.classList.toggle('oculta', !exibir);
-}
-
 function inicializarBuscaCardapio() {
     const buscaInput = document.getElementById('buscaInput');
     if (!buscaInput) return;
@@ -769,23 +794,16 @@ function inicializarBuscaCardapio() {
 
 function inicializarCamposEntrega() {
     const entrega = document.getElementById('encEntrega');
-    const produto = document.getElementById('encProduto');
     if (!entrega) return;
 
     entrega.addEventListener('change', atualizarCamposEntrega);
-    if (produto) {
-        produto.addEventListener('change', atualizarCampoPalha);
-    }
     atualizarCamposEntrega();
-    atualizarCampoPalha();
 }
 
 function confirmarEncomenda() {
     const nome = document.getElementById('encNome').value.trim();
     const telefone = document.getElementById('encTelefone').value.trim();
     const data = document.getElementById('encData').value;
-    const produto = document.getElementById('encProduto').value;
-    const saborPalha = document.getElementById('encSaborPalha').value.trim();
     const obs = document.getElementById('encObs').value.trim();
     const desejaEntrega = document.getElementById('encEntrega').checked;
     const endereco = document.getElementById('encEndereco').value.trim();
@@ -826,18 +844,11 @@ function confirmarEncomenda() {
         return;
     }
 
-    const produtoLabel = produto === 'bolo' ? 'Bolo' : produto === 'palha' ? 'Palha Italiana' : 'Bolo e Palha Italiana';
-    const saborLabel = produto === 'bolo' ? '' : `\n*Sabor da palha:* ${saborPalha || 'Não informado'}`;
-
     // Montar mensagem para WhatsApp
     let mensagem = `*Olá! Nova Encomenda*\n\n`;
     mensagem += `*Cliente:* ${nome}\n`;
     mensagem += `*Telefone:* ${telefone}\n`;
     mensagem += `*Data desejada:* ${formatarDataPedido(data)}\n`;
-    mensagem += `*Produto desejado:* ${produtoLabel}\n`;
-    if (saborLabel) {
-        mensagem += saborLabel;
-    }
     mensagem += `*Entrega:* ${desejaEntrega ? 'Quero consultar entrega' : 'Vou retirar no local'}\n`;
 
     if (desejaEntrega) {
@@ -866,9 +877,6 @@ function confirmarEncomenda() {
     });
 
     mensagem += `\n*Total dos bolos: R$ ${formatarValorPedido(total)}*\n`;
-    if (produto !== 'bolo') {
-        mensagem += `*Observação de produto:* ${produtoLabel}${saborPalha ? ` | Sabor: ${saborPalha}` : ''}\n`;
-    }
     mensagem += `_Entrega, frete e pagamento serão combinados pelo WhatsApp._\n`;
 
     if (obs) {
@@ -882,12 +890,7 @@ function confirmarEncomenda() {
         nome: sanitizarEntrada(nome),
         telefone: telefone.replace(/\D/g, ''),
         dataDesejada: formatarDataPedido(data),
-        produtoDesejado: produtoLabel,
-        saborPalha: saborPalha || '-',
-        tipoEntrega: desejaEntrega ? 'Consultar entrega' : 'Retirar no local',
-        endereco: desejaEntrega ? sanitizarEntrada(endereco) : '-',
-        bolos: resumoBolosParaPlanilha.join(' | '),
-        total: formatarValorPedido(total),
+
         observacoes: obs ? sanitizarEntrada(obs) : '-'
     };
 
