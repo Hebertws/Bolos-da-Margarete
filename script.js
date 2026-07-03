@@ -507,7 +507,9 @@ document.querySelectorAll('.galeria-grid-item img').forEach(img => {
 
 // Sistema de Encomenda
 const bolosData = [
-    { nome: 'Palha Italiana', preco: 6.00, categoria: 'palha', tipo: 'palha', sabores: ['Tradicional', 'Ninho', 'Oreo'] },
+    { nome: 'Palha Italiana Tradicional', preco: 6.00, categoria: 'palha' },
+    { nome: 'Palha Italiana Ninho', preco: 6.00, categoria: 'palha' },
+    { nome: 'Palha Italiana Oreo', preco: 6.00, categoria: 'palha' },
     { nome: 'Bolo de Castanha', preco: 25.00, categoria: 'sem-calda' },
     { nome: 'Bolo de Cenoura com Cobertura de Chocolate', preco: 20.00, categoria: 'com-calda' },
     { nome: 'Bolo de Cenoura com Cobertura de Chocolate - No Pote', preco: 5.00, categoria: 'no-pote' },
@@ -541,13 +543,6 @@ const bolosData = [
 
 let pedidoAtual = {};
 
-function getPedidoKey(bolo, sabor) {
-    if (bolo.tipo === 'palha') {
-        return `palha-${sabor}`;
-    }
-    return `bolo-${bolo.nome}`;
-}
-
 function formatarValorPedido(valor) {
     return valor.toFixed(2).replace('.', ',');
 }
@@ -571,19 +566,6 @@ function inicializarEncomenda() {
         const precoBolo = document.createElement('span');
         precoBolo.className = 'bolo-preco';
         precoBolo.textContent = `R$ ${formatarValorPedido(bolo.preco)}`;
-
-        let saborSelect = null;
-        if (bolo.tipo === 'palha') {
-            saborSelect = document.createElement('select');
-            saborSelect.className = 'sabor-palha-select';
-            saborSelect.setAttribute('aria-label', `Sabor da ${bolo.nome}`);
-            (bolo.sabores || []).forEach(sabor => {
-                const option = document.createElement('option');
-                option.value = sabor;
-                option.textContent = sabor;
-                saborSelect.appendChild(option);
-            });
-        }
 
         const controleQuantidade = document.createElement('div');
         controleQuantidade.className = 'controle-quantidade';
@@ -616,23 +598,12 @@ function inicializarEncomenda() {
 
         div.appendChild(nomeBolo);
         div.appendChild(precoBolo);
-        if (saborSelect) {
-            div.appendChild(saborSelect);
-        }
         div.appendChild(controleQuantidade);
 
-        const getCurrentKey = function () {
-            if (bolo.tipo === 'palha' && saborSelect) {
-                return getPedidoKey(bolo, saborSelect.value);
-            }
-            return getPedidoKey(bolo, bolo.sabor || bolo.nome);
-        };
-
         const carregarQuantidadeAtual = function () {
-            const chave = getCurrentKey();
-            if (pedidoAtual[chave]) {
-                input.value = pedidoAtual[chave].quantidade;
-                div.classList.toggle('selecionado', pedidoAtual[chave].quantidade > 0);
+            if (pedidoAtual[index]) {
+                input.value = pedidoAtual[index].quantidade;
+                div.classList.toggle('selecionado', pedidoAtual[index].quantidade > 0);
             } else {
                 input.value = '0';
                 div.classList.remove('selecionado');
@@ -647,19 +618,16 @@ function inicializarEncomenda() {
                 input.value = quantidade;
             }
 
-            const chave = getCurrentKey();
-
             if (quantidade > 0) {
                 div.classList.add('selecionado');
-                pedidoAtual[chave] = {
+                pedidoAtual[index] = {
                     bolo: bolo.nome,
                     preco: bolo.preco,
-                    quantidade: quantidade,
-                    sabor: bolo.tipo === 'palha' ? (saborSelect ? saborSelect.value : '') : ''
+                    quantidade: quantidade
                 };
             } else {
                 div.classList.remove('selecionado');
-                delete pedidoAtual[chave];
+                delete pedidoAtual[index];
             }
 
             atualizarResumoPedido();
@@ -681,19 +649,6 @@ function inicializarEncomenda() {
         input.addEventListener('change', function () {
             atualizarQuantidade(true);
         });
-
-        if (saborSelect) {
-            saborSelect.addEventListener('change', function () {
-                const chaveAnterior = getPedidoKey(bolo, this.dataset.anterior || 'Tradicional');
-                if (pedidoAtual[chaveAnterior]) {
-                    delete pedidoAtual[chaveAnterior];
-                }
-                this.dataset.anterior = this.value;
-                carregarQuantidadeAtual();
-                atualizarResumoPedido();
-            });
-            saborSelect.dataset.anterior = saborSelect.value;
-        }
 
         carregarQuantidadeAtual();
         container.appendChild(div);
