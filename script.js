@@ -345,7 +345,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const WHATSAPP_NUMERO = '5531985740971';
 
 function montarUrlWhatsapp(mensagem) {
-    return `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(mensagem)}`;
+    return `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMERO}&text=${encodeURIComponent(mensagem)}`;
 }
 
 function abrirWhatsapp(mensagem, janelaExistente = null) {
@@ -845,7 +845,9 @@ function confirmarEncomenda() {
         nome: sanitizarEntrada(nome),
         telefone: telefone.replace(/\D/g, ''),
         dataDesejada: formatarDataPedido(data),
-
+        bolos: resumoBolosParaPlanilha.join(' | '),
+        totalBolos: formatarValorPedido(total),
+        quantidadeItens: Object.keys(pedidoAtual).length,
         observacoes: obs ? sanitizarEntrada(obs) : '-'
     };
 
@@ -868,7 +870,7 @@ function confirmarEncomenda() {
 
     fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        headers: { 'Content-Type': 'application/json;charset=utf-8' },
         body: JSON.stringify(dadosPedido)
     })
         .then(response => {
