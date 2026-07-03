@@ -507,6 +507,7 @@ document.querySelectorAll('.galeria-grid-item img').forEach(img => {
 
 // Sistema de Encomenda
 const bolosData = [
+    { nome: 'Palha Italiana', preco: 6.00, categoria: 'palha', tipo: 'palha', sabores: ['Tradicional', 'Ninho', 'Oreo'] },
     { nome: 'Bolo de Castanha', preco: 25.00, categoria: 'sem-calda' },
     { nome: 'Bolo de Cenoura com Cobertura de Chocolate', preco: 20.00, categoria: 'com-calda' },
     { nome: 'Bolo de Cenoura com Cobertura de Chocolate - No Pote', preco: 5.00, categoria: 'no-pote' },
@@ -564,6 +565,19 @@ function inicializarEncomenda() {
         precoBolo.className = 'bolo-preco';
         precoBolo.textContent = `R$ ${formatarValorPedido(bolo.preco)}`;
 
+        let saborSelect = null;
+        if (bolo.tipo === 'palha') {
+            saborSelect = document.createElement('select');
+            saborSelect.className = 'sabor-palha-select';
+            saborSelect.setAttribute('aria-label', `Sabor da ${bolo.nome}`);
+            (bolo.sabores || []).forEach(sabor => {
+                const option = document.createElement('option');
+                option.value = sabor;
+                option.textContent = sabor;
+                saborSelect.appendChild(option);
+            });
+        }
+
         const controleQuantidade = document.createElement('div');
         controleQuantidade.className = 'controle-quantidade';
 
@@ -595,6 +609,9 @@ function inicializarEncomenda() {
 
         div.appendChild(nomeBolo);
         div.appendChild(precoBolo);
+        if (saborSelect) {
+            div.appendChild(saborSelect);
+        }
         div.appendChild(controleQuantidade);
 
         const atualizarQuantidade = function (normalizarCampo = false) {
@@ -610,7 +627,8 @@ function inicializarEncomenda() {
                 pedidoAtual[index] = {
                     bolo: bolo.nome,
                     preco: bolo.preco,
-                    quantidade: quantidade
+                    quantidade: quantidade,
+                    sabor: bolo.tipo === 'palha' ? (saborSelect ? saborSelect.value : '') : ''
                 };
             } else {
                 div.classList.remove('selecionado');
@@ -637,6 +655,12 @@ function inicializarEncomenda() {
             atualizarQuantidade(true);
         });
 
+        if (saborSelect) {
+            saborSelect.addEventListener('change', function () {
+                atualizarQuantidade(true);
+            });
+        }
+
         container.appendChild(div);
     });
 }
@@ -651,7 +675,7 @@ function atualizarResumoPedido() {
         const p = document.createElement('p');
         p.style.color = 'var(--cor-texto-claro)';
         p.style.textAlign = 'center';
-        p.textContent = 'Nenhum bolo selecionado ainda';
+        p.textContent = 'Nenhum produto selecionado ainda';
         resumo.appendChild(p);
     } else {
         keys.forEach(index => {
@@ -664,7 +688,8 @@ function atualizarResumoPedido() {
 
             const nome = document.createElement('span');
             nome.className = 'item-pedido-nome';
-            nome.textContent = item.bolo;
+            const nomeItem = item.sabor ? `${item.bolo} (${item.sabor})` : item.bolo;
+            nome.textContent = nomeItem;
 
             const qtd = document.createElement('span');
             qtd.className = 'item-pedido-qtd';
@@ -695,7 +720,12 @@ function removerItemPedido(index) {
     inputs.forEach(input => {
         if (parseInt(input.dataset.index) === index) {
             input.value = '0';
-            input.closest('.bolo-item').classList.remove('selecionado');
+            const itemCard = input.closest('.bolo-item');
+            itemCard.classList.remove('selecionado');
+            const select = itemCard.querySelector('.sabor-palha-select');
+            if (select) {
+                select.value = select.options[0].value;
+            }
         }
     });
 
@@ -829,9 +859,10 @@ function confirmarEncomenda() {
         const subtotal = item.preco * item.quantidade;
         total += subtotal;
 
-        mensagem += `• ${item.quantidade}x ${item.bolo} - R$ ${formatarValorPedido(subtotal)}\n`;
+        const nomeItem = item.sabor ? `${item.bolo} (${item.sabor})` : item.bolo;
+        mensagem += `• ${item.quantidade}x ${nomeItem} - R$ ${formatarValorPedido(subtotal)}\n`;
 
-        resumoBolosParaPlanilha.push(`${item.quantidade}x ${item.bolo}`);
+        resumoBolosParaPlanilha.push(`${item.quantidade}x ${item.sabor ? `${item.bolo} (${item.sabor})` : item.bolo}`);
     });
 
     mensagem += `\n*Total dos bolos: R$ ${formatarValorPedido(total)}*\n`;

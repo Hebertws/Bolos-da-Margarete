@@ -1095,6 +1095,23 @@ body.dark-mode .bolo-nome {
     margin-bottom: 0.8rem;
 }
 
+.sabor-palha-select {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid rgba(139, 90, 111, 0.2);
+    border-radius: 10px;
+    background-color: var(--cor-bg);
+    color: var(--cor-texto);
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+}
+
+body.dark-mode .sabor-palha-select {
+    background-color: #2a2a2a;
+    border-color: rgba(212, 165, 187, 0.2);
+    color: #f0f0f0;
+}
+
 .quantidade-input {
   width: 100%;
   min-height: 48px;
