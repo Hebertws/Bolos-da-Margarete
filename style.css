@@ -655,7 +655,7 @@ body.dark-mode .palha-card {
 }
 
 .palha-imagem {
-    min-height: 240px;
+    min-height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -680,11 +680,8 @@ body.dark-mode .palha-card {
 .palha-imagem span {
     position: relative;
     z-index: 1;
-    background: rgba(0, 0, 0, 0.5);
     color: #ffffff;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 0 4px rgba(0, 0, 0, 0.4);
 }
 
 .palha-imagem-ninho {
@@ -692,7 +689,6 @@ body.dark-mode .palha-card {
 }
 
 .palha-imagem-ninho span {
-    background: rgba(0, 0, 0, 0.4);
     color: #ffffff;
 }
 
@@ -702,7 +698,6 @@ body.dark-mode .palha-card {
 }
 
 .palha-imagem-oreo span {
-    background: rgba(0, 0, 0, 0.6);
     color: #ffffff;
 }
 
