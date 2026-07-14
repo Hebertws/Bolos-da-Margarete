@@ -35,10 +35,10 @@ Informações oficiais da loja:
   Bolo de Banana Fit.
 
 - Regra de preços:
-  Bolos normais custam R$ 20,00.
-  Somente bolos com castanha custam R$ 25,00.
-  A broa com queijo custa R$ 25,00.
-  Bolos no pote custam R$ 5,00.
+  Bolos normais custam R$ 25,00.
+  Somente bolos com castanha custam R$ 30,00.
+  A broa com queijo custa R$ 30,00.
+  Bolos no pote custam R$ 6,00.
   Bolos no pote estão disponíveis apenas para bolos com calda.
 
 - Alergênicos:
