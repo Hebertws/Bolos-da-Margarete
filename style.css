@@ -2028,10 +2028,6 @@ body.dark-mode .avaliacao-comentario {
         line-height: 1.6;
     }
 
-    .mapa-container {
-        height: 300px;
-    }
-
     .bolos-selecao {
         grid-template-columns: 1fr;
         gap: 0.85rem;
