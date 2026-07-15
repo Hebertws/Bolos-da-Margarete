@@ -533,12 +533,7 @@ const bolosData = [
     { nome: 'Bolo de Paçoca', preco: 25.00, categoria: 'com-calda' },
     { nome: 'Bolo de Paçoca - No Pote', preco: 6.00, categoria: 'no-pote' },
     { nome: 'Broa de Farinha de Milho com Coco e Queijo', preco: 30.00, categoria: 'sem-calda' },
-    { nome: 'Bolo de Maracujá', preco: 25.00, categoria: 'com-calda' },
-    { nome: 'Bolo de Maracujá - No Pote', preco: 6.00, categoria: 'no-pote' },
-    { nome: 'Bolo de Banana Normal', preco: 25.00, categoria: 'com-calda' },
-    { nome: 'Bolo de Banana Normal - No Pote', preco: 6.00, categoria: 'no-pote' },
-    { nome: 'Bolo de Banana Fit', preco: 25.00, categoria: 'com-calda' },
-    { nome: 'Bolo de Banana Fit - No Pote', preco: 6.00, categoria: 'no-pote' }
+    { nome: 'Bolo de Mandioca', preco: 25.00, categoria: 'sem-calda' }
 ];
 
 let pedidoAtual = {};
