@@ -30,9 +30,7 @@ Informações oficiais da loja:
   Bolo de Milho;
   Bolo de Paçoca;
   Broa de Farinha de Milho com Coco e Queijo;
-  Bolo de Maracujá;
-  Bolo de Banana Normal;
-  Bolo de Banana Fit.
+  Bolo de Mandioca
 
 - Regra de preços:
   Bolos normais custam R$ 25,00.
