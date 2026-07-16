@@ -83,7 +83,7 @@ body {
 
     .hero-badge {
         width: 90px;
-        margin: -55px auto 1.2rem;
+        margin: -85px auto 1.2rem;
     }
 
     .sobre h2 {
@@ -588,6 +588,10 @@ body {
         padding: 60px 20px;
     }
 
+    .hero-badge {
+        margin-top: -110px;
+    }
+
     .sobre h2 {
         font-size: 2.1rem;
         margin-bottom: 1.8rem;
@@ -697,6 +701,10 @@ body {
 
     .sobre {
         padding: 70px 20px;
+    }
+
+    .hero-badge {
+        margin-top: calc(-70px - clamp(50px, 6vw, 75px));
     }
 
     .sobre h2 {

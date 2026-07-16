@@ -296,7 +296,7 @@ body.dark-mode .btn-tema {
 /* Badge circular sobrepondo o hero e a próxima seção */
 .hero-badge {
     width: clamp(100px, 12vw, 150px);
-    margin: -100px auto 1.5rem;
+    margin: calc(-80px - clamp(50px, 6vw, 75px)) auto 1.5rem;
     position: relative;
     z-index: 5;
 }

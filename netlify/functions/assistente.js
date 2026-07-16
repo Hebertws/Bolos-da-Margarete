@@ -1,14 +1,14 @@
-export async function handler(event) {
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ error: 'Método não permitido.' })
-    };
+export default async function handler(request) {
+  if (request.method !== 'POST') {
+    return Response.json(
+      { error: 'Método não permitido.' },
+      { status: 405 }
+    );
   }
 
-  try {
-    const { message, history = [] } = JSON.parse(event.body || '{}');
+   try {
+    const requestBody = await request.text();
+    const { message, history = [] } = JSON.parse(requestBody || '{}');
 
     const contextoLoja = `
 Você é o assistente da Delícias da Margarete.
@@ -130,26 +130,25 @@ Comportamentos de segurança:
 
     if (!response.ok) {
       console.error('Erro Gemini:', data);
-      return {
-        statusCode: response.status,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+      return Response.json(
+        {
           error: 'Falha ao consultar a IA.',
           detail: data
-        })
-      };
+        },
+        { status: response.status }
+      );
     }
 
     if (!data?.candidates?.length) {
         console.error('Resposta Gemini sem candidates:', data);
-            return {
-                statusCode: 500,
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-            error: 'Falha ao consultar a IA.',
-            detail: data
-            })
-        };
+      return Response.json(
+        {
+          error: 'Falha ao consultar a IA.',
+          detail: data
+        },
+        { status: 500 }
+      );
+
     }
 
     const answer =
@@ -166,13 +165,12 @@ Comportamentos de segurança:
   } catch (error) {
     console.error('Erro na função assistente:', error);
 
-    return {
-      statusCode: 500,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
+    return Response.json(
+      {
         error: 'Erro ao responder no momento.',
         detail: error?.message || 'Erro desconhecido'
-      })
-    };
+      },
+      { status: 500 }
+    );
   }
 }
