@@ -84,7 +84,7 @@ body.dark-mode .header {
 
 .header .container {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr auto;
     align-items: center;
     gap: 1.5rem;
 }
@@ -291,37 +291,6 @@ body.dark-mode .btn-tema {
     font-weight: 400;
     letter-spacing: 0;
     line-height: 1.6;
-}
-
-/* Ilustrações decorativas de bolo no hero */
-.hero-deco {
-    position: absolute;
-    bottom: 0;
-    width: clamp(130px, 16vw, 260px);
-    color: var(--cor-escura);
-    opacity: 0.4;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.hero-deco svg {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-.hero-deco-left {
-    left: clamp(-10px, 1vw, 40px);
-}
-
-.hero-deco-right {
-    right: clamp(-10px, 1vw, 40px);
-}
-
-@media (max-width: 900px) {
-    .hero-deco {
-        display: none;
-    }
 }
 
 /* Badge circular sobrepondo o hero e a próxima seção */

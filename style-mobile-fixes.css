@@ -38,14 +38,6 @@ body {
         padding: 0.75rem 0;
     }
 
-    .logo h1 {
-        font-size: 1.3rem; /* Reduzir título logo */
-    }
-
-    .logo {
-        gap: 0.5rem;
-    }
-
     .nav ul {
         gap: 1rem; /* Reduzir espaço entre links */
         padding: 0 0.75rem;
@@ -570,10 +562,6 @@ body {
         padding: 0.9rem 0;
     }
 
-    .logo h1 {
-        font-size: 1.6rem;
-    }
-
     .nav ul {
         gap: 1.5rem;
     }
@@ -692,10 +680,6 @@ body {
 
     .header {
         padding: 1rem 0;
-    }
-
-    .logo h1 {
-        font-size: 1.8rem;
     }
 
     .hero {
