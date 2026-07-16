@@ -157,11 +157,7 @@ Comportamentos de segurança:
             .join('\n')
             .trim() || 'Não consegui responder agora.';
 
-    return {
-      statusCode: 200,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ answer })
-    };
+    return Response.json({ answer });
   } catch (error) {
     console.error('Erro na função assistente:', error);
 
