@@ -2324,10 +2324,13 @@ body.dark-mode .avaliacao-comentario {
   pointer-events: none;
 }
 
-.assistente-toggle i {
-  font-size: 1.55rem;
+.assistente-toggle-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
   position: relative;
   z-index: 1;
+  pointer-events: none;
 }
 
 .assistente-toggle:hover {
@@ -2633,8 +2636,9 @@ body.dark-mode .assistente-form input:focus {
     height: 58px;
   }
 
-  .assistente-toggle i {
-    font-size: 1.35rem;
+  .assistente-toggle-icon {
+    width: 27px;
+    height: 27px;
   }
 }
 
