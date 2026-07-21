@@ -1,8 +1,22 @@
+// Troque pelo domínio real do seu GitHub Pages, ex: 'https://seu-usuario.github.io'
+const ORIGEM_PERMITIDA = 'https://hebertws.github.io';
+
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': ORIGEM_PERMITIDA,
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type'
+};
+
 export default async function handler(request) {
+  // O navegador manda uma requisição OPTIONS antes do POST (preflight de CORS)
+  if (request.method === 'OPTIONS') {
+    return new Response(null, { status: 204, headers: CORS_HEADERS });
+  }
+
   if (request.method !== 'POST') {
     return Response.json(
       { error: 'Método não permitido.' },
-      { status: 405 }
+      { status: 405, headers: CORS_HEADERS }
     );
   }
 
@@ -135,7 +149,7 @@ Comportamentos de segurança:
           error: 'Falha ao consultar a IA.',
           detail: data
         },
-        { status: response.status }
+        { status: response.status, headers: CORS_HEADERS }
       );
     }
 
@@ -146,7 +160,7 @@ Comportamentos de segurança:
           error: 'Falha ao consultar a IA.',
           detail: data
         },
-        { status: 500 }
+        { status: 500, headers: CORS_HEADERS }
       );
 
     }
@@ -157,7 +171,7 @@ Comportamentos de segurança:
             .join('\n')
             .trim() || 'Não consegui responder agora.';
 
-    return Response.json({ answer });
+    return Response.json({ answer }, { headers: CORS_HEADERS });
   } catch (error) {
     console.error('Erro na função assistente:', error);
 
@@ -166,7 +180,7 @@ Comportamentos de segurança:
         error: 'Erro ao responder no momento.',
         detail: error?.message || 'Erro desconhecido'
       },
-      { status: 500 }
+      { status: 500, headers: CORS_HEADERS }
     );
   }
 }

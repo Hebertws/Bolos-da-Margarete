@@ -1,3 +1,6 @@
+// URL completa da função na Netlify (troque pelo endereço real do seu site Netlify)
+const ASSISTENTE_API_URL = 'https://bolosmargarete.netlify.app/.netlify/functions/assistente';
+
 // ===== SEGURANÇA =====
 // Função para sanitizar strings e evitar XSS
 function sanitizarEntrada(texto) {
@@ -1102,7 +1105,7 @@ async function perguntarAssistente(texto) {
     msgs.scrollTop = msgs.scrollHeight;
 
     try {
-        const resposta = await fetch('/.netlify/functions/assistente', {
+        const resposta = await fetch(ASSISTENTE_API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
