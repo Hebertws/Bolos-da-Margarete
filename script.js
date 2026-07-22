@@ -1,6 +1,3 @@
-// URL completa da função na Netlify (troque pelo endereço real do seu site Netlify)
-const ASSISTENTE_API_URL = 'https://bolosmargarete.netlify.app/.netlify/functions/assistente';
-
 // ===== SEGURANÇA =====
 // Função para sanitizar strings e evitar XSS
 function sanitizarEntrada(texto) {
@@ -29,7 +26,6 @@ function validarTelefone(telefone) {
 let indiceAtual = 0;
 const itensCarrossel = document.querySelectorAll('.galeria-item').length;
 let intervaloCarrossel;
-let assistenteAberto = false;
 
 // Menu Hamburguês Mobile
 function toggleMenuMobile() {
@@ -62,26 +58,6 @@ function atualizarContadorComentario() {
 
     contador.textContent = `${comentario.value.length}/${LIMITE_COMENTARIO}`;
 }
-
-function toggleAssistenteIA(forcar) {
-  var painel = document.getElementById('assistentePainel');
-  var toggle = document.querySelector('.assistente-toggle');
-
-  if (!painel || !toggle) return;
-
-  var abrir = typeof forcar === 'boolean' ? forcar : painel.hasAttribute('hidden');
-
-  if (abrir) {
-    painel.removeAttribute('hidden');
-    toggle.setAttribute('aria-expanded', 'true');
-    var inp = document.getElementById('assistentePergunta');
-    if (inp) inp.focus();
-  } else {
-    painel.setAttribute('hidden', '');
-    toggle.setAttribute('aria-expanded', 'false');
-  }
-}
-
 
 function formatarDataAvaliacao(timestamp) {
     return new Date(timestamp).toLocaleDateString('pt-BR', {
@@ -1067,81 +1043,6 @@ function alternarModoEscuro() {
   localStorage.setItem('tema', temaAtual);
 }
 
-function inicializarAssistenteIA() {
-  const form = document.getElementById('assistenteForm');
-  if (!form) return;
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const input = document.getElementById('assistentePergunta');
-    const pergunta = input.value.trim();
-    if (!pergunta) return;
-    perguntarAssistente(pergunta);
-    input.value = '';
-  });
-}
-
-let historicoAssistente = [];
-
-async function perguntarAssistente(texto) {
-    const msgs = document.getElementById('assistenteMensagens');
-    if (!msgs) return;
-
-    const painel = document.getElementById('assistentePainel');
-    if (painel && painel.hasAttribute('hidden')) {
-        toggleAssistenteIA(true);
-    }
-
-    const msgUser = document.createElement('div');
-    msgUser.className = 'assistente-msg assistente-msg-user';
-    msgUser.textContent = texto;
-    msgs.appendChild(msgUser);
-    msgs.scrollTop = msgs.scrollHeight;
-
-    const loading = document.createElement('div');
-    loading.className = 'assistente-msg assistente-msg-bot';
-    loading.textContent = 'Digitando...';
-    msgs.appendChild(loading);
-    msgs.scrollTop = msgs.scrollHeight;
-
-    try {
-        const resposta = await fetch(ASSISTENTE_API_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                message: texto,
-                history: historicoAssistente
-            })
-        });
-
-        const data = await resposta.json();
-        loading.remove();
-
-        const msgBot = document.createElement('div');
-        msgBot.className = 'assistente-msg assistente-msg-bot';
-        msgBot.textContent = data.answer || 'Não consegui responder agora.';
-        msgs.appendChild(msgBot);
-
-        historicoAssistente.push(
-            { role: 'user', content: texto },
-            { role: 'assistant', content: data.answer || 'Não consegui responder agora.' }
-        );
-
-        historicoAssistente = historicoAssistente.slice(-10);
-        msgs.scrollTop = msgs.scrollHeight;
-    } catch (error) {
-        loading.remove();
-
-        const msgBot = document.createElement('div');
-        msgBot.className = 'assistente-msg assistente-msg-bot';
-        msgBot.textContent = 'Estou com dificuldade para responder agora. Fale com a Margarete pelo WhatsApp: (31) 98574-0971.';
-        msgs.appendChild(msgBot);
-        msgs.scrollTop = msgs.scrollHeight;
-    }
-}
-
 function atualizarBotaoFlutuanteEncomenda() {
   const btn = document.getElementById('btnEncomendaFlutuante');
   if (!btn) return;
@@ -1164,13 +1065,5 @@ document.addEventListener('DOMContentLoaded', function () {
     inicializarBuscaCardapio();
     inicializarEncomenda();
     inicializarCamposEntrega();
-    inicializarAssistenteIA();
     inicializarEfeitoHero();
-
-    const painel = document.getElementById('assistentePainel');
-    const toggle = document.querySelector('.assistente-toggle');
-
-    if (painel) painel.setAttribute('hidden', '');
-    if (toggle) toggle.setAttribute('aria-expanded', 'false');
-    assistenteAberto = false;
 });
