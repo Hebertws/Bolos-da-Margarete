@@ -918,6 +918,8 @@ let categoriaAtual = 'todos';
 let textoBuscaAtual = '';
 
 function filtrarPorCategoria(categoria, ev) {
+    if (ev && ev.preventDefault) ev.preventDefault();
+
     categoriaAtual = categoria;
 
     const abas = document.querySelectorAll('.aba-btn');
