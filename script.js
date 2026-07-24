@@ -729,6 +729,16 @@ function inicializarCamposEntrega() {
     atualizarCamposEntrega();
 }
 
+function abrirModalPedidoConfirmado() {
+    const modal = document.getElementById('modalPedidoConfirmado');
+    if (modal) modal.classList.add('ativo');
+}
+
+function fecharModalPedidoConfirmado() {
+    const modal = document.getElementById('modalPedidoConfirmado');
+    if (modal) modal.classList.remove('ativo');
+}
+
 function confirmarEncomenda() {
     const nome = document.getElementById('encNome').value.trim();
     const telefone = document.getElementById('encTelefone').value.trim();
@@ -866,6 +876,7 @@ function confirmarEncomenda() {
             }
 
             abrirWhatsapp(mensagem, janelaWhatsapp);
+            abrirModalPedidoConfirmado();
 
             document.getElementById('formEncomenda').reset();
             pedidoAtual = {};
@@ -884,6 +895,7 @@ function confirmarEncomenda() {
             alert('Não foi possível gravar o pedido na planilha. Mas você pode continuar no WhatsApp.');
 
             abrirWhatsapp(mensagem, janelaWhatsapp);
+            abrirModalPedidoConfirmado();
 
             if (btnConfirmar) {
                 btnConfirmar.innerHTML = '';
