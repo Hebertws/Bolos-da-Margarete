@@ -701,6 +701,20 @@ function formatarDataPedido(dataISO) {
     return `${dia}/${mes}/${ano}`;
 }
 
+function obterDataLocalISO(data = new Date()) {
+    const ano = data.getFullYear();
+    const mes = String(data.getMonth() + 1).padStart(2, '0');
+    const dia = String(data.getDate()).padStart(2, '0');
+    return `${ano}-${mes}-${dia}`;
+}
+
+function inicializarDataMinimaEncomenda() {
+    const campoData = document.getElementById('encData');
+    if (!campoData) return;
+
+    campoData.min = obterDataLocalISO();
+}
+
 function atualizarCamposEntrega() {
     const entregaMarcada = document.getElementById('encEntrega').checked;
     const grupoEndereco = document.getElementById('grupoEnderecoEntrega');
@@ -752,6 +766,12 @@ function confirmarEncomenda() {
         return;
     }
 
+    if (data < obterDataLocalISO()) {
+        alert('Escolha uma data de hoje em diante para sua encomenda.');
+        document.getElementById('encData').focus();
+        return;
+    }
+
     if (nome.length > 100) {
         alert('Nome deve ter no máximo 100 caracteres.');
         return;
@@ -779,7 +799,7 @@ function confirmarEncomenda() {
     }
 
     if (Object.keys(pedidoAtual).length === 0) {
-        alert('Selecione pelo menos um bolo para sua encomenda!');
+        alert('Selecione pelo menos um produto para sua encomenda!');
         return;
     }
 
@@ -799,7 +819,7 @@ function confirmarEncomenda() {
     }
 
     mensagem += `\n`;
-    mensagem += `*Bolos solicitados:*\n`;
+    mensagem += `*Produtos solicitados:*\n`;
 
     let total = 0;
     let resumoBolosParaPlanilha = [];
@@ -815,7 +835,7 @@ function confirmarEncomenda() {
         resumoBolosParaPlanilha.push(`${item.quantidade}x ${item.sabor ? `${item.bolo} (${item.sabor})` : item.bolo}`);
     });
 
-    mensagem += `\n*Total dos bolos: R$ ${formatarValorPedido(total)}*\n`;
+    mensagem += `\n*Total dos produtos: R$ ${formatarValorPedido(total)}*\n`;
     mensagem += `_Entrega, frete e pagamento serão combinados pelo WhatsApp._\n`;
 
     if (obs) {
@@ -826,7 +846,7 @@ function confirmarEncomenda() {
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbykom4LkSI3BUG_Y_Y-FlVGHrLyvnBHgxa-L0FIhfpXCXASR-0BqqFbOq1dA3HoEdIG/exec';
 
     const dadosPedido = {
-        dataPedido: formatarDataPedido(new Date().toISOString().split('T')[0]),
+        dataPedido: formatarDataPedido(obterDataLocalISO()),
         nome: sanitizarEntrada(nome),
         telefone: telefone.replace(/\D/g, ''),
         dataDesejada: formatarDataPedido(data),
@@ -881,6 +901,7 @@ function confirmarEncomenda() {
             document.getElementById('formEncomenda').reset();
             pedidoAtual = {};
             inicializarEncomenda();
+            inicializarDataMinimaEncomenda();
             atualizarCamposEntrega();
             atualizarResumoPedido();
 
@@ -1078,6 +1099,7 @@ document.addEventListener('DOMContentLoaded', function () {
     inicializarAvaliacoes();
     inicializarBuscaCardapio();
     inicializarEncomenda();
+    inicializarDataMinimaEncomenda();
     inicializarCamposEntrega();
     inicializarEfeitoHero();
 });

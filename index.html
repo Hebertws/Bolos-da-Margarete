@@ -9,8 +9,8 @@
     <meta property="og:description" content="Bolos caseiros e palha italiana artesanais feitos com carinho.">
     <title>Delícias da Margarete - Bolos Caseiros Deliciosos</title>
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="style-mobile-fixes.css">
+    <link rel="stylesheet" href="style.css?v=20260729-1">
+    <link rel="stylesheet" href="style-mobile-fixes.css?v=20260729-1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
@@ -88,7 +88,7 @@
                             <h3>Bolo de Chocolate</h3>
                         </div>
                         <div class="galeria-item">
-                            <img src="Imagens/otimizadas/cenouracalda.webp" alt="Bolo de Cenoura" loading="lazy"
+                            <img src="Imagens/otimizadas/CenouraCalda.webp" alt="Bolo de Cenoura" loading="lazy"
                                 decoding="async">
                             <h3>Bolo de Cenoura</h3>
                         </div>
@@ -154,7 +154,7 @@
                         <h4>Bolo de Castanha</h4>
                     </div>
                     <div class="galeria-grid-item">
-                        <img src="Imagens/otimizadas/cenouracalda.webp" loading="lazy" decoding="async"
+                        <img src="Imagens/otimizadas/CenouraCalda.webp" loading="lazy" decoding="async"
                             alt="Bolo de Cenoura com Cobertura de Chocolate">
                         <h4>Bolo de Cenoura com Cobertura de Chocolate</h4>
                     </div>
@@ -456,16 +456,19 @@
                         <!-- Abas de Categorias -->
                         <div class="abas-bolos" style="margin-bottom: 1.5rem;">
                             <button type="button" class="aba-btn aba-ativo" onclick="filtrarPorCategoria('todos', event)">
-                                <i class="fas fa-list"></i> Todos (30)
+                                <i class="fas fa-list"></i> Todos (27)
+                            </button>
+                            <button type="button" class="aba-btn" onclick="filtrarPorCategoria('palha', event)">
+                                <i class="fas fa-cookie-bite"></i> Palha Italiana (3)
                             </button>
                             <button type="button" class="aba-btn" onclick="filtrarPorCategoria('com-calda', event)">
-                                <i class="fas fa-droplet"></i> Com Calda (14)
+                                <i class="fas fa-droplet"></i> Com Calda (9)
                             </button>
                             <button type="button" class="aba-btn" onclick="filtrarPorCategoria('sem-calda', event)">
-                                <i class="fas fa-bread-slice"></i> Sem Calda (5)
+                                <i class="fas fa-bread-slice"></i> Sem Calda (6)
                             </button>
                             <button type="button" class="aba-btn" onclick="filtrarPorCategoria('no-pote', event)">
-                                <i class="fas fa-jar"></i> No Pote (11)
+                                <i class="fas fa-jar"></i> No Pote (9)
                             </button>
                         </div>
 
@@ -489,7 +492,7 @@
                         <p style="color: var(--cor-texto-claro); text-align: center;">Nenhum produto selecionado ainda</p>
                     </div>
                     <div class="total-pedido">
-                        <strong>Total dos bolos: R$ <span id="totalPedido">0,00</span></strong>
+                        <strong>Total dos produtos: R$ <span id="totalPedido">0,00</span></strong>
                         <p class="total-observacao">Entrega, frete e pagamento são combinados pelo WhatsApp.</p>
                     </div>
                 </div>
@@ -659,7 +662,7 @@
         </div>
     </div>
 
-    <script src="firebase-config.js"></script>
-    <script src="script.js"></script>
+    <script src="firebase-config.js?v=20260729-1"></script>
+    <script src="script.js?v=20260729-1"></script>
 </body>
 </html>
