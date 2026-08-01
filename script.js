@@ -489,36 +489,159 @@ const bolosData = [
     { nome: 'Palha Italiana Tradicional', preco: 6.00, categoria: 'palha' },
     { nome: 'Palha Italiana Ninho', preco: 6.00, categoria: 'palha' },
     { nome: 'Palha Italiana Oreo', preco: 6.00, categoria: 'palha' },
-    { nome: 'Bolo de Castanha', preco: 30.00, categoria: 'sem-calda' },
-    { nome: 'Bolo de Cenoura com Cobertura de Chocolate', preco: 25.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Castanha', categoria: 'sem-calda', tamanhos: [
+        { label: 'Normal', preco: 30.00 },
+        { label: 'Formato Maior', preco: 55.00 }
+    ] },
+    { nome: 'Bolo de Cenoura com Cobertura de Chocolate', categoria: 'com-calda', tamanhos: [
+        { label: 'Normal', preco: 25.00 },
+        { label: 'Formato Maior', preco: 45.00 }
+    ] },
     { nome: 'Bolo de Cenoura com Cobertura de Chocolate - No Pote', preco: 6.00, categoria: 'no-pote' },
-    { nome: 'Bolo de Chocolate', preco: 25.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Chocolate', categoria: 'com-calda', tamanhos: [
+        { label: 'Normal', preco: 25.00 },
+        { label: 'Formato Maior', preco: 45.00 }
+    ] },
     { nome: 'Bolo de Chocolate - No Pote', preco: 6.00, categoria: 'no-pote' },
-    { nome: 'Bolo de Chocolate com Castanha', preco: 30.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Chocolate com Castanha', categoria: 'com-calda', tamanhos: [
+        { label: 'Normal', preco: 30.00 },
+        { label: 'Formato Maior', preco: 55.00 }
+    ] },
     { nome: 'Bolo de Chocolate com Castanha - No Pote', preco: 6.00, categoria: 'no-pote' },
-    { nome: 'Bolo de Churros', preco: 25.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Churros', categoria: 'com-calda', tamanhos: [
+        { label: 'Normal', preco: 25.00 },
+        { label: 'Formato Maior', preco: 45.00 }
+    ] },
     { nome: 'Bolo de Churros - No Pote', preco: 6.00, categoria: 'no-pote' },
-    { nome: 'Bolo de Coco', preco: 25.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Coco', categoria: 'com-calda', tamanhos: [
+        { label: 'Normal', preco: 25.00 },
+        { label: 'Formato Maior', preco: 45.00 }
+    ] },
     { nome: 'Bolo de Coco - No Pote', preco: 6.00, categoria: 'no-pote' },
-    { nome: 'Bolo de Fubá com Queijo e Cobertura de Goiabada', preco: 25.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Fubá com Queijo e Cobertura de Goiabada', categoria: 'com-calda', tamanhos: [
+        { label: 'Normal', preco: 25.00 },
+        { label: 'Formato Maior', preco: 45.00 }
+    ] },
     { nome: 'Bolo de Fubá com Queijo e Cobertura de Goiabada - No Pote', preco: 6.00, categoria: 'no-pote' },
-    { nome: 'Bolo de Fubá com Erva Doce', preco: 25.00, categoria: 'sem-calda' },
-    { nome: 'Bolo de Laranja com Cobertura de Limão', preco: 25.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Fubá com Erva Doce', categoria: 'sem-calda', tamanhos: [
+        { label: 'Normal', preco: 25.00 },
+        { label: 'Formato Maior', preco: 45.00 }
+    ] },
+    { nome: 'Bolo de Laranja com Cobertura de Limão', categoria: 'com-calda', tamanhos: [
+        { label: 'Normal', preco: 25.00 },
+        { label: 'Formato Maior', preco: 45.00 }
+    ] },
     { nome: 'Bolo de Laranja com Cobertura de Limão - No Pote', preco: 6.00, categoria: 'no-pote' },
-    { nome: 'Bolo de Limão com Cobertura de Limão', preco: 25.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Limão com Cobertura de Limão', categoria: 'com-calda', tamanhos: [
+        { label: 'Normal', preco: 25.00 },
+        { label: 'Formato Maior', preco: 45.00 }
+    ] },
     { nome: 'Bolo de Limão com Cobertura de Limão - No Pote', preco: 6.00, categoria: 'no-pote' },
-    { nome: 'Bolo de Maçã com Castanha', preco: 30.00, categoria: 'sem-calda' },
-    { nome: 'Bolo de Milho', preco: 25.00, categoria: 'sem-calda' },
-    { nome: 'Bolo de Paçoca', preco: 25.00, categoria: 'com-calda' },
+    { nome: 'Bolo de Maçã com Castanha', categoria: 'sem-calda', tamanhos: [
+        { label: 'Normal', preco: 30.00 },
+        { label: 'Formato Maior', preco: 55.00 }
+    ] },
+    { nome: 'Bolo de Milho', categoria: 'sem-calda', tamanhos: [
+        { label: 'Normal', preco: 25.00 },
+        { label: 'Formato Maior', preco: 45.00 }
+    ] },
+    { nome: 'Bolo de Paçoca', categoria: 'com-calda', tamanhos: [
+        { label: 'Normal', preco: 25.00 },
+        { label: 'Formato Maior', preco: 45.00 }
+    ] },
     { nome: 'Bolo de Paçoca - No Pote', preco: 6.00, categoria: 'no-pote' },
-    { nome: 'Broa de Farinha de Milho com Coco e Queijo', preco: 30.00, categoria: 'sem-calda' },
-    { nome: 'Bolo de Mandioca', preco: 25.00, categoria: 'sem-calda' }
+    { nome: 'Broa de Farinha de Milho com Coco e Queijo', categoria: 'sem-calda', tamanhos: [
+        { label: 'Normal', preco: 30.00 },
+        { label: 'Formato Maior', preco: 55.00 }
+    ] },
+    { nome: 'Bolo de Mandioca', categoria: 'sem-calda', tamanhos: [
+        { label: 'Normal', preco: 25.00 },
+        { label: 'Formato Maior', preco: 45.00 }
+    ] }
 ];
 
 let pedidoAtual = {};
 
 function formatarValorPedido(valor) {
     return valor.toFixed(2).replace('.', ',');
+}
+
+function formatarTextoPrecoCardapio(bolo) {
+    if (Array.isArray(bolo.tamanhos) && bolo.tamanhos.length > 0) {
+        return bolo.tamanhos.map(tamanho => `R$ ${formatarValorPedido(tamanho.preco)}`).join(' / ');
+    }
+
+    return `R$ ${formatarValorPedido(bolo.preco ?? 0)}`;
+}
+
+function renderizarCardapio() {
+    const container = document.getElementById('cardapioList');
+    if (!container) return;
+
+    const itensCardapio = bolosData
+        .filter(bolo => bolo.categoria !== 'no-pote' && !['Palha Italiana Tradicional', 'Palha Italiana Ninho', 'Palha Italiana Oreo'].includes(bolo.nome))
+        .map(bolo => ({
+            nome: bolo.nome,
+            preco: formatarTextoPrecoCardapio(bolo),
+            destaque: false
+        }));
+
+    const itensCardapioFinal = [
+        ...itensCardapio,
+        {
+            nome: 'Bolos no Pote',
+            preco: 'R$ 6,00',
+            destaque: true,
+            observacao: '*Disponível apenas para bolos com calda. Perfeito para uma pequena porção!*'
+        }
+    ];
+
+    container.innerHTML = '';
+
+    itensCardapioFinal.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'cardapio-item';
+        if (item.destaque) {
+            div.style.borderTop = '2px solid var(--cor-principal)';
+            div.style.paddingTop = '1.5rem';
+            div.style.marginTop = '1.5rem';
+        }
+
+        const itemInfo = document.createElement('div');
+        itemInfo.className = 'item-info';
+
+        const nomeSpan = document.createElement('span');
+        nomeSpan.className = 'item-nome';
+
+        if (item.destaque) {
+            const nomeStrong = document.createElement('strong');
+            nomeStrong.textContent = item.nome;
+            nomeSpan.appendChild(nomeStrong);
+        } else {
+            nomeSpan.textContent = item.nome;
+        }
+
+        itemInfo.appendChild(nomeSpan);
+
+        if (item.observacao) {
+            const observacao = document.createElement('p');
+            observacao.style.fontSize = '0.85rem';
+            observacao.style.color = 'var(--cor-texto-claro)';
+            observacao.style.marginTop = '0.5rem';
+            observacao.textContent = item.observacao;
+            itemInfo.appendChild(observacao);
+        }
+
+        const precoSpan = document.createElement('span');
+        precoSpan.className = 'item-preco';
+        precoSpan.textContent = item.preco;
+
+        div.appendChild(itemInfo);
+        div.appendChild(precoSpan);
+        container.appendChild(div);
+    });
+
+    filtrarCardapio();
 }
 
 function inicializarEncomenda() {
@@ -537,9 +660,22 @@ function inicializarEncomenda() {
         nomeBolo.className = 'bolo-nome';
         nomeBolo.textContent = bolo.nome;
 
+        const tamanhos = Array.isArray(bolo.tamanhos) && bolo.tamanhos.length > 0
+            ? bolo.tamanhos
+            : [{ label: 'Normal', preco: bolo.preco }];
+
         const precoBolo = document.createElement('span');
         precoBolo.className = 'bolo-preco';
-        precoBolo.textContent = `R$ ${formatarValorPedido(bolo.preco)}`;
+        precoBolo.textContent = `R$ ${formatarValorPedido(tamanhos[0].preco)}`;
+
+        const tamanhoSelect = document.createElement('select');
+        tamanhoSelect.className = 'sabor-palha-select tamanho-select';
+        tamanhos.forEach((tamanho, tamanhoIndex) => {
+            const option = document.createElement('option');
+            option.value = String(tamanhoIndex);
+            option.textContent = `${tamanho.label} - R$ ${formatarValorPedido(tamanho.preco)}`;
+            tamanhoSelect.appendChild(option);
+        });
 
         const controleQuantidade = document.createElement('div');
         controleQuantidade.className = 'controle-quantidade';
@@ -572,32 +708,54 @@ function inicializarEncomenda() {
 
         div.appendChild(nomeBolo);
         div.appendChild(precoBolo);
+
+        if (tamanhos.length > 1) {
+            div.appendChild(tamanhoSelect);
+        }
+
         div.appendChild(controleQuantidade);
 
         const carregarQuantidadeAtual = function () {
-            if (pedidoAtual[index]) {
-                input.value = pedidoAtual[index].quantidade;
-                div.classList.toggle('selecionado', pedidoAtual[index].quantidade > 0);
+            const pedido = pedidoAtual[index];
+            if (pedido) {
+                input.value = pedido.quantidade;
+                div.classList.toggle('selecionado', pedido.quantidade > 0);
+                if (tamanhoSelect && typeof pedido.tamanhoIndex === 'number') {
+                    tamanhoSelect.value = String(pedido.tamanhoIndex);
+                    precoBolo.textContent = `R$ ${formatarValorPedido(tamanhos[pedido.tamanhoIndex]?.preco ?? tamanhos[0].preco)}`;
+                }
             } else {
                 input.value = '0';
                 div.classList.remove('selecionado');
+                if (tamanhoSelect) {
+                    tamanhoSelect.value = '0';
+                    precoBolo.textContent = `R$ ${formatarValorPedido(tamanhos[0].preco)}`;
+                }
             }
         };
 
         const atualizarQuantidade = function (normalizarCampo = false) {
             const qtd = parseInt(input.value, 10) || 0;
             const quantidade = Math.max(0, Math.min(qtd, 99));
+            const tamanhoIndex = tamanhoSelect ? Number(tamanhoSelect.value) : 0;
+            const tamanhoSelecionado = tamanhos[tamanhoIndex] || tamanhos[0];
 
             if (normalizarCampo || qtd > 99 || qtd < 0) {
                 input.value = quantidade;
+            }
+
+            if (tamanhoSelect) {
+                precoBolo.textContent = `R$ ${formatarValorPedido(tamanhoSelecionado.preco)}`;
             }
 
             if (quantidade > 0) {
                 div.classList.add('selecionado');
                 pedidoAtual[index] = {
                     bolo: bolo.nome,
-                    preco: bolo.preco,
-                    quantidade: quantidade
+                    preco: tamanhoSelecionado.preco,
+                    quantidade: quantidade,
+                    tamanho: tamanhoSelecionado.label,
+                    tamanhoIndex: tamanhoIndex
                 };
             } else {
                 div.classList.remove('selecionado');
@@ -623,6 +781,12 @@ function inicializarEncomenda() {
         input.addEventListener('change', function () {
             atualizarQuantidade(true);
         });
+
+        if (tamanhoSelect) {
+            tamanhoSelect.addEventListener('change', function () {
+                atualizarQuantidade();
+            });
+        }
 
         carregarQuantidadeAtual();
         container.appendChild(div);
@@ -652,7 +816,11 @@ function atualizarResumoPedido() {
 
             const nome = document.createElement('span');
             nome.className = 'item-pedido-nome';
-            const nomeItem = item.sabor ? `${item.bolo} (${item.sabor})` : item.bolo;
+            const nomeItem = item.sabor
+                ? `${item.bolo} (${item.sabor})`
+                : item.tamanho
+                    ? `${item.bolo} (${item.tamanho})`
+                    : item.bolo;
             nome.textContent = nomeItem;
 
             const qtd = document.createElement('span');
@@ -687,8 +855,14 @@ function removerItemPedido(index) {
             const itemCard = input.closest('.bolo-item');
             itemCard.classList.remove('selecionado');
             const select = itemCard.querySelector('.sabor-palha-select');
+            const precoBolo = itemCard.querySelector('.bolo-preco');
             if (select) {
                 select.value = select.options[0].value;
+            }
+            if (precoBolo && select && select.selectedIndex >= 0) {
+                const tamanhoText = select.options[select.selectedIndex].textContent;
+                const [label] = tamanhoText.split(' - ');
+                precoBolo.textContent = `R$ ${formatarValorPedido(Number(tamanhoText.split('R$ ')[1].replace(',', '.')) || 0)}`;
             }
         }
     });
@@ -829,10 +1003,14 @@ function confirmarEncomenda() {
         const subtotal = item.preco * item.quantidade;
         total += subtotal;
 
-        const nomeItem = item.sabor ? `${item.bolo} (${item.sabor})` : item.bolo;
+        const nomeItem = item.sabor
+            ? `${item.bolo} (${item.sabor})`
+            : item.tamanho
+                ? `${item.bolo} (${item.tamanho})`
+                : item.bolo;
         mensagem += `• ${item.quantidade}x ${nomeItem} - R$ ${formatarValorPedido(subtotal)}\n`;
 
-        resumoBolosParaPlanilha.push(`${item.quantidade}x ${item.sabor ? `${item.bolo} (${item.sabor})` : item.bolo}`);
+        resumoBolosParaPlanilha.push(`${item.quantidade}x ${nomeItem}`);
     });
 
     mensagem += `\n*Total dos produtos: R$ ${formatarValorPedido(total)}*\n`;
@@ -1098,6 +1276,7 @@ document.addEventListener('DOMContentLoaded', function () {
     inicializarTema();
     inicializarAvaliacoes();
     inicializarBuscaCardapio();
+    renderizarCardapio();
     inicializarEncomenda();
     inicializarDataMinimaEncomenda();
     inicializarCamposEntrega();
