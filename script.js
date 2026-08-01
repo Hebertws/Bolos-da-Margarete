@@ -563,6 +563,84 @@ function formatarValorPedido(valor) {
     return valor.toFixed(2).replace('.', ',');
 }
 
+function formatarTextoPrecoCardapio(bolo) {
+    if (Array.isArray(bolo.tamanhos) && bolo.tamanhos.length > 0) {
+        return bolo.tamanhos.map(tamanho => `R$ ${formatarValorPedido(tamanho.preco)}`).join(' / ');
+    }
+
+    return `R$ ${formatarValorPedido(bolo.preco ?? 0)}`;
+}
+
+function renderizarCardapio() {
+    const container = document.getElementById('cardapioList');
+    if (!container) return;
+
+    const itensCardapio = bolosData
+        .filter(bolo => bolo.categoria !== 'no-pote' && !['Palha Italiana Tradicional', 'Palha Italiana Ninho', 'Palha Italiana Oreo'].includes(bolo.nome))
+        .map(bolo => ({
+            nome: bolo.nome,
+            preco: formatarTextoPrecoCardapio(bolo),
+            destaque: false
+        }));
+
+    const itensCardapioFinal = [
+        ...itensCardapio,
+        {
+            nome: 'Bolos no Pote',
+            preco: 'R$ 6,00',
+            destaque: true,
+            observacao: '*Disponível apenas para bolos com calda. Perfeito para uma pequena porção!*'
+        }
+    ];
+
+    container.innerHTML = '';
+
+    itensCardapioFinal.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'cardapio-item';
+        if (item.destaque) {
+            div.style.borderTop = '2px solid var(--cor-principal)';
+            div.style.paddingTop = '1.5rem';
+            div.style.marginTop = '1.5rem';
+        }
+
+        const itemInfo = document.createElement('div');
+        itemInfo.className = 'item-info';
+
+        const nomeSpan = document.createElement('span');
+        nomeSpan.className = 'item-nome';
+
+        if (item.destaque) {
+            const nomeStrong = document.createElement('strong');
+            nomeStrong.textContent = item.nome;
+            nomeSpan.appendChild(nomeStrong);
+        } else {
+            nomeSpan.textContent = item.nome;
+        }
+
+        itemInfo.appendChild(nomeSpan);
+
+        if (item.observacao) {
+            const observacao = document.createElement('p');
+            observacao.style.fontSize = '0.85rem';
+            observacao.style.color = 'var(--cor-texto-claro)';
+            observacao.style.marginTop = '0.5rem';
+            observacao.textContent = item.observacao;
+            itemInfo.appendChild(observacao);
+        }
+
+        const precoSpan = document.createElement('span');
+        precoSpan.className = 'item-preco';
+        precoSpan.textContent = item.preco;
+
+        div.appendChild(itemInfo);
+        div.appendChild(precoSpan);
+        container.appendChild(div);
+    });
+
+    filtrarCardapio();
+}
+
 function inicializarEncomenda() {
     const container = document.getElementById('bolosSelecao');
     if (!container) return;
@@ -1195,6 +1273,7 @@ document.addEventListener('DOMContentLoaded', function () {
     inicializarTema();
     inicializarAvaliacoes();
     inicializarBuscaCardapio();
+    renderizarCardapio();
     inicializarEncomenda();
     inicializarDataMinimaEncomenda();
     inicializarCamposEntrega();
