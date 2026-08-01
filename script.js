@@ -550,7 +550,10 @@ const bolosData = [
         { label: 'Formato Maior', preco: 45.00 }
     ] },
     { nome: 'Bolo de Paçoca - No Pote', preco: 6.00, categoria: 'no-pote' },
-    { nome: 'Broa de Farinha de Milho com Coco e Queijo', preco: 30.00, categoria: 'sem-calda' },
+    { nome: 'Broa de Farinha de Milho com Coco e Queijo', categoria: 'sem-calda', tamanhos: [
+        { label: 'Normal', preco: 30.00 },
+        { label: 'Formato Maior', preco: 55.00 }
+    ] },
     { nome: 'Bolo de Mandioca', categoria: 'sem-calda', tamanhos: [
         { label: 'Normal', preco: 25.00 },
         { label: 'Formato Maior', preco: 45.00 }
