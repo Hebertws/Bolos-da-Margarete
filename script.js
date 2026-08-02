@@ -495,12 +495,12 @@ const bolosData = [
     ] },
     { nome: 'Bolo de Cenoura com Cobertura de Chocolate', categoria: 'com-calda', tamanhos: [
         { label: 'Normal', preco: 25.00 },
-        { label: 'Formato Maior', preco: 45.00 }
+        { label: 'Formato Maior', preco: 50.00 }
     ] },
     { nome: 'Bolo de Cenoura com Cobertura de Chocolate - No Pote', preco: 6.00, categoria: 'no-pote' },
     { nome: 'Bolo de Chocolate', categoria: 'com-calda', tamanhos: [
         { label: 'Normal', preco: 25.00 },
-        { label: 'Formato Maior', preco: 45.00 }
+        { label: 'Formato Maior', preco: 50.00 }
     ] },
     { nome: 'Bolo de Chocolate - No Pote', preco: 6.00, categoria: 'no-pote' },
     { nome: 'Bolo de Chocolate com Castanha', categoria: 'com-calda', tamanhos: [
@@ -510,31 +510,31 @@ const bolosData = [
     { nome: 'Bolo de Chocolate com Castanha - No Pote', preco: 6.00, categoria: 'no-pote' },
     { nome: 'Bolo de Churros', categoria: 'com-calda', tamanhos: [
         { label: 'Normal', preco: 25.00 },
-        { label: 'Formato Maior', preco: 45.00 }
+        { label: 'Formato Maior', preco: 50.00 }
     ] },
     { nome: 'Bolo de Churros - No Pote', preco: 6.00, categoria: 'no-pote' },
     { nome: 'Bolo de Coco', categoria: 'com-calda', tamanhos: [
         { label: 'Normal', preco: 25.00 },
-        { label: 'Formato Maior', preco: 45.00 }
+        { label: 'Formato Maior', preco: 50.00 }
     ] },
     { nome: 'Bolo de Coco - No Pote', preco: 6.00, categoria: 'no-pote' },
     { nome: 'Bolo de Fubá com Queijo e Cobertura de Goiabada', categoria: 'com-calda', tamanhos: [
         { label: 'Normal', preco: 25.00 },
-        { label: 'Formato Maior', preco: 45.00 }
+        { label: 'Formato Maior', preco: 50.00 }
     ] },
     { nome: 'Bolo de Fubá com Queijo e Cobertura de Goiabada - No Pote', preco: 6.00, categoria: 'no-pote' },
     { nome: 'Bolo de Fubá com Erva Doce', categoria: 'sem-calda', tamanhos: [
         { label: 'Normal', preco: 25.00 },
-        { label: 'Formato Maior', preco: 45.00 }
+        { label: 'Formato Maior', preco: 50.00 }
     ] },
     { nome: 'Bolo de Laranja com Cobertura de Limão', categoria: 'com-calda', tamanhos: [
         { label: 'Normal', preco: 25.00 },
-        { label: 'Formato Maior', preco: 45.00 }
+        { label: 'Formato Maior', preco: 50.00 }
     ] },
     { nome: 'Bolo de Laranja com Cobertura de Limão - No Pote', preco: 6.00, categoria: 'no-pote' },
     { nome: 'Bolo de Limão com Cobertura de Limão', categoria: 'com-calda', tamanhos: [
         { label: 'Normal', preco: 25.00 },
-        { label: 'Formato Maior', preco: 45.00 }
+        { label: 'Formato Maior', preco: 50.00 }
     ] },
     { nome: 'Bolo de Limão com Cobertura de Limão - No Pote', preco: 6.00, categoria: 'no-pote' },
     { nome: 'Bolo de Maçã com Castanha', categoria: 'sem-calda', tamanhos: [
@@ -543,20 +543,20 @@ const bolosData = [
     ] },
     { nome: 'Bolo de Milho', categoria: 'sem-calda', tamanhos: [
         { label: 'Normal', preco: 25.00 },
-        { label: 'Formato Maior', preco: 45.00 }
+        { label: 'Formato Maior', preco: 50.00 }
     ] },
     { nome: 'Bolo de Paçoca', categoria: 'com-calda', tamanhos: [
         { label: 'Normal', preco: 25.00 },
-        { label: 'Formato Maior', preco: 45.00 }
+        { label: 'Formato Maior', preco: 50.00 }
     ] },
     { nome: 'Bolo de Paçoca - No Pote', preco: 6.00, categoria: 'no-pote' },
     { nome: 'Broa de Farinha de Milho com Coco e Queijo', categoria: 'sem-calda', tamanhos: [
         { label: 'Normal', preco: 30.00 },
-        { label: 'Formato Maior', preco: 55.00 }
+        { label: 'Formato Maior', preco: 60.00 }
     ] },
     { nome: 'Bolo de Mandioca', categoria: 'sem-calda', tamanhos: [
         { label: 'Normal', preco: 25.00 },
-        { label: 'Formato Maior', preco: 45.00 }
+        { label: 'Formato Maior', preco: 50.00 }
     ] }
 ];
 
