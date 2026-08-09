@@ -519,7 +519,7 @@ const bolosData = [
     ] },
     { nome: 'Bolo de Coco - No Pote', preco: 6.00, categoria: 'no-pote' },
     { nome: 'Bolo de Fubá com Queijo e Cobertura de Goiabada', categoria: 'com-calda', tamanhos: [
-        { label: 'Normal', preco: 25.00 },
+        { label: 'Normal', preco: 30.00 },
         { label: 'Formato Maior', preco: 50.00 }
     ] },
     { nome: 'Bolo de Fubá com Queijo e Cobertura de Goiabada - No Pote', preco: 6.00, categoria: 'no-pote' },
