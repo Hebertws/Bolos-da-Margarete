@@ -497,32 +497,26 @@ const bolosData = [
         { label: 'Normal', preco: 25.00 },
         { label: 'Formato Maior', preco: 50.00 }
     ] },
-    { nome: 'Bolo de Cenoura com Cobertura de Chocolate - No Pote', preco: 6.00, categoria: 'no-pote' },
     { nome: 'Bolo de Chocolate', categoria: 'com-calda', tamanhos: [
         { label: 'Normal', preco: 25.00 },
         { label: 'Formato Maior', preco: 50.00 }
     ] },
-    { nome: 'Bolo de Chocolate - No Pote', preco: 6.00, categoria: 'no-pote' },
     { nome: 'Bolo de Chocolate com Castanha', categoria: 'com-calda', tamanhos: [
         { label: 'Normal', preco: 30.00 },
         { label: 'Formato Maior', preco: 55.00 }
     ] },
-    { nome: 'Bolo de Chocolate com Castanha - No Pote', preco: 6.00, categoria: 'no-pote' },
     { nome: 'Bolo de Churros', categoria: 'com-calda', tamanhos: [
         { label: 'Normal', preco: 25.00 },
         { label: 'Formato Maior', preco: 50.00 }
     ] },
-    { nome: 'Bolo de Churros - No Pote', preco: 6.00, categoria: 'no-pote' },
     { nome: 'Bolo de Coco', categoria: 'com-calda', tamanhos: [
         { label: 'Normal', preco: 25.00 },
         { label: 'Formato Maior', preco: 50.00 }
     ] },
-    { nome: 'Bolo de Coco - No Pote', preco: 6.00, categoria: 'no-pote' },
     { nome: 'Bolo de Fubá com Queijo e Cobertura de Goiabada', categoria: 'com-calda', tamanhos: [
         { label: 'Normal', preco: 30.00 },
         { label: 'Formato Maior', preco: 50.00 }
     ] },
-    { nome: 'Bolo de Fubá com Queijo e Cobertura de Goiabada - No Pote', preco: 6.00, categoria: 'no-pote' },
     { nome: 'Bolo de Fubá com Erva Doce', categoria: 'sem-calda', tamanhos: [
         { label: 'Normal', preco: 25.00 },
         { label: 'Formato Maior', preco: 50.00 }
@@ -531,12 +525,10 @@ const bolosData = [
         { label: 'Normal', preco: 25.00 },
         { label: 'Formato Maior', preco: 50.00 }
     ] },
-    { nome: 'Bolo de Laranja com Cobertura de Limão - No Pote', preco: 6.00, categoria: 'no-pote' },
     { nome: 'Bolo de Limão com Cobertura de Limão', categoria: 'com-calda', tamanhos: [
         { label: 'Normal', preco: 25.00 },
         { label: 'Formato Maior', preco: 50.00 }
     ] },
-    { nome: 'Bolo de Limão com Cobertura de Limão - No Pote', preco: 6.00, categoria: 'no-pote' },
     { nome: 'Bolo de Maçã com Castanha', categoria: 'sem-calda', tamanhos: [
         { label: 'Normal', preco: 30.00 },
         { label: 'Formato Maior', preco: 55.00 }
@@ -549,7 +541,6 @@ const bolosData = [
         { label: 'Normal', preco: 25.00 },
         { label: 'Formato Maior', preco: 50.00 }
     ] },
-    { nome: 'Bolo de Paçoca - No Pote', preco: 6.00, categoria: 'no-pote' },
     { nome: 'Broa de Farinha de Milho com Coco e Queijo', categoria: 'sem-calda', tamanhos: [
         { label: 'Normal', preco: 30.00 },
         { label: 'Formato Maior', preco: 60.00 }
@@ -579,22 +570,14 @@ function renderizarCardapio() {
     if (!container) return;
 
     const itensCardapio = bolosData
-        .filter(bolo => bolo.categoria !== 'no-pote' && !['Palha Italiana Tradicional', 'Palha Italiana Ninho', 'Palha Italiana Oreo'].includes(bolo.nome))
+        .filter(bolo => !['Palha Italiana Tradicional', 'Palha Italiana Ninho', 'Palha Italiana Oreo'].includes(bolo.nome))
         .map(bolo => ({
             nome: bolo.nome,
             preco: formatarTextoPrecoCardapio(bolo),
             destaque: false
         }));
 
-    const itensCardapioFinal = [
-        ...itensCardapio,
-        {
-            nome: 'Bolos no Pote',
-            preco: 'R$ 6,00',
-            destaque: true,
-            observacao: '*Disponível apenas para bolos com calda. Perfeito para uma pequena porção!*'
-        }
-    ];
+    const itensCardapioFinal = [...itensCardapio];
 
     container.innerHTML = '';
 
