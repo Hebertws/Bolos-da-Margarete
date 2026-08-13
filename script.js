@@ -486,6 +486,8 @@ document.querySelectorAll('.galeria-grid-item img').forEach(img => {
 
 // Sistema de Encomenda
 const bolosData = [
+    { nome: 'Pão de Batata sem Recheio', preco: 12.00, categoria: 'paes' },
+    { nome: 'Pão de Batata com Recheio', preco: 15.00, categoria: 'paes' },
     { nome: 'Palha Italiana Tradicional', preco: 6.00, categoria: 'palha' },
     { nome: 'Palha Italiana Ninho', preco: 6.00, categoria: 'palha' },
     { nome: 'Palha Italiana Oreo', preco: 6.00, categoria: 'palha' },
@@ -552,9 +554,38 @@ const bolosData = [
 ];
 
 let pedidoAtual = {};
+const nomesPaoBatata = new Set(['Pão de Batata sem Recheio', 'Pão de Batata com Recheio']);
 
 function formatarValorPedido(valor) {
     return valor.toFixed(2).replace('.', ',');
+}
+
+function pedidoIncluiPaoBatata() {
+    return Object.values(pedidoAtual).some(item => nomesPaoBatata.has(item.bolo));
+}
+
+function adicionarDias(date, quantidadeDias) {
+    const novaData = new Date(date.getTime());
+    novaData.setDate(novaData.getDate() + quantidadeDias);
+    return novaData;
+}
+
+function formatarDataInput(date) {
+    const ano = date.getFullYear();
+    const mes = String(date.getMonth() + 1).padStart(2, '0');
+    const dia = String(date.getDate()).padStart(2, '0');
+    return `${ano}-${mes}-${dia}`;
+}
+
+function obterDataMinimaPedido() {
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+
+    if (pedidoIncluiPaoBatata()) {
+        return formatarDataInput(adicionarDias(hoje, 2));
+    }
+
+    return formatarDataInput(hoje);
 }
 
 function formatarTextoPrecoCardapio(bolo) {
@@ -825,6 +856,7 @@ function atualizarResumoPedido() {
     }
 
     document.getElementById('totalPedido').textContent = formatarValorPedido(total);
+    atualizarMinimaDataEncomenda();
     atualizarBotaoFlutuanteEncomenda();
 }
 
@@ -869,7 +901,24 @@ function inicializarDataMinimaEncomenda() {
     const campoData = document.getElementById('encData');
     if (!campoData) return;
 
-    campoData.min = obterDataLocalISO();
+    const dataMinima = obterDataMinimaPedido();
+    campoData.min = dataMinima;
+
+    if (campoData.value && campoData.value < dataMinima) {
+        campoData.value = dataMinima;
+    }
+}
+
+function atualizarMinimaDataEncomenda() {
+    const campoData = document.getElementById('encData');
+    if (!campoData) return;
+
+    const dataMinima = obterDataMinimaPedido();
+    campoData.min = dataMinima;
+
+    if (campoData.value && campoData.value < dataMinima) {
+        campoData.value = dataMinima;
+    }
 }
 
 function atualizarCamposEntrega() {
@@ -923,8 +972,14 @@ function confirmarEncomenda() {
         return;
     }
 
-    if (data < obterDataLocalISO()) {
-        alert('Escolha uma data de hoje em diante para sua encomenda.');
+    const dataMinimaPedido = obterDataMinimaPedido();
+
+    if (data < dataMinimaPedido) {
+        const mensagemData = pedidoIncluiPaoBatata()
+            ? 'Para pães de batata, a data de entrega precisa ser agendada com pelo menos 2 dias de antecedência.'
+            : 'Escolha uma data de hoje em diante para sua encomenda.';
+
+        alert(mensagemData);
         document.getElementById('encData').focus();
         return;
     }
@@ -965,6 +1020,9 @@ function confirmarEncomenda() {
     mensagem += `*Cliente:* ${nome}\n`;
     mensagem += `*Telefone:* ${telefone}\n`;
     mensagem += `*Data desejada:* ${formatarDataPedido(data)}\n`;
+    if (pedidoIncluiPaoBatata()) {
+        mensagem += `*Prazo:* Solicitação com 2 dias de antecedência para pão de batata\n`;
+    }
     mensagem += `*Entrega:* ${desejaEntrega ? 'Quero consultar entrega' : 'Vou retirar no local'}\n`;
 
     if (desejaEntrega) {
