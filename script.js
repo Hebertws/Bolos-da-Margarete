@@ -486,8 +486,8 @@ document.querySelectorAll('.galeria-grid-item img').forEach(img => {
 
 // Sistema de Encomenda
 const bolosData = [
-    { nome: 'Pão de Batata sem Recheio', preco: 12.00, categoria: 'paes' },
-    { nome: 'Pão de Batata com Recheio', preco: 15.00, categoria: 'paes' },
+    { nome: 'Pão de Batata sem Recheio', preco: 1.50, pacote: 12.00, pacoteQuantidade: 8, categoria: 'paes' },
+    { nome: 'Pão de Batata com Recheio', preco: 2.50, pacote: 10.00, pacoteQuantidade: 4, categoria: 'paes' },
     { nome: 'Palha Italiana Tradicional', preco: 6.00, categoria: 'palha' },
     { nome: 'Palha Italiana Ninho', preco: 6.00, categoria: 'palha' },
     { nome: 'Palha Italiana Oreo', preco: 6.00, categoria: 'palha' },
@@ -593,6 +593,10 @@ function formatarTextoPrecoCardapio(bolo) {
         return bolo.tamanhos.map(tamanho => `R$ ${formatarValorPedido(tamanho.preco)}`).join(' / ');
     }
 
+    if (typeof bolo.pacote === 'number') {
+        return `R$ ${formatarValorPedido(bolo.preco ?? 0)} unidade / R$ ${formatarValorPedido(bolo.pacote)} pacote (${bolo.pacoteQuantidade ?? 0} unid.)`;
+    }
+
     return `R$ ${formatarValorPedido(bolo.preco ?? 0)}`;
 }
 
@@ -600,13 +604,11 @@ function renderizarCardapio() {
     const container = document.getElementById('cardapioList');
     if (!container) return;
 
-    const itensCardapio = bolosData
-        .filter(bolo => !['Palha Italiana Tradicional', 'Palha Italiana Ninho', 'Palha Italiana Oreo'].includes(bolo.nome))
-        .map(bolo => ({
-            nome: bolo.nome,
-            preco: formatarTextoPrecoCardapio(bolo),
-            destaque: false
-        }));
+    const itensCardapio = bolosData.map(bolo => ({
+        nome: bolo.nome,
+        preco: formatarTextoPrecoCardapio(bolo),
+        destaque: false
+    }));
 
     const itensCardapioFinal = [...itensCardapio];
 
