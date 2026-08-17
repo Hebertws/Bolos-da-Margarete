@@ -486,8 +486,14 @@ document.querySelectorAll('.galeria-grid-item img').forEach(img => {
 
 // Sistema de Encomenda
 const bolosData = [
-    { nome: 'Pão de Batata sem Recheio', preco: 1.50, pacote: 12.00, pacoteQuantidade: 8, categoria: 'paes' },
-    { nome: 'Pão de Batata com Recheio', preco: 2.50, pacote: 10.00, pacoteQuantidade: 4, categoria: 'paes' },
+    { nome: 'Pão de Batata sem Recheio', categoria: 'paes', tamanhos: [
+        { label: 'Unidade', preco: 1.50 },
+        { label: 'Pacote (8 unid.)', preco: 12.00 }
+    ] },
+    { nome: 'Pão de Batata com Recheio', categoria: 'paes', tamanhos: [
+        { label: 'Unidade', preco: 2.50 },
+        { label: 'Pacote (4 unid.)', preco: 10.00 }
+    ] },
     { nome: 'Palha Italiana Tradicional', preco: 6.00, categoria: 'palha' },
     { nome: 'Palha Italiana Ninho', preco: 6.00, categoria: 'palha' },
     { nome: 'Palha Italiana Oreo', preco: 6.00, categoria: 'palha' },
@@ -589,6 +595,11 @@ function obterDataMinimaPedido() {
 }
 
 function formatarTextoPrecoCardapio(bolo) {
+    if (nomesPaoBatata.has(bolo.nome) && Array.isArray(bolo.tamanhos) && bolo.tamanhos.length >= 2) {
+        const [unidade, pacote] = bolo.tamanhos;
+        return `R$ ${formatarValorPedido(unidade.preco)} unidade / R$ ${formatarValorPedido(pacote.preco)} ${pacote.label.toLowerCase()}`;
+    }
+
     if (Array.isArray(bolo.tamanhos) && bolo.tamanhos.length > 0) {
         return bolo.tamanhos.map(tamanho => `R$ ${formatarValorPedido(tamanho.preco)}`).join(' / ');
     }
