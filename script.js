@@ -1176,6 +1176,7 @@ function filtrarPorCategoria(categoria, ev) {
     categoriaAtual = categoria;
 
     const abas = document.querySelectorAll('.aba-btn');
+    
     abas.forEach(aba => aba.classList.remove('aba-ativo'));
 
     const btn = ev && ev.target && ev.target.closest ? ev.target.closest('.aba-btn') : null;
