@@ -56,9 +56,9 @@ Bolos-da-Margarete/
 
 Para fazer pedidos ou tirar dúvidas sobre nossos bolos:
 
-- 📧 **Email**: [Adicione seu email]
-- 📱 **WhatsApp**: [Adicione seu número]
-- 📍 **Localização**: [Adicione seu endereço]
+- 📧 **Email**: margareteosouza@gmail.com
+- 📱 **WhatsApp**: (31) 9 8574-0971
+- 📍 **Localização**: Rua Raimundo patrocínio, Nº 318 Bairro Tânia, Ribeirão Das Neves.
 
 ## 🔄 Pedidos
 
