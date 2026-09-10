@@ -227,6 +227,12 @@ body {
         gap: 0.5rem;
     }
 
+    .item-info,
+    .item-preco {
+        width: 100%;
+        min-width: 0;
+    }
+
     .item-nome {
         font-size: 0.95rem;
         margin-bottom: 0.3rem;
@@ -235,8 +241,10 @@ body {
     .item-preco {
         font-size: 1.1rem;
         margin-left: 0;
-        align-self: flex-end;
+        align-self: flex-start;
         margin-top: 0.5rem;
+        white-space: normal;
+        overflow-wrap: anywhere;
     }
 
     /* Encomenda */
