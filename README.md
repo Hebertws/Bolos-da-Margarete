@@ -67,10 +67,6 @@ Para fazer pedidos ou tirar dúvidas sobre nossos bolos:
 - 🎁 Personalizações especiais
 - 💝 Encomendas para eventos
 
-## 👨‍🍳 Sobre Margarete
-
-[Adicione um pequeno texto pessoal sobre a Margarete, sua história e paixão por fazer bolos]
-
 ## 📄 Licença
 
 Este projeto é de uso livre para fins pessoais e comerciais.
