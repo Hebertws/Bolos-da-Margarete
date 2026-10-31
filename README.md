@@ -36,11 +36,15 @@ Bem-vindo ao site oficial de **Bolos da Margarete** - O seu lugar especial para 
 
 ```
 Bolos-da-Margarete/
-├── index.html           # Página principal
-├── css/                 # Arquivos de estilo
-├── js/                  # Scripts JavaScript
-├── img/                 # Imagens dos bolos
-└── README.md           # Este arquivo
+├── index.html               # Página principal
+├── assets/
+│   ├── icons/               # Logo, favicon e personagens
+│   └── imagens/             # Fotos dos bolos
+├── css/                     # Arquivos de estilo
+├── data/                    # Dados em JSON
+├── js/                      # Scripts JavaScript
+├── cardapio.html            # Arquivo criado, ainda vazio
+└── README.md                # Este arquivo
 ```
 
 ## 🎯 Sabores Disponíveis
