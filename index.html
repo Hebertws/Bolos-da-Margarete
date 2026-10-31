@@ -9,8 +9,8 @@
     <meta property="og:description" content="Bolos caseiros e palha italiana artesanais feitos com carinho.">
     <title>Delícias da Margarete - Bolos Caseiros Deliciosos</title>
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css?v=20260729-1">
-    <link rel="stylesheet" href="style-mobile-fixes.css?v=20260729-1">
+    <link rel="stylesheet" href="style.css?v=20261031-3">
+    <link rel="stylesheet" href="style-mobile-fixes.css?v=20261031-3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
@@ -21,7 +21,14 @@
     <!-- Header -->
     <header class="header">
         <div class="container header-row">
-            <nav class="nav" id="navMenu">
+            <a class="header-brand" href="#inicio" aria-label="Delícias da Margarete - início">
+                <img src="Imagens/otimizadas/Logo.png" alt="" class="header-brand-logo">
+                <span class="header-brand-copy">
+                    <strong>Delícias da Margarete</strong>
+                    <span>Bolos feitos com carinho</span>
+                </span>
+            </a>
+            <nav class="nav" id="navMenu" aria-label="Navegação principal">
                 <ul>
                     <li><a href="#sobre" onclick="fecharMenuMobile()">Sobre</a></li>
                     <li><a href="#galeria" onclick="fecharMenuMobile()">Galeria</a></li>
@@ -34,7 +41,8 @@
                 <button class="btn-tema" onclick="alternarModoEscuro()" title="Alternar modo escuro">
                     <i class="fas fa-moon"></i>
                 </button>
-                <button class="menu-hamburger" onclick="toggleMenuMobile()" title="Abrir menu">
+                <button class="menu-hamburger" onclick="toggleMenuMobile()" aria-label="Abrir menu"
+                    aria-controls="navMenu" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -42,7 +50,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="inicio">
         <div class="hero-cursor-effects" aria-hidden="true"></div>
 
         <div class="hero-content">
@@ -55,7 +63,7 @@
     <section id="sobre" class="sobre">
         <div class="container">
             <div class="hero-badge">
-                <img src="Imagens/otimizadas/Logo.svg" alt="Delícias da Margarete" loading="lazy">
+                <img src="Imagens/otimizadas/Logo.png" alt="Delícias da Margarete" loading="lazy">
             </div>
             <h2>Sobre Delícias da Margarete</h2>
             <p>Bem-vindo ao espaço de bolos caseiros e doces artesanais da Margarete! Com uma paixão genuína por doces caseiros, preparamos

@@ -38,16 +38,6 @@ body {
         padding: 0.75rem 0;
     }
 
-    .nav ul {
-        gap: 1rem; /* Reduzir espaço entre links */
-        padding: 0 0.75rem;
-    }
-
-    .nav a {
-        font-size: 0.95rem;
-        padding: 0.9rem 1rem;
-    }
-
     /* Hero Section */
     .hero {
         padding: 60px 20px; /* Reduzir padding de 140px para 60px */
@@ -568,14 +558,6 @@ body {
 
     .header {
         padding: 0.9rem 0;
-    }
-
-    .nav ul {
-        gap: 1.5rem;
-    }
-
-    .nav a {
-        font-size: 0.95rem;
     }
 
     .hero {

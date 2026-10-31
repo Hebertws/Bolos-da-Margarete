@@ -30,12 +30,21 @@ let intervaloCarrossel;
 // Menu Hamburguês Mobile
 function toggleMenuMobile() {
     const navMenu = document.getElementById('navMenu');
-    navMenu.classList.toggle('ativo');
+    const botaoMenu = document.querySelector('.menu-hamburger');
+    const menuAberto = navMenu.classList.toggle('ativo');
+
+    botaoMenu.setAttribute('aria-expanded', String(menuAberto));
+    botaoMenu.setAttribute('aria-label', menuAberto ? 'Fechar menu' : 'Abrir menu');
+    botaoMenu.innerHTML = `<i class="fas fa-${menuAberto ? 'xmark' : 'bars'}"></i>`;
 }
 
 function fecharMenuMobile() {
     const navMenu = document.getElementById('navMenu');
+    const botaoMenu = document.querySelector('.menu-hamburger');
     navMenu.classList.remove('ativo');
+    botaoMenu.setAttribute('aria-expanded', 'false');
+    botaoMenu.setAttribute('aria-label', 'Abrir menu');
+    botaoMenu.innerHTML = '<i class="fas fa-bars"></i>';
 }
 
 // Sistema de Avaliações (Firebase)
