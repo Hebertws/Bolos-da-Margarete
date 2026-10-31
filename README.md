@@ -41,9 +41,13 @@ Bolos-da-Margarete/
 │   ├── icons/               # Logo, favicon e personagens
 │   └── imagens/             # Fotos dos bolos
 ├── css/                     # Arquivos de estilo
-├── data/                    # Dados em JSON
-├── js/                      # Scripts JavaScript
-├── cardapio.html            # Arquivo criado, ainda vazio
+├── data/
+│   └── bolos.json           # Produtos exibidos na página de cardápio
+├── js/
+│   ├── cardapio.js          # Carregamento e filtros do cardápio
+│   ├── script.js            # Funcionalidades da página inicial
+│   └── site.js              # Tema, navegação e integração WhatsApp compartilhados
+├── cardapio.html            # Catálogo dinâmico de produtos
 └── README.md                # Este arquivo
 ```
 

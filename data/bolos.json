@@ -1,0 +1,252 @@
+{
+  "bolos": [
+    {
+      "id": 1,
+      "nome": "Pão de Batata sem Recheio",
+      "descricao": "Opções de unidade e pacote com 8 unidades.",
+      "preco": 1.5,
+      "opcoes": [
+        { "nome": "Unidade", "preco": 1.5 },
+        { "nome": "Pacote (8 unid.)", "preco": 12 }
+      ],
+      "imagem": null,
+      "categoria": "Pães",
+      "disponivel": true
+    },
+    {
+      "id": 2,
+      "nome": "Pão de Batata com Recheio",
+      "descricao": "Opções de unidade e pacote com 4 unidades.",
+      "preco": 2.5,
+      "opcoes": [
+        { "nome": "Unidade", "preco": 2.5 },
+        { "nome": "Pacote (4 unid.)", "preco": 10 }
+      ],
+      "imagem": null,
+      "categoria": "Pães",
+      "disponivel": true
+    },
+    {
+      "id": 3,
+      "nome": "Palha Italiana Tradicional",
+      "descricao": "A versão clássica e muito querida para quem ama o sabor marcante da palha italiana.",
+      "preco": 6,
+      "imagem": "assets/imagens/PalhaChocolate.webp",
+      "categoria": "Palhas Italianas",
+      "disponivel": true
+    },
+    {
+      "id": 4,
+      "nome": "Palha Italiana Ninho",
+      "descricao": "Uma combinação cremosa e delicada, perfeita para quem gosta de sabores mais suaves.",
+      "preco": 6,
+      "imagem": "assets/imagens/PalhaNinho.webp",
+      "categoria": "Palhas Italianas",
+      "disponivel": true
+    },
+    {
+      "id": 5,
+      "nome": "Palha Italiana Oreo",
+      "descricao": "A opção mais saborosa para quem adora o clássico brigadeiro branco com biscoito.",
+      "preco": 6,
+      "imagem": "assets/imagens/PalhaOreo.webp",
+      "categoria": "Palhas Italianas",
+      "disponivel": true
+    },
+    {
+      "id": 6,
+      "nome": "Bolo de Castanha",
+      "descricao": "Consulte os detalhes do sabor e os tamanhos disponíveis ao fazer sua encomenda.",
+      "preco": 30,
+      "opcoes": [
+        { "nome": "Normal", "preco": 30 },
+        { "nome": "Formato maior", "preco": 55 }
+      ],
+      "imagem": "assets/imagens/castanha.webp",
+      "categoria": "Sem calda",
+      "disponivel": true
+    },
+    {
+      "id": 7,
+      "nome": "Bolo de Cenoura com Cobertura de Chocolate",
+      "descricao": "Consulte os detalhes do sabor e os tamanhos disponíveis ao fazer sua encomenda.",
+      "preco": 25,
+      "opcoes": [
+        { "nome": "Normal", "preco": 25 },
+        { "nome": "Formato maior", "preco": 50 }
+      ],
+      "imagem": "assets/imagens/CenouraCalda.webp",
+      "categoria": "Com calda",
+      "disponivel": true
+    },
+    {
+      "id": 8,
+      "nome": "Bolo de Chocolate",
+      "descricao": "Consulte os detalhes do sabor e os tamanhos disponíveis ao fazer sua encomenda.",
+      "preco": 25,
+      "opcoes": [
+        { "nome": "Normal", "preco": 25 },
+        { "nome": "Formato maior", "preco": 50 }
+      ],
+      "imagem": "assets/imagens/Chocolate.webp",
+      "categoria": "Com calda",
+      "disponivel": true
+    },
+    {
+      "id": 9,
+      "nome": "Bolo de Chocolate com Castanha",
+      "descricao": "Consulte os detalhes do sabor e os tamanhos disponíveis ao fazer sua encomenda.",
+      "preco": 30,
+      "opcoes": [
+        { "nome": "Normal", "preco": 30 },
+        { "nome": "Formato maior", "preco": 55 }
+      ],
+      "imagem": "assets/imagens/ChocolateCastanha.webp",
+      "categoria": "Com calda",
+      "disponivel": true
+    },
+    {
+      "id": 10,
+      "nome": "Bolo de Churros",
+      "descricao": "Consulte os detalhes do sabor e os tamanhos disponíveis ao fazer sua encomenda.",
+      "preco": 25,
+      "opcoes": [
+        { "nome": "Normal", "preco": 25 },
+        { "nome": "Formato maior", "preco": 50 }
+      ],
+      "imagem": "assets/imagens/Churros.webp",
+      "categoria": "Com calda",
+      "disponivel": true
+    },
+    {
+      "id": 11,
+      "nome": "Bolo de Coco",
+      "descricao": "Consulte os detalhes do sabor e os tamanhos disponíveis ao fazer sua encomenda.",
+      "preco": 25,
+      "opcoes": [
+        { "nome": "Normal", "preco": 25 },
+        { "nome": "Formato maior", "preco": 50 }
+      ],
+      "imagem": "assets/imagens/Coco.webp",
+      "categoria": "Com calda",
+      "disponivel": true
+    },
+    {
+      "id": 12,
+      "nome": "Bolo de Fubá com Queijo e Cobertura de Goiabada",
+      "descricao": "Consulte os detalhes do sabor e os tamanhos disponíveis ao fazer sua encomenda.",
+      "preco": 30,
+      "opcoes": [
+        { "nome": "Normal", "preco": 30 },
+        { "nome": "Formato maior", "preco": 50 }
+      ],
+      "imagem": "assets/imagens/BroaComCalda.webp",
+      "categoria": "Com calda",
+      "disponivel": true
+    },
+    {
+      "id": 13,
+      "nome": "Bolo de Fubá com Erva Doce",
+      "descricao": "Consulte os detalhes do sabor e os tamanhos disponíveis ao fazer sua encomenda.",
+      "preco": 25,
+      "opcoes": [
+        { "nome": "Normal", "preco": 25 },
+        { "nome": "Formato maior", "preco": 50 }
+      ],
+      "imagem": "assets/imagens/BoloFubaErva.webp",
+      "categoria": "Sem calda",
+      "disponivel": true
+    },
+    {
+      "id": 14,
+      "nome": "Bolo de Laranja com Cobertura de Limão",
+      "descricao": "Consulte os detalhes do sabor e os tamanhos disponíveis ao fazer sua encomenda.",
+      "preco": 25,
+      "opcoes": [
+        { "nome": "Normal", "preco": 25 },
+        { "nome": "Formato maior", "preco": 50 }
+      ],
+      "imagem": "assets/imagens/LaranjaCalda.webp",
+      "categoria": "Com calda",
+      "disponivel": true
+    },
+    {
+      "id": 15,
+      "nome": "Bolo de Limão com Cobertura de Limão",
+      "descricao": "Consulte os detalhes do sabor e os tamanhos disponíveis ao fazer sua encomenda.",
+      "preco": 25,
+      "opcoes": [
+        { "nome": "Normal", "preco": 25 },
+        { "nome": "Formato maior", "preco": 50 }
+      ],
+      "imagem": "assets/imagens/BoloLimao.webp",
+      "categoria": "Com calda",
+      "disponivel": true
+    },
+    {
+      "id": 16,
+      "nome": "Bolo de Maçã com Castanha",
+      "descricao": "Consulte os detalhes do sabor e os tamanhos disponíveis ao fazer sua encomenda.",
+      "preco": 30,
+      "opcoes": [
+        { "nome": "Normal", "preco": 30 },
+        { "nome": "Formato maior", "preco": 55 }
+      ],
+      "imagem": "assets/imagens/Maca.webp",
+      "categoria": "Sem calda",
+      "disponivel": true
+    },
+    {
+      "id": 17,
+      "nome": "Bolo de Milho",
+      "descricao": "Consulte os detalhes do sabor e os tamanhos disponíveis ao fazer sua encomenda.",
+      "preco": 25,
+      "opcoes": [
+        { "nome": "Normal", "preco": 25 },
+        { "nome": "Formato maior", "preco": 50 }
+      ],
+      "imagem": "assets/imagens/Milho.webp",
+      "categoria": "Sem calda",
+      "disponivel": true
+    },
+    {
+      "id": 18,
+      "nome": "Bolo de Paçoca",
+      "descricao": "Consulte os detalhes do sabor e os tamanhos disponíveis ao fazer sua encomenda.",
+      "preco": 25,
+      "opcoes": [
+        { "nome": "Normal", "preco": 25 },
+        { "nome": "Formato maior", "preco": 50 }
+      ],
+      "imagem": "assets/imagens/PacocaBolo.webp",
+      "categoria": "Com calda",
+      "disponivel": true
+    },
+    {
+      "id": 19,
+      "nome": "Broa de Farinha de Milho com Coco e Queijo",
+      "descricao": "Consulte os detalhes do sabor e os tamanhos disponíveis ao fazer sua encomenda.",
+      "preco": 30,
+      "opcoes": [
+        { "nome": "Normal", "preco": 30 },
+        { "nome": "Formato maior", "preco": 60 }
+      ],
+      "imagem": "assets/imagens/Broa.webp",
+      "categoria": "Sem calda",
+      "disponivel": true
+    },
+    {
+      "id": 20,
+      "nome": "Bolo de Mandioca",
+      "descricao": "Consulte os detalhes do sabor e os tamanhos disponíveis ao fazer sua encomenda.",
+      "preco": 25,
+      "opcoes": [
+        { "nome": "Normal", "preco": 25 },
+        { "nome": "Formato maior", "preco": 50 }
+      ],
+      "imagem": "assets/imagens/bolomandioca.webp",
+      "categoria": "Sem calda",
+      "disponivel": true
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conheça o cardápio de bolos, palhas italianas e pães artesanais da Delícias da Margarete.">
+    <meta property="og:title" content="Cardápio | Delícias da Margarete">
+    <meta property="og:description" content="Bolos e doces artesanais feitos com carinho. Confira nosso cardápio.">
+    <title>Cardápio | Delícias da Margarete</title>
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+    <link rel="stylesheet" href="css/style.css?v=20261031-5">
+    <link rel="stylesheet" href="css/style-mobile-fixes.css?v=20261031-5">
+    <link rel="stylesheet" href="css/cardapio.css?v=20261031-1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-row">
+            <a class="header-brand" href="index.html#inicio" aria-label="Delícias da Margarete - início">
+                <img src="assets/icons/Logo.png" alt="" class="header-brand-logo">
+                <span class="header-brand-copy">
+                    <strong>Delícias da Margarete</strong>
+                    <span>Bolos feitos com carinho</span>
+                </span>
+            </a>
+            <nav class="nav" id="navMenu" aria-label="Navegação principal">
+                <ul>
+                    <li><a href="index.html#sobre" onclick="fecharMenuMobile()">Sobre</a></li>
+                    <li><a href="index.html#galeria" onclick="fecharMenuMobile()">Galeria</a></li>
+                    <li><a href="cardapio.html" aria-current="page" onclick="fecharMenuMobile()">Cardápio</a></li>
+                    <li><a href="index.html#encomenda" onclick="fecharMenuMobile()">Encomenda</a></li>
+                    <li><a href="index.html#contato" onclick="fecharMenuMobile()">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="btn-tema" type="button" onclick="alternarModoEscuro()"
+                    title="Alternar modo escuro" aria-label="Alternar modo escuro">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                </button>
+                <button class="menu-hamburger" type="button" onclick="toggleMenuMobile()" aria-label="Abrir menu"
+                    aria-controls="navMenu" aria-expanded="false">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="menu-page">
+        <section class="menu-intro" aria-labelledby="menu-title">
+            <div class="container">
+                <span class="menu-eyebrow"><i class="fas fa-heart" aria-hidden="true"></i> Feito com carinho</span>
+                <h1 id="menu-title">Nosso Cardápio</h1>
+                <p>Bolos, palhas italianas e pães preparados com carinho para deixar seus momentos ainda mais especiais.</p>
+            </div>
+        </section>
+
+        <section class="menu-products" aria-labelledby="products-title">
+            <div class="container">
+                <div class="menu-section-heading">
+                    <div>
+                        <h2 id="products-title">Escolha seu favorito</h2>
+                        <p>Encontre seu próximo momento doce.</p>
+                    </div>
+                    <span class="menu-product-count" id="productCount" aria-live="polite"></span>
+                </div>
+
+                <div class="menu-filters" id="menuFilters" aria-label="Filtrar produtos por categoria">
+                    <button class="menu-filter is-active" type="button" data-category="Todos" aria-pressed="true">
+                        Todos
+                    </button>
+                </div>
+
+                <div class="menu-status" id="menuStatus" role="status" aria-live="polite">
+                    Carregando nosso cardápio...
+                </div>
+                <div class="menu-grid" id="menuProducts" aria-busy="true"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Delícias da Margarete. Todos os direitos reservados.</p>
+            <div class="social-links" aria-label="Redes sociais">
+                <a href="https://www.instagram.com/margareteolisouza?igsh=MXdsdndoMWRxamhudg==" target="_blank"
+                    rel="noopener noreferrer" aria-label="Instagram">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                </a>
+                <a href="https://wa.me/5531985740971" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.facebook.com/share/16mEsScqqG/" target="_blank" rel="noopener noreferrer"
+                    aria-label="Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/site.js?v=20261031-1"></script>
+    <script src="js/cardapio.js?v=20261031-1"></script>
+</body>
+
+</html>
