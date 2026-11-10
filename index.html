@@ -4,20 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Delícias da Margarete: bolos caseiros e palha italiana artesanais com muito carinho.">
+    <meta name="description" content="Delícias da Margarete: bolos caseiros, palha italiana e o Pudim de Natal (grande por R$ 60,00). Encomende para a sua ceia!">
     <meta property="og:title" content="Delícias da Margarete">
-    <meta property="og:description" content="Bolos caseiros e palha italiana artesanais feitos com carinho.">
-    <title>Delícias da Margarete - Bolos Caseiros Deliciosos</title>
+    <meta property="og:description" content="Especial de Natal: Pudim grande por R$ 60,00, bolos caseiros e palha italiana feitos com carinho.">
+    <title>Delícias da Margarete - Bolos Caseiros e Pudim de Natal</title>
     <link rel="icon" type="image/png" href="assets/icons/favicon.png">
     <link rel="stylesheet" href="css/style.css?v=20261031-5">
     <link rel="stylesheet" href="css/style-mobile-fixes.css?v=20261031-5">
+    <!-- Tema de Natal -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap">
+    <link rel="stylesheet" href="css/natal.css?v=20261110-1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
 </head>
 
-<body>
+<body class="tema-natal">
+    <!-- Faixa de Natal -->
+    <div class="natal-faixa" role="note">
+        <span class="orn" aria-hidden="true">✦</span>
+        Especial de Natal: <strong>Pudim grande por R$&nbsp;60,00</strong>
+        <a href="#pudim-natal">Quero encomendar</a>
+        <span class="orn" aria-hidden="true">✦</span>
+    </div>
+
     <!-- Header -->
     <header class="header">
         <div class="container header-row">
@@ -54,12 +67,105 @@
         <div class="hero-cursor-effects" aria-hidden="true"></div>
 
         <div class="hero-content">
-            <img class="hero-character" src="assets/icons/Personagem.png"
+            <img class="hero-character" src="assets/icons/PersonagemNatal.png"
                 alt="Personagem da Margarete segurando um bolo de chocolate" fetchpriority="high">
             <div class="hero-copy">
+                <span class="hero-selo">✦ Natal 2026 ✦</span>
                 <h2>Delícias da Margarete</h2>
-                <p>Feitos com amor e ingredientes de qualidade para sua família</p>
+                <p>Um Natal mais doce, feito com amor e ingredientes de qualidade para sua família</p>
+                <div class="hero-acoes">
+                    <a href="#pudim-natal" class="btn-natal"><i class="fas fa-gift"></i> Pudim de Natal</a>
+                    <a href="#encomenda" class="btn-natal-outline">Fazer encomenda</a>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Destaque de Natal: Pudim -->
+    <section id="pudim-natal" class="pudim-natal" aria-labelledby="pudimTitulo">
+        <div class="container">
+            <div class="natal-divisor" aria-hidden="true">✦</div>
+            <article class="pudim-cartao">
+                <span class="pudim-selo">Especial de Natal</span>
+
+                <div class="pudim-arte">
+                    <svg class="pudim-svg" viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração de um pudim com calda de caramelo e ramo de azevinho">
+                      <defs>
+                        <linearGradient id="pdBody" x1="0" x2="1" y1="0" y2="0">
+                          <stop offset="0" stop-color="#eec46a"/>
+                          <stop offset=".5" stop-color="#fbe5a8"/>
+                          <stop offset="1" stop-color="#e0ac48"/>
+                        </linearGradient>
+                        <linearGradient id="pdCaramel" x1="0" x2="0" y1="0" y2="1">
+                          <stop offset="0" stop-color="#d4852a"/>
+                          <stop offset="1" stop-color="#8f4a12"/>
+                        </linearGradient>
+                        <radialGradient id="pdPlate" cx=".5" cy=".35" r=".75">
+                          <stop offset="0" stop-color="#fffaf0"/>
+                          <stop offset="1" stop-color="#e9d9b0"/>
+                        </radialGradient>
+                      </defs>
+                      <ellipse cx="200" cy="302" rx="160" ry="15" fill="#000" opacity=".2"/>
+                      <ellipse cx="200" cy="274" rx="168" ry="42" fill="url(#pdPlate)" stroke="#c9a24b" stroke-width="3"/>
+                      <ellipse cx="200" cy="274" rx="138" ry="31" fill="none" stroke="#c9a24b" stroke-width="1.2" stroke-dasharray="2 5" opacity=".85"/>
+                      <ellipse cx="200" cy="268" rx="116" ry="26" fill="url(#pdCaramel)"/>
+                      <ellipse cx="162" cy="262" rx="38" ry="5" fill="#fff" opacity=".2"/>
+                      <path d="M132 148 C112 190 106 232 112 264 C138 284 262 284 288 264 C294 232 288 190 268 148 A68 17 0 0 0 132 148 Z" fill="url(#pdBody)"/>
+                      <path d="M126 180 C120 210 122 238 131 260" stroke="#fff" stroke-opacity=".5" stroke-width="7" stroke-linecap="round" fill="none"/>
+                      <ellipse cx="200" cy="148" rx="68" ry="17" fill="url(#pdCaramel)"/>
+                      <path d="M132 148 A68 17 0 0 0 268 148 L268 160 C268 176 258 178 256 164 C254 192 244 194 242 168 C238 178 232 180 230 168 C226 198 214 198 212 170 C206 178 198 178 194 170 C190 188 180 188 178 168 C172 178 164 178 162 166 C158 184 148 184 146 164 C142 174 134 174 132 160 Z" fill="url(#pdCaramel)"/>
+                      <ellipse cx="178" cy="145" rx="24" ry="4" fill="#fff" opacity=".28"/>
+                      <g>
+                        <path d="M200 142 C182 124 160 130 156 146 C170 148 186 152 200 142 Z" fill="#1f6b4a"/>
+                        <path d="M200 142 C218 124 240 130 244 146 C230 148 214 152 200 142 Z" fill="#17583c"/>
+                        <path d="M200 142 L166 140 M200 142 L234 140" stroke="#0f3b2a" stroke-width="1.2" opacity=".6"/>
+                        <circle cx="192" cy="144" r="7" fill="#c4263a"/>
+                        <circle cx="208" cy="143" r="7" fill="#b21f33"/>
+                        <circle cx="200" cy="152" r="7" fill="#d12f44"/>
+                        <circle cx="190" cy="141.5" r="2" fill="#fff" opacity=".7"/>
+                        <circle cx="206" cy="140.5" r="2" fill="#fff" opacity=".7"/>
+                        <circle cx="198" cy="149.5" r="2" fill="#fff" opacity=".7"/>
+                      </g>
+                      <g fill="#f0d98a">
+                        <path class="faisca" d="M62 92 l3 -9 3 9 9 3 -9 3 -3 9 -3 -9 -9 -3z"/>
+                        <path class="faisca f2" d="M338 118 l2.5 -7 2.5 7 7 2.5 -7 2.5 -2.5 7 -2.5 -7 -7 -2.5z"/>
+                        <path class="faisca f3" d="M318 38 l2 -6 2 6 6 2 -6 2 -2 6 -2 -6 -6 -2z"/>
+                        <path class="faisca f2" d="M92 30 l2 -6 2 6 6 2 -6 2 -2 6 -2 -6 -6 -2z"/>
+                      </g>
+                    </svg>
+                    <!-- Quando tiver uma foto real, salve como assets/imagens/Pudim.webp: ela aparece no lugar da ilustração. -->
+                    <img class="pudim-foto" src="assets/imagens/Pudim.webp" alt="Pudim de Natal da Margarete"
+                        loading="lazy" decoding="async" onerror="this.remove()">
+                </div>
+
+                <div class="pudim-texto">
+                    <span class="pudim-eyebrow">Edição de Natal</span>
+                    <h2 id="pudimTitulo">Pudim de Natal <em>da Margarete</em></h2>
+                    <p>Pudim caseiro, cremoso e com calda dourada de caramelo: a sobremesa perfeita para fechar a
+                        ceia com sabor de família.</p>
+
+                    <ul class="pudim-chips">
+                        <li>Tamanho grande</li>
+                        <li>Caseiro</li>
+                        <li>Para a ceia de Natal</li>
+                    </ul>
+
+                    <div class="pudim-preco-linha">
+                        <span class="pudim-preco">R$&nbsp;60<small>,00</small></span>
+                        <span class="pudim-preco-rotulo">pudim grande</span>
+                    </div>
+
+                    <div class="pudim-acoes">
+                        <button type="button" class="btn-natal" onclick="adicionarPudimAoPedido()">
+                            <i class="fas fa-cart-plus"></i> Adicionar ao pedido
+                        </button>
+                        <button type="button" class="btn-natal-outline" onclick="pedirPudimWhatsapp()">
+                            <i class="fab fa-whatsapp"></i> Pedir pelo WhatsApp
+                        </button>
+                    </div>
+                    <div class="pudim-aviso" id="pudimAviso" aria-live="polite"></div>
+                </div>
+            </article>
         </div>
     </section>
 
@@ -148,122 +254,9 @@
 
             <!-- Botão Ver Galeria Completa -->
             <div class="galeria-completa-btn-container">
-                <button class="btn btn-primary" onclick="toggleGaleriaCompleta()">
+                <a class="btn btn-primary" href="cardapio.html">
                     <i class="fas fa-th"></i> Ver Galeria Completa
-                </button>
-            </div>
-
-            <!-- Galeria Completa em Grid -->
-            <div id="galeriaCompleta" class="galeria-completa oculta">
-                <h3>Todos os Nossos Bolos</h3>
-                <div class="galeria-grid">
-                    <div class="galeria-grid-item">
-                        <img src="assets/imagens/castanha.webp" alt="Bolo de Castanha"
-                            loading="lazy" decoding="async">
-                        <h4>Bolo de Castanha</h4>
-                    </div>
-                    <div class="galeria-grid-item">
-                        <img src="assets/imagens/CenouraCalda.webp" loading="lazy" decoding="async"
-                            alt="Bolo de Cenoura com Cobertura de Chocolate">
-                        <h4>Bolo de Cenoura com Cobertura de Chocolate</h4>
-                    </div>
-                    <div class="galeria-grid-item">
-                        <img src="assets/imagens/Chocolate.webp" alt="Bolo de Chocolate" loading="lazy"
-                            decoding="async">
-                        <h4>Bolo de Chocolate</h4>
-                    </div>
-                    <div class="galeria-grid-item">
-                        <img src="assets/imagens/ChocolateCastanha.webp" loading="lazy" decoding="async"
-                            alt="Bolo de Chocolate com Castanha">
-                        <h4>Bolo de Chocolate com Castanha</h4>
-                    </div>
-                    <div class="galeria-grid-item">
-                        <img src="assets/imagens/Churros.webp" alt="Bolo de Churros" loading="lazy"
-                            decoding="async">
-                        <h4>Bolo de Churros</h4>
-                    </div>
-                    <div class="galeria-grid-item">
-                        <img src="assets/imagens/Coco.webp" alt="Bolo de Coco" loading="lazy"
-                            decoding="async">
-                        <h4>Bolo de Coco</h4>
-                    </div>
-                    <div class="galeria-grid-item">
-                        <img src="assets/imagens/BroaComCalda.webp" loading="lazy"
-                            decoding="async" alt="Bolo de Fubá com Queijo e Cobertura de Goiabada">
-                        <h4>Bolo de Fubá com Queijo e Cobertura de Goiabada</h4>
-                    </div>
-                    <div class="galeria-grid-item">
-                        <img src="assets/imagens/BoloFubaErva.webp" loading="lazy"
-                            decoding="async" alt="Bolo de Fubá com Erva Doce">
-                        <h4>Bolo de Fubá com Erva Doce</h4>
-                    </div>
-                    <div class="galeria-grid-item">
-                        <img src="assets/imagens/LaranjaCalda.webp" loading="lazy" decoding="async"
-                            alt="Bolo de Laranja com Cobertura de Limão">
-                        <h4>Bolo de Laranja com Cobertura de Limão</h4>
-                    </div>
-                    <div class="galeria-grid-item">
-                        <img src="assets/imagens/BoloLimao.webp" loading="lazy"
-                            decoding="async" alt="Bolo de Limão com Cobertura de Limão">
-                        <h4>Bolo de Limão com Cobertura de Limão</h4>
-                    </div>
-                    <div class="galeria-grid-item">
-                        <img src="assets/imagens/Maca.webp" loading="lazy" decoding="async"
-                            alt="Bolo de Maçã com Castanha">
-                        <h4>Bolo de Maçã com Castanha</h4>
-                    </div>
-                    <div class="galeria-grid-item">
-                        <img src="assets/imagens/Milho.webp" alt="Bolo de Milho" loading="lazy" decoding="async">
-                        <h4>Bolo de Milho</h4>
-                    </div>
-                    <div class="galeria-grid-item">
-                        <img src="assets/imagens/PacocaBolo.webp" alt="Bolo de Paçoca" loading="lazy" decoding="async">
-                        <h4>Bolo de Paçoca</h4>
-                    </div>
-                    <div class="galeria-grid-item">
-                        <img src="assets/imagens/Broa.webp" loading="lazy" decoding="async"
-                            alt="Broa de Farinha de Milho com Coco e Queijo">
-                        <h4>Broa de Farinha de Milho com Coco e Queijo</h4>
-                    </div>
-                    <div class="galeria-grid-item">
-                        <img src="assets/imagens/bolomandioca.webp" loading="lazy" decoding="async"
-                            alt="Bolo de Mandioca">
-                        <h4>Bolo de Mandioca</h4>
-                    </div>
-                </div>
-                <button class="btn btn-outline" onclick="toggleGaleriaCompleta()" style="margin-top: 2rem;">
-                    <i class="fas fa-times"></i> Fechar Galeria
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Cardápio -->
-    <section id="cardapio" class="cardapio">
-        <div class="container">
-            <h2>Nosso Cardápio</h2>
-            <p class="subtitle">Confira todos os bolos, palhas e pães disponíveis</p>
-
-            <button class="btn btn-primary" onclick="toggleCardapio()" style="margin-bottom: 1.5rem; display: block; margin-left: auto; margin-right: auto;">
-                <i class="fas fa-chevron-up"></i> <span id="btnCardapioText">Ocultar Cardápio</span>
-            </button>
-
-            <div id="cardapioContainer" class="cardapio-container">
-                <div class="busca-container">
-                    <input type="text" id="buscaInput" class="busca-input" placeholder="🔍 Buscar bolo..."
-                        onkeyup="filtrarCardapio()">
-                    <span class="busca-info" id="buscaInfo"></span>
-                </div>
- 
-                <p class="aviso-alergenos">
-                    Atenção: todos os bolos contêm derivados de leite. A produção pode ter contato com glúten, ovos,
-                    castanhas, amendoim e soja. Informe alergias nas observações da encomenda.
-                </p>
-                <p class="aviso-alergenos" style="margin-top: 0.5rem;">
-                    Confira abaixo os preços do formato normal e maior para cada bolo.
-                </p>
-
-                <div class="cardapio-list" id="cardapioList"></div>
+                </a>
             </div>
         </div>
     </section>
@@ -373,7 +366,10 @@
                         <!-- Abas de Categorias -->
                         <div class="abas-bolos" style="margin-bottom: 1.5rem;">
                             <button type="button" class="aba-btn aba-ativo" onclick="filtrarPorCategoria('todos', event)">
-                                <i class="fas fa-list"></i> Todos (20)
+                                <i class="fas fa-list"></i> Todos (21)
+                            </button>
+                            <button type="button" class="aba-btn aba-natal" onclick="filtrarPorCategoria('natal', event)">
+                                🎄 Natal (1)
                             </button>
                             <button type="button" class="aba-btn" onclick="filtrarPorCategoria('palha', event)">
                                 <i class="fas fa-cookie-bite"></i> Palha Italiana (3)
@@ -537,6 +533,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
+            <p class="footer-natal">Feliz Natal! 🎄</p>
             <p>&copy; 2026 Delícias da Margarete. Todos os direitos reservados.</p>
             <div class="social-links">
                 <a href="https://www.instagram.com/margareteolisouza?igsh=MXdsdndoMWRxamhudg=="><i
@@ -584,6 +581,7 @@
 
     <script src="js/site.js?v=20261031-1"></script>
     <script src="js/firebase-config.js?v=20260729-1"></script>
-    <script src="js/script.js?v=20260729-1"></script>
+    <script src="js/script.js?v=20261110-1"></script>
+    <script src="js/natal.js?v=20261110-1"></script>
 </body>
 </html>
