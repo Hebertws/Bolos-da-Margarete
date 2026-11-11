@@ -454,7 +454,6 @@ document.querySelectorAll('.galeria-grid-item img').forEach(img => {
 
 // Sistema de Encomenda
 const bolosData = [
-    { nome: 'Pudim de Natal (Grande)', preco: 60.00, categoria: 'natal' },
     { nome: 'Pão de Batata sem Recheio', categoria: 'paes', tamanhos: [
         { label: 'Unidade', preco: 1.50 },
         { label: 'Pacote (8 unid.)', preco: 12.00 }
