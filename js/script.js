@@ -24,7 +24,7 @@ function validarTelefone(telefone) {
 
 // Carrossel
 let indiceAtual = 0;
-const itensCarrossel = document.querySelectorAll('.galeria-item').length;
+let itensCarrossel = 0;
 let intervaloCarrossel;
 
 // Sistema de Avaliações (Firebase)
@@ -225,7 +225,7 @@ function carregarAvaliacoes() {
 
 function inicializarIndicadores() {
     const container = document.getElementById('indicadores');
-    container.innerHTML = '';
+    container.replaceChildren();
     for (let i = 0; i < itensCarrossel; i++) {
         const indicador = document.createElement('div');
         indicador.className = `indicador ${i === 0 ? 'ativo' : ''}`;
@@ -245,12 +245,16 @@ function atualizarCarrossel() {
 
 function reiniciarIntervalo() {
     clearInterval(intervaloCarrossel);
+    if (itensCarrossel < 2) return;
+
     intervaloCarrossel = setInterval(() => {
         moveCarrossel(1);
     }, 8000);
 }
 
 function moveCarrossel(direcao) {
+    if (itensCarrossel < 2) return;
+
     indiceAtual += direcao;
 
     if (indiceAtual >= itensCarrossel) {
@@ -264,14 +268,85 @@ function moveCarrossel(direcao) {
 }
 
 function irParaSlide(indice) {
+    if (indice < 0 || indice >= itensCarrossel) return;
+
     indiceAtual = indice;
     atualizarCarrossel();
     reiniciarIntervalo();
 }
 
-// Inicializar carrossel
-inicializarIndicadores();
-reiniciarIntervalo();
+function criarItemCarrossel(produto) {
+    const item = document.createElement('div');
+    item.className = 'galeria-item';
+
+    const imagem = document.createElement('img');
+    imagem.src = produto.imagem;
+    imagem.alt = produto.nome;
+    imagem.loading = 'lazy';
+    imagem.decoding = 'async';
+
+    const titulo = document.createElement('h3');
+    titulo.textContent = produto.nome;
+
+    item.append(imagem, titulo);
+    return item;
+}
+
+async function carregarCarrossel() {
+    const carrossel = document.getElementById('carrossel');
+    const status = document.getElementById('carrosselStatus');
+    const container = carrossel.closest('.carrossel-container');
+    const indicadores = document.getElementById('indicadores');
+
+    try {
+        const resposta = await fetch('data/bolos.json');
+        if (!resposta.ok) {
+            throw new Error(`O arquivo de produtos respondeu com status ${resposta.status}.`);
+        }
+
+        const dados = await resposta.json();
+        if (!dados || !Array.isArray(dados.bolos) || !dados.bolos.every(produto =>
+            produto
+            && typeof produto.nome === 'string'
+            && typeof produto.categoria === 'string'
+            && typeof produto.disponivel === 'boolean'
+            && (produto.imagem === null || typeof produto.imagem === 'string')
+        )) {
+            throw new Error('O arquivo de produtos não contém uma lista válida de bolos.');
+        }
+
+        const bolos = dados.bolos.filter(produto =>
+            produto.nome.startsWith('Bolo de ')
+            && (produto.categoria === 'Com calda' || produto.categoria === 'Sem calda')
+            && produto.disponivel
+            && produto.imagem
+        );
+
+        carrossel.replaceChildren(...bolos.map(criarItemCarrossel));
+        itensCarrossel = bolos.length;
+        indiceAtual = 0;
+        inicializarIndicadores();
+        container.hidden = itensCarrossel === 0;
+        indicadores.hidden = itensCarrossel < 2;
+        container.querySelectorAll('.carrossel-btn').forEach(botao => {
+            botao.hidden = itensCarrossel < 2;
+        });
+
+        if (itensCarrossel === 0) {
+            status.textContent = 'Nenhum bolo disponível para exibir no momento.';
+            status.hidden = false;
+        }
+
+        reiniciarIntervalo();
+    } catch (erro) {
+        console.error('Não foi possível carregar o carrossel:', erro);
+        container.hidden = true;
+        status.textContent = 'Não foi possível carregar os bolos agora. Tente novamente mais tarde.';
+        status.hidden = false;
+    }
+}
+
+carregarCarrossel();
 
 // Busca/Filtro do Cardápio
 function filtrarCardapio() {
@@ -436,12 +511,13 @@ document.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowLeft') navegarLightbox(-1);
 });
 
-// Vincular clique nas imagens do carrossel
-document.querySelectorAll('.galeria-item img').forEach(img => {
-    img.addEventListener('click', function (e) {
-        e.stopPropagation();
-        abrirLightbox(this.src, this.alt);
-    });
+// Delegação para funcionar também com imagens carregadas do JSON.
+document.getElementById('carrossel').addEventListener('click', function (e) {
+    const imagem = e.target.closest('.galeria-item img');
+    if (!imagem) return;
+
+    e.stopPropagation();
+    abrirLightbox(imagem.src, imagem.alt);
 });
 
 // Vincular clique nas imagens da galeria completa (grid)

@@ -611,6 +611,18 @@ body.dark-mode .galeria-item {
     flex-wrap: wrap;
 }
 
+.carrossel-container[hidden],
+.carrossel-btn[hidden],
+.carrossel-indicadores[hidden] {
+    display: none;
+}
+
+.carrossel-status {
+    margin: 0 0 1rem;
+    color: var(--cor-escura);
+    text-align: center;
+}
+
 .indicador {
     width: 10px;
     height: 10px;
